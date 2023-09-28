@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-latest, windows-portable-latest]
 
     steps:
       - name: Check out Git repository
@@ -34,6 +34,10 @@ jobs:
         run: npm run build:mac
 
       - name: build-win
+        if: matrix.os == 'windows-latest'
+        run: npm run build:win:portable
+
+      - name: build-win-portable
         if: matrix.os == 'windows-latest'
         run: npm run build:win
 

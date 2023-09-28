@@ -83,14 +83,12 @@ export default function Challenges({ onLogout }: any) {
 
     const hasTags = challenge.challenge.tags && challenge.challenge.tags.length > 0
 
-    const satisfiesActiveFilters = Object.entries(activeFilters).every(
-      ([filterType, filterTags]) => {
-        if (hasTags) {
-          return (filterTags as string[]).every((tag) => challenge.challenge.tags.includes(tag))
-        }
-        return true
+    const satisfiesActiveFilters = Object.entries(activeFilters).every(([, filterTags]) => {
+      if (hasTags) {
+        return (filterTags as string[]).every((tag) => challenge.challenge.tags.includes(tag))
       }
-    )
+      return true
+    })
 
     return (
       (name.includes(term) || description.includes(term)) &&

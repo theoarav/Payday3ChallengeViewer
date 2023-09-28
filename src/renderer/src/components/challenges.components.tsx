@@ -12,6 +12,8 @@ import IconButton from '@mui/material/IconButton'
 import Button from '@mui/material/Button'
 import Modal from '@mui/material/Modal'
 import ChallengeModal from './challengeModal.components'
+import FilterSelect from './filterSelect.components'
+import customTagFilters from '@renderer/data/customTagFilters'
 
 const ItemContainer = styled.div`
   padding: 0.5rem;
@@ -43,6 +45,7 @@ export default function Challenges({ onLogout }: any) {
     INPROGRESS: true,
     INIT: true
   })
+  const [activeFilters, setActiveFilters] = useState({})
   const [open, setOpen] = React.useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -60,13 +63,16 @@ export default function Challenges({ onLogout }: any) {
     const data = await getUserChallenges()
     if (data) {
       const filteredChallenges = data.filter(
-        (challenge: any) => !challenge.challenge?.tags?.includes('Achievement')
+        (challenge: any) =>
+          !challenge.challenge?.tags?.includes('Achievement') &&
+          challenge.challenge?.tags.length > 0
       )
 
       const sortedChallenges = filteredChallenges.sort(
         (a: any, b: any) => a.challenge.orderNo - b.challenge.orderNo
       )
       setChallenges(sortedChallenges)
+      console.log(sortedChallenges)
     }
   }
 
@@ -74,10 +80,23 @@ export default function Challenges({ onLogout }: any) {
     const name = challenge.challenge.name.toLowerCase()
     const description = challenge.challenge.description.toLowerCase()
     const term = searchTerm.toLowerCase()
+
+    const hasTags = challenge.challenge.tags && challenge.challenge.tags.length > 0
+
+    const satisfiesActiveFilters = Object.entries(activeFilters).every(
+      ([filterType, filterTags]) => {
+        if (hasTags) {
+          return (filterTags as string[]).every((tag) => challenge.challenge.tags.includes(tag))
+        }
+        return true
+      }
+    )
+
     return (
       (name.includes(term) || description.includes(term)) &&
       // @ts-ignore
-      statusFilter[challenge.status]
+      statusFilter[challenge.status] &&
+      satisfiesActiveFilters
     )
   })
 
@@ -90,6 +109,11 @@ export default function Challenges({ onLogout }: any) {
     fetchData()
   }, [])
 
+  useEffect(() => {
+    console.log(filteredChallenges)
+    console.log(activeFilters)
+  }, [filteredChallenges])
+
   const handleChallengeModal = (challengesToComplete: any) => {
     const resultArray = challengesToComplete.map((obj: any) => obj.challengeId)
     const filteredChallenges = challenges.filter((challenge) =>
@@ -97,6 +121,17 @@ export default function Challenges({ onLogout }: any) {
     )
     setModalChallenges(filteredChallenges)
     handleOpen()
+  }
+
+  const onTagFilterChange = (selectedTags, optionName) => {
+    setActiveFilters((prev) => {
+      if (selectedTags.includes('All')) {
+        const updated = { ...prev }
+        delete updated[optionName]
+        return updated
+      }
+      return { ...prev, [optionName]: selectedTags }
+    })
   }
 
   if (!challenges) return 'Chargement...'
@@ -119,7 +154,7 @@ export default function Challenges({ onLogout }: any) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          py: 2,
+          pt: 2,
           mx: 2
         }}
       >
@@ -135,10 +170,22 @@ export default function Challenges({ onLogout }: any) {
           <IconButton aria-label="delete" size="large" onClick={fetchData}>
             <RefreshIcon fontSize="inherit" />
           </IconButton>
-          <SearchBar onChange={(value: any) => setSearchTerm(value)} />
+          <SearchBar onChange={setSearchTerm} />
           <Button onClick={signOut}>Sign out</Button>
         </Box>
-        <StatusSelect onStatusChange={handleStatusChange} />
+        <Box
+          style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%', marginTop: 16 }}
+        >
+          <StatusSelect onStatusChange={handleStatusChange} />
+          {Object.entries(customTagFilters).map(([key, values]) => (
+            <FilterSelect
+              key={key}
+              optionName={key}
+              filterOptions={values.map((value) => ({ name: value.name, tags: value.tags }))}
+              filterChange={onTagFilterChange}
+            />
+          ))}
+        </Box>
       </Box>
       <Box height={'100%'}>
         <VirtuosoGrid

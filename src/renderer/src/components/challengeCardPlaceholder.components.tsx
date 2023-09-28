@@ -5,7 +5,7 @@ import { Skeleton } from '@mui/material'
 
 export default function ChallengeCardPlaceholder() {
   return (
-    <Card style={{ width: '100%', height: '150px' }}>
+    <Card style={{ width: '100%', height: '175px' }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           <Skeleton animation="wave" width="80%" height={40} />{' '}

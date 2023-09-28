@@ -51,8 +51,13 @@ export default function ChallengeCard({ challenge, openModal }: any) {
     openModal(challengesToComplete)
   }
 
+  const challengeRewards =
+    challenge.challenge.reward?.stats?.[0]?.statCode === 'infamy-point'
+      ? challenge.challenge.reward.stats[0].value
+      : ''
+
   return (
-    <Card style={{ width: '100%', height: '150px' }}>
+    <Card style={{ width: '100%', height: '175px', display: 'flex', flexDirection: 'column' }}>
       <CardContent style={{ padding: 8 }}>
         <Typography
           gutterBottom
@@ -80,15 +85,22 @@ export default function ChallengeCard({ challenge, openModal }: any) {
           {challenge.challenge.description}
         </Typography>
       </CardContent>
-      {!!openModal && challenge.status === 'INIT' ? (
-        <CardActions>
+      <CardActions style={{ alignItems: 'baseline', paddingTop: 0, marginTop: 'auto' }}>
+        {!!openModal && challenge.status === 'INIT' ? (
           <Button size="small" onClick={openChallengeModal}>
             Show prerequisites
           </Button>
-        </CardActions>
-      ) : (
-        ''
-      )}
+        ) : (
+          ''
+        )}
+        {!!challengeRewards ? (
+          <Typography variant="overline" display="block" style={{ marginLeft: 'auto' }}>
+            Reward: {challengeRewards} Infamy points
+          </Typography>
+        ) : (
+          ''
+        )}
+      </CardActions>
     </Card>
   )
 }

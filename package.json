@@ -1,10 +1,10 @@
 {
-  "name": "payday3challengeviewer",
-  "version": "1.0.0",
-  "description": "An Electron application with React and TypeScript",
+  "name": "payday-3-challenge-viewer",
+  "version": "1.0.6",
+  "description": "Challenge viewer for Payday 3",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://www.electronjs.org",
+  "author": "Elmoren",
+  "homepage": "https://github.com/theoarav/Payday3ChallengeViewer",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",

@@ -1,6 +1,6 @@
 {
   "name": "payday-3-challenge-viewer",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Challenge viewer for Payday 3",
   "main": "./out/main/index.js",
   "author": "Elmoren",

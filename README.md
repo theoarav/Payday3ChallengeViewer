@@ -14,6 +14,7 @@ This application allows you to have a better view of the challenges.
 
 ![AppLogin](resources/appLogin.png)
 ![AppInterface](resources/appInterface.png)
+![AppInterface2](resources/appInterface2.png)
 
 - You can filter by challenge name / description
   - Keep in mind that some names aren't the same as displayed in game (Zapper, Grenadier, ...)

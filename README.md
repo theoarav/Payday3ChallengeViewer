@@ -1,3 +1,5 @@
+EDIT: I don't think I'll maintain this anymore, https://pd3.gg/challenges can now use OAuth to do the same thing as this program does and their interface is prettier than this program too.
+
 # Payday 3 Challenge Viewer
 
 This application allows you to have a better view of the challenges.

@@ -6,7 +6,7 @@ import { ChallengesFilters } from './challengesFilters.components'
 import { ChallengesGrid } from './challengesGrid.components'
 import { ChallengeModalWrapper } from './challengesModalWrapper.components'
 
-export default function Challenges() {
+export default function Challenges({ onLogout }) {
   // Gestion de l'état local avec React Hooks
   const [challenges, setChallenges] = useState<Array<any>>([])
   const [filteredChallenges, setFilteredChallenges] = useState<Array<Object>>([])
@@ -102,6 +102,7 @@ export default function Challenges() {
 
   const signOut = () => {
     logout()
+    onLogout()
   }
 
   return (

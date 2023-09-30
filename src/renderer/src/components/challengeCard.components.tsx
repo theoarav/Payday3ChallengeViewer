@@ -8,6 +8,9 @@ import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgres
 import Box from '@mui/material/Box'
 import LockIcon from '@mui/icons-material/Lock'
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser'
+import PushPinIcon from '@mui/icons-material/PushPin'
+import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
+import { IconButton } from '@mui/material'
 
 function LinearProgressWithLabel({
   initialCurrentValue,
@@ -19,7 +22,7 @@ function LinearProgressWithLabel({
   useEffect(() => {
     if (currentValue >= targetValue) {
       setCurrentValue(targetValue)
-    } else setCurrentValue(Math.floor(currentValue))
+    } else setCurrentValue(Math.floor(initialCurrentValue))
   }, [currentValue, targetValue])
 
   return (
@@ -41,10 +44,13 @@ function LinearProgressWithLabel({
   )
 }
 
-export default function ChallengeCard({ challenge, openModal }: any) {
-  // useEffect(() => {
-  //   console.log(challenge);
-  // });
+export default function ChallengeCard({
+  challenge,
+  openModal,
+  togglePinnedChallenge,
+  isPinned
+}: any) {
+  const challengeProgess = challenge.progress.objective.stats[0]
 
   const openChallengeModal = () => {
     const challengesToComplete = challenge.progress.prerequisite.completedChallengeIds
@@ -59,27 +65,43 @@ export default function ChallengeCard({ challenge, openModal }: any) {
   return (
     <Card style={{ width: '100%', height: '175px', display: 'flex', flexDirection: 'column' }}>
       <CardContent style={{ padding: 8 }}>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="div"
-          style={{
+        <Box
+          sx={{
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between'
           }}
         >
-          {challenge.challenge.name}
-          {challenge.status === 'COMPLETED' ? (
-            <VerifiedUserIcon color="success" />
-          ) : challenge.status === 'INIT' ? (
-            <LockIcon color="disabled" />
-          ) : null}
-        </Typography>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="div"
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center'
+            }}
+          >
+            {challenge.status === 'COMPLETED' ? (
+              <VerifiedUserIcon color="success" sx={{ mr: 1 }} />
+            ) : challenge.status === 'INIT' ? (
+              <LockIcon color="disabled" sx={{ mr: 1 }} />
+            ) : null}
+            {challenge.challenge.name}
+          </Typography>
+          <Typography>
+            <IconButton
+              aria-label="pin"
+              onClick={() => togglePinnedChallenge(challenge.challenge.challengeId)}
+            >
+              {isPinned ? <PushPinIcon /> : <PushPinOutlinedIcon />}
+            </IconButton>
+          </Typography>
+        </Box>
         <LinearProgressWithLabel
-          initialCurrentValue={challenge.progress.objective.stats[0].currentValue}
-          targetValue={challenge.progress.objective.stats[0].targetValue}
+          initialCurrentValue={challengeProgess.currentValue}
+          targetValue={challengeProgess.targetValue}
         />
         <Typography variant="body2" color="text.secondary">
           {challenge.challenge.description}

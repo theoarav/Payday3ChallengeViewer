@@ -25,7 +25,6 @@ const ListContainer = styled.div`
 `
 
 export default function ChallengeModal({ challenges }: any) {
-  console.log(challenges)
   return (
     <VirtuosoGrid
       totalCount={challenges.length}

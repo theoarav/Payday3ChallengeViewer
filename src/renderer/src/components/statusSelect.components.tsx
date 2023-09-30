@@ -3,49 +3,42 @@ import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 
-/*
-challenge.status = "COMPLETED" | "INPROGRESS" | "INIT"
-*/
+const statusMap = {
+  COMPLETED: 'Completed',
+  INPROGRESS: 'In Progress',
+  INIT: 'Locked'
+}
 
-const options = ['Completed', 'In Progress', 'Locked']
+type Status = keyof typeof statusMap
 
-export default function StatusSelect({ onStatusChange }: any) {
-  const [checked, setChecked] = React.useState(new Array(options.length).fill(true))
+interface StatusSelectProps {
+  onStatusChange: (statuses: Status[]) => void
+}
+
+export default function StatusSelect({ onStatusChange }: StatusSelectProps) {
+  const [checked, setChecked] = React.useState<Record<Status, boolean>>({
+    COMPLETED: true,
+    INPROGRESS: true,
+    INIT: true
+  })
 
   const handleIndividualChange =
-    (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      const newChecked = [...checked]
-      newChecked[index] = event.target.checked
+    (status: Status) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newChecked = { ...checked, [status]: event.target.checked }
       setChecked(newChecked)
-      onStatusChange(newChecked)
+      onStatusChange(Object.keys(newChecked).filter((key) => newChecked[key as Status]) as Status[])
     }
 
   const handleSelectAllChange = () => {
-    const newCheckedArray = checked.some((check) => !check)
-      ? new Array(options.length).fill(true)
-      : new Array(options.length).fill(false)
-
-    setChecked(newCheckedArray)
-    onStatusChange(newCheckedArray)
+    const allChecked = !Object.values(checked).every(Boolean)
+    const newChecked = {
+      COMPLETED: allChecked,
+      INPROGRESS: allChecked,
+      INIT: allChecked
+    }
+    setChecked(newChecked)
+    onStatusChange(allChecked ? (Object.keys(statusMap) as Status[]) : [])
   }
-
-  const children = (
-    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-      {options.map((option, index) => (
-        <FormControlLabel
-          key={index}
-          label={option}
-          control={
-            <Checkbox
-              checked={checked[index]}
-              onChange={handleIndividualChange(index)}
-              color="success"
-            />
-          }
-        />
-      ))}
-    </Box>
-  )
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'row' }}>
@@ -53,14 +46,30 @@ export default function StatusSelect({ onStatusChange }: any) {
         label="Select all"
         control={
           <Checkbox
-            checked={checked.every(Boolean)}
-            indeterminate={checked.some(Boolean) && !checked.every(Boolean)}
+            checked={Object.values(checked).every(Boolean)}
+            indeterminate={
+              Object.values(checked).some(Boolean) && !Object.values(checked).every(Boolean)
+            }
             color="success"
             onChange={handleSelectAllChange}
           />
         }
       />
-      {children}
+      <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+        {Object.entries(statusMap).map(([status, label]) => (
+          <FormControlLabel
+            key={status}
+            label={label}
+            control={
+              <Checkbox
+                checked={checked[status as Status]}
+                onChange={handleIndividualChange(status as Status)}
+                color="success"
+              />
+            }
+          />
+        ))}
+      </Box>
     </Box>
   )
 }

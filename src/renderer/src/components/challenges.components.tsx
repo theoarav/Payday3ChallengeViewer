@@ -1,68 +1,36 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { Container } from '@mui/material'
 import { getUserChallenges, logout } from '../service/auth.service'
-import { VirtuosoGrid } from 'react-virtuoso'
-import ChallengeCard from './challengeCard.components'
-import styled from '@emotion/styled'
-import ChallengeCardPlaceholder from './challengeCardPlaceholder.components'
-import { Box, Container } from '@mui/material'
-import SearchBar from './searchBar.components'
-import StatusSelect from './statusSelect.components'
-import RefreshIcon from '@mui/icons-material/Refresh'
-import IconButton from '@mui/material/IconButton'
-import Button from '@mui/material/Button'
-import Modal from '@mui/material/Modal'
-import ChallengeModal from './challengeModal.components'
-import FilterSelect from './filterSelect.components'
-import customTagFilters from '@renderer/data/customTagFilters'
+import { ChallengesHeader } from './challengesHeader.components'
+import { ChallengesFilters } from './challengesFilters.components'
+import { ChallengesGrid } from './challengesGrid.components'
+import { ChallengeModalWrapper } from './challengesModalWrapper.components'
 
-const ItemContainer = styled.div`
-  padding: 0.5rem;
-  width: 33%;
-  display: flex;
-  flex: none;
-  align-content: stretch;
-  box-sizing: border-box;
-
-  @media (max-width: 1024px) {
-    width: 50%;
-  }
-
-  @media (max-width: 300px) {
-    width: 100%;
-  }
-`
-
-const ListContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`
-
-export default function Challenges({ onLogout }: any) {
+export default function Challenges() {
+  // Gestion de l'état local avec React Hooks
   const [challenges, setChallenges] = useState<Array<any>>([])
+  const [filteredChallenges, setFilteredChallenges] = useState<Array<Object>>([])
   const [searchTerm, setSearchTerm] = useState('')
-  const [statusFilter, setStatusFilter] = useState({
-    COMPLETED: true,
-    INPROGRESS: true,
-    INIT: true
-  })
-  const [activeFilters, setActiveFilters] = useState({})
-  const [open, setOpen] = React.useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([
+    'COMPLETED',
+    'INPROGRESS',
+    'INIT'
+  ])
+  const [selectedTags, setSelectedTags] = useState<Object>({})
+  const [open, setOpen] = useState(false)
   const [modalChallenges, setModalChallenges] = useState<Array<any>>([])
+  const [pinnedChallenges, setPinnedChallenges] = useState<Array<string>>([])
+  const [showOnlyPinned, setShowOnlyPinned] = useState(false)
 
-  const handleStatusChange = (newStatusFilter: any) => {
-    setStatusFilter({
-      COMPLETED: newStatusFilter[0],
-      INPROGRESS: newStatusFilter[1],
-      INIT: newStatusFilter[2]
-    })
-  }
+  useEffect(() => {
+    fetchData()
+  }, [])
 
+  // Récupération de données
   const fetchData = async () => {
-    const data = await getUserChallenges()
-    if (data) {
-      const filteredChallenges = data.filter(
+    try {
+      const fetchedChallenges = await getUserChallenges()
+      const filteredChallenges = fetchedChallenges.filter(
         (challenge: any) =>
           !challenge.challenge?.tags?.includes('Achievement') &&
           challenge.challenge?.tags.length > 0
@@ -72,67 +40,69 @@ export default function Challenges({ onLogout }: any) {
         (a: any, b: any) => a.challenge.orderNo - b.challenge.orderNo
       )
       setChallenges(sortedChallenges)
-      console.log(sortedChallenges)
+      setFilteredChallenges(sortedChallenges)
+    } catch (error) {
+      console.error('Error fetching data: ', error)
     }
   }
 
-  const filteredChallenges = challenges.filter((challenge) => {
-    const name = challenge.challenge.name.toLowerCase()
-    const description = challenge.challenge.description.toLowerCase()
-    const term = searchTerm.toLowerCase()
+  useEffect(() => {
+    const newFilteredChallenges = challenges.filter((ch) => {
+      // Vérifie si le nom du challenge contient le terme de recherche
+      const isNameMatch = ch.challenge.name.toLowerCase().includes(searchTerm.toLowerCase())
 
-    const hasTags = challenge.challenge.tags && challenge.challenge.tags.length > 0
+      // Vérifie si le statut du challenge est dans les statuts sélectionnés
+      const isStatusMatch = selectedStatuses.includes(ch.status)
 
-    const satisfiesActiveFilters = Object.entries(activeFilters).every(([, filterTags]) => {
-      if (hasTags) {
-        return (filterTags as string[]).every((tag) => challenge.challenge.tags.includes(tag))
+      // Vérifie si tous les tags dans selectedTags sont présents dans ch.challenge.tags
+      const areTagsMatch = Object.keys(selectedTags).every((key) => {
+        return selectedTags[key].every((tag) => ch.challenge.tags.includes(tag))
+      })
+
+      let isPinned = true
+      if (showOnlyPinned) {
+        isPinned = pinnedChallenges.includes(ch.challenge.challengeId)
       }
-      return true
+
+      // Retourne vrai si toutes les conditions sont vraies
+      return isNameMatch && isStatusMatch && areTagsMatch && isPinned
     })
 
-    return (
-      (name.includes(term) || description.includes(term)) &&
-      // @ts-ignore
-      statusFilter[challenge.status] &&
-      satisfiesActiveFilters
-    )
-  })
+    // Mettre à jour l'état
+    setFilteredChallenges(newFilteredChallenges)
+  }, [challenges, searchTerm, selectedStatuses, selectedTags, showOnlyPinned, pinnedChallenges])
+
+  const handleChallengeModal = (challengeId) => {
+    const selectedChallenges = challenges.filter((ch) => ch.id === challengeId)
+    setModalChallenges(selectedChallenges)
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const handleStatusChange = (statuses: string[]) => {
+    setSelectedStatuses(statuses)
+  }
+
+  const onTagFilterChange = (optionName: string, tag: string[]) => {
+    setSelectedTags((prevTags) => ({ ...prevTags, [optionName]: tag }))
+  }
+
+  const togglePinnedChallenge = (challengeId: string) => {
+    setPinnedChallenges((prevPinned) => {
+      if (prevPinned.includes(challengeId)) {
+        return prevPinned.filter((id) => id !== challengeId)
+      } else {
+        return [...prevPinned, challengeId]
+      }
+    })
+  }
 
   const signOut = () => {
     logout()
-    onLogout()
   }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-
-  useEffect(() => {
-    console.log(filteredChallenges)
-    console.log(activeFilters)
-  }, [filteredChallenges])
-
-  const handleChallengeModal = (challengesToComplete: any) => {
-    const resultArray = challengesToComplete.map((obj: any) => obj.challengeId)
-    const filteredChallenges = challenges.filter((challenge) =>
-      resultArray.includes(challenge.challenge.challengeId)
-    )
-    setModalChallenges(filteredChallenges)
-    handleOpen()
-  }
-
-  const onTagFilterChange = (selectedTags, optionName) => {
-    setActiveFilters((prev) => {
-      if (selectedTags.includes('All')) {
-        const updated = { ...prev }
-        delete updated[optionName]
-        return updated
-      }
-      return { ...prev, [optionName]: selectedTags }
-    })
-  }
-
-  if (!challenges) return 'Chargement...'
 
   return (
     <Container
@@ -147,90 +117,23 @@ export default function Challenges({ onLogout }: any) {
       }}
       maxWidth={false}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          pt: 2,
-          mx: 2
-        }}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '100%'
-          }}
-        >
-          <IconButton aria-label="delete" size="large" onClick={fetchData}>
-            <RefreshIcon fontSize="inherit" />
-          </IconButton>
-          <SearchBar onChange={setSearchTerm} />
-          <Button onClick={signOut}>Sign out</Button>
-        </Box>
-        <Box
-          style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%', marginTop: 16 }}
-        >
-          <StatusSelect onStatusChange={handleStatusChange} />
-          {Object.entries(customTagFilters).map(([key, values]) => (
-            <FilterSelect
-              key={key}
-              optionName={key}
-              filterOptions={values.map((value) => ({ name: value.name, tags: value.tags }))}
-              filterChange={onTagFilterChange}
-            />
-          ))}
-        </Box>
-      </Box>
-      <Box height={'100%'}>
-        <VirtuosoGrid
-          totalCount={filteredChallenges.length}
-          overscan={200}
-          components={{
-            Item: ItemContainer,
-            // @ts-ignore
-            List: ListContainer,
-            ScrollSeekPlaceholder: () => (
-              <ItemContainer>
-                <ChallengeCardPlaceholder />
-              </ItemContainer>
-            )
-          }}
-          itemContent={(index) => (
-            <ChallengeCard challenge={filteredChallenges[index]} openModal={handleChallengeModal} />
-          )}
-          scrollSeekConfiguration={{
-            enter: (velocity) => Math.abs(velocity) > 200,
-            exit: (velocity) => Math.abs(velocity) < 30
-          }}
-        />
-      </Box>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          sx={{
-            position: 'absolute' as 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '80%',
-            height: '80%',
-            bgcolor: 'background.paper',
-            border: '2px solid #000',
-            boxShadow: 24,
-            p: 4
-          }}
-        >
-          <ChallengeModal challenges={modalChallenges} />
-        </Box>
-      </Modal>
+      <ChallengesHeader
+        fetchData={fetchData}
+        setSearchTerm={setSearchTerm}
+        signOut={signOut}
+        onShowOnlyPinnedChange={setShowOnlyPinned}
+      />
+      <ChallengesFilters
+        handleStatusChange={handleStatusChange}
+        onTagFilterChange={onTagFilterChange}
+      />
+      <ChallengesGrid
+        challenges={filteredChallenges}
+        handleChallengeModal={handleChallengeModal}
+        togglePinnedChallenge={togglePinnedChallenge}
+        pinnedChallenges={pinnedChallenges}
+      />
+      <ChallengeModalWrapper open={open} handleClose={handleClose} challenges={modalChallenges} />
     </Container>
   )
 }

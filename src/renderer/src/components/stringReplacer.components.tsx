@@ -7,6 +7,7 @@ export type internalizedChallenge =
 }
 
 
+//Can be used for checking how many api challenges has no game variants paired.
 export const checkForMissingTranslations = (): string => {
   let number = 0;
 

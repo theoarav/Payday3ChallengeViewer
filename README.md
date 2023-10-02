@@ -1,4 +1,7 @@
+# Discontinued project
+
 EDIT: I don't think I'll maintain this anymore, https://pd3.gg/challenges can now use OAuth to do the same thing as this program does and their interface is prettier than this program too.
+I can add contributors if someone wants to take over :)
 
 # Payday 3 Challenge Viewer
 

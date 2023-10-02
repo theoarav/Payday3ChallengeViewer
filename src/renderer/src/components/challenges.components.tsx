@@ -5,6 +5,7 @@ import { ChallengesHeader } from './challengesHeader.components'
 import { ChallengesFilters } from './challengesFilters.components'
 import { ChallengesGrid } from './challengesGrid.components'
 import { ChallengeModalWrapper } from './challengesModalWrapper.components'
+import { $$, internalizedChallenge } from './stringReplacer.components'
 
 export default function Challenges({ onLogout }) {
   // Gestion de l'état local avec React Hooks
@@ -48,8 +49,14 @@ export default function Challenges({ onLogout }) {
 
   useEffect(() => {
     const newFilteredChallenges = challenges.filter((ch) => {
+      const internalizedChallenge:internalizedChallenge = $$(ch.challenge.challengeId);
+      const name = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.title) ? internalizedChallenge.game.title : ch.challenge.name).toLowerCase()
+      
+      //In case you want to reapply searching in descriptions also.
+      //const description = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc) ? internalizedChallenge.game.desc : ch.challenge.description).toLowerCase()
+
       // Vérifie si le nom du challenge contient le terme de recherche
-      const isNameMatch = ch.challenge.name.toLowerCase().includes(searchTerm.toLowerCase())
+      const isNameMatch = name.toLowerCase().includes(searchTerm.toLowerCase())
 
       // Vérifie si le statut du challenge est dans les statuts sélectionnés
       const isStatusMatch = selectedStatuses.includes(ch.status)

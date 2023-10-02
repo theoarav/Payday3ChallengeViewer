@@ -8,6 +8,7 @@ import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgres
 import Box from '@mui/material/Box'
 import LockIcon from '@mui/icons-material/Lock'
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser'
+import { $$, internalizedChallenge } from './stringReplacer.components'
 import PushPinIcon from '@mui/icons-material/PushPin'
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
 import { IconButton } from '@mui/material'
@@ -57,13 +58,32 @@ export default function ChallengeCard({
     openModal(challengesToComplete)
   }
 
+  const internalizedChallenge:internalizedChallenge = $$(challenge.challenge.challengeId);
+  const challengeName = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.title) ? internalizedChallenge.game.title : challenge.challenge.name);
+  const challengeDesc = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc) ? internalizedChallenge.game.desc : challenge.challenge.description);
+  
+  let borderColor;
+  switch(challenge.status){
+    case "COMPLETED":
+      borderColor = "rgba(0, 255, 0, 0.4)"
+      break;
+    case "INPROGRESS":
+      borderColor = "rgba(255, 255, 255, 0.6)"
+      break;
+    case "INIT": 
+      borderColor = "rgba(243, 27, 56, 0.5)"
+      break;
+    default:
+      borderColor = "rgba(0, 0, 0, 0)"
+  }
+
   const challengeRewards =
     challenge.challenge.reward?.stats?.[0]?.statCode === 'infamy-point'
       ? challenge.challenge.reward.stats[0].value
       : ''
 
   return (
-    <Card style={{ width: '100%', height: '175px', display: 'flex', flexDirection: 'column' }}>
+    <Card style={{ width: '100%', height: '175px', display: 'flex', flexDirection: 'column', borderStyle: "solid", borderColor: borderColor}}>
       <CardContent style={{ padding: 8 }}>
         <Box
           sx={{
@@ -88,14 +108,14 @@ export default function ChallengeCard({
             ) : challenge.status === 'INIT' ? (
               <LockIcon color="disabled" sx={{ mr: 1 }} />
             ) : null}
-            {challenge.challenge.name}
+            {challengeName}
           </Typography>
           <Typography>
             <IconButton
               aria-label="pin"
               onClick={() => togglePinnedChallenge(challenge.challenge.challengeId)}
             >
-              {isPinned ? <PushPinIcon /> : <PushPinOutlinedIcon />}
+              {isPinned ? <PushPinIcon style={{color: "rgba(134, 154, 243, 0.6)"}}/> : <PushPinOutlinedIcon />}
             </IconButton>
           </Typography>
         </Box>
@@ -104,7 +124,7 @@ export default function ChallengeCard({
           targetValue={challengeProgess.targetValue}
         />
         <Typography variant="body2" color="text.secondary">
-          {challenge.challenge.description}
+          {challengeDesc}
         </Typography>
       </CardContent>
       <CardActions style={{ alignItems: 'baseline', paddingTop: 0, marginTop: 'auto' }}>

@@ -1,4 +1,5 @@
 import { AuthModel } from '../model/auth.model'
+import { checkForMissingTranslations } from '../components/stringReplacer.components'
 
 const AUTH_INFOS = 'PD3CV-AuthInfos'
 const NEBULA_ADDR = 'https://nebula.starbreeze.com'
@@ -106,5 +107,9 @@ export const getUserChallenges = async () => {
     } else next = false
     allChallengesData.push(...challengeData.data)
   }
+
+  //Check for missing translations (only checks for the game variant, since right now the api list should be filled with everything until new ones arrive)
+  //console.log("Replacing status: ",checkForMissingTranslations());
+
   return allChallengesData
 }

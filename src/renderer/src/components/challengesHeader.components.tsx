@@ -2,6 +2,7 @@ import { Button, Box, FormControlLabel, Checkbox } from '@mui/material'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import SearchBar from './searchBar.components'
 import { useState } from 'react'
+import { exportPayCheck3Data } from '@renderer/service/auth.service'
 
 export const ChallengesHeader = ({ fetchData, setSearchTerm, signOut, onShowOnlyPinnedChange }) => {
   const [showOnlyPinned, setShowOnlyPinned] = useState(false)
@@ -45,6 +46,7 @@ export const ChallengesHeader = ({ fetchData, setSearchTerm, signOut, onShowOnly
           justifyContent: 'flex-end'
         }}
       >
+        <Button onClick={exportPayCheck3Data}>Export data (PayCheck3)</Button>
         <Button onClick={signOut}>Sign out</Button>
       </Box>
     </Box>

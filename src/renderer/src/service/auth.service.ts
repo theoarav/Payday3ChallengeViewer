@@ -109,3 +109,74 @@ export const getUserChallenges = async () => {
 
   return allChallengesData
 }
+
+export const getUserInfos = async () => {
+  const authInfosStr = localStorage.getItem(AUTH_INFOS)
+  if (!authInfosStr) return false
+  const authInfos = JSON.parse(authInfosStr) as AuthModel
+
+  const apiCall = await fetch(NEBULA_ADDR + '/iam/v3/public/users/me', {
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + authInfos.accessToken
+    }
+  })
+  if (apiCall.status !== 200) return false
+
+  const userInfos = await apiCall.json()
+
+  return userInfos
+}
+
+export const getStatItems = async () => {
+  const authInfosStr = localStorage.getItem(AUTH_INFOS)
+  if (!authInfosStr) return false
+  const authInfos = JSON.parse(authInfosStr) as AuthModel
+
+  const userInfos = await getUserInfos()
+  if (!userInfos) return false
+
+  const apiCall = await fetch(
+    NEBULA_ADDR +
+      '/social/v1/public/namespaces/pd3/users/' +
+      userInfos.userId +
+      '/statitems?limit=100000&offset=0',
+    {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + authInfos.accessToken
+      }
+    }
+  )
+  if (apiCall.status !== 200) return false
+
+  const statItems = await apiCall.json()
+
+  return statItems
+}
+
+export const exportPayCheck3Data = async () => {
+  const statItems = await getStatItems()
+  if (!statItems) return false
+
+  // const anonimisedData: any = []
+
+  // for (const stat of statItems.data) {
+  //   anonimisedData.push({
+  //     ...stat,
+  //     updatedAt: '2023-09-20T10:00:00.000Z',
+  //     createdAt: '2023-09-20T10:00:00.000Z',
+  //     userId: 'USERID',
+  //     value: 0.0
+  //   })
+  // }
+  const downloadFile = (content, fileName, contentType) => {
+    var a = document.createElement('a')
+    var file = new Blob([content], { type: contentType })
+    a.href = URL.createObjectURL(file)
+    a.download = fileName
+    a.click()
+  }
+  downloadFile(JSON.stringify(statItems.data), 'statItems.json', 'text/plain')
+  return true
+}

@@ -59,8 +59,8 @@ export default function ChallengeCard({
   }
 
   const internalizedChallenge:internalizedChallenge = $$(challenge.challenge.challengeId);
-  const challengeName = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.title) ? internalizedChallenge.game.title : challenge.challenge.name);
-  const challengeDesc = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc) ? internalizedChallenge.game.desc : challenge.challenge.description);
+  const challengeName = ((internalizedChallenge && internalizedChallenge.en && internalizedChallenge.en.title) ? internalizedChallenge.en.title : challenge.challenge.name);
+  const challengeDesc = ((internalizedChallenge && internalizedChallenge.en && internalizedChallenge.en.desc) ? internalizedChallenge.en.desc : challenge.challenge.description);
   
   let borderColor;
   switch(challenge.status){

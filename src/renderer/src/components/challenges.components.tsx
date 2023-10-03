@@ -50,7 +50,7 @@ export default function Challenges({ onLogout }) {
   useEffect(() => {
     const newFilteredChallenges = challenges.filter((ch) => {
       const internalizedChallenge:internalizedChallenge = $$(ch.challenge.challengeId);
-      const name = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.title) ? internalizedChallenge.game.title : ch.challenge.name).toLowerCase()
+      const name = ((internalizedChallenge && internalizedChallenge.en && internalizedChallenge.en.title) ? internalizedChallenge.en.title : ch.challenge.name).toLowerCase()
       
       //In case you want to reapply searching in descriptions also.
       //const description = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc) ? internalizedChallenge.game.desc : ch.challenge.description).toLowerCase()

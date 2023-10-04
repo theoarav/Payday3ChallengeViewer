@@ -1,8 +1,3 @@
-# Discontinued project
-
-EDIT: I don't think I'll maintain this anymore, https://pd3.gg/challenges can now use OAuth to do the same thing as this program does and their interface is prettier than this program too.
-I can add contributors if someone wants to take over :)
-
 # Payday 3 Challenge Viewer
 
 This application allows you to have a better view of the challenges.
@@ -21,16 +16,19 @@ This application allows you to have a better view of the challenges.
 ![AppInterface](resources/appInterface.png)
 ![AppInterface2](resources/appInterface2.png)
 
-- You can filter by challenge name / description
-  - Keep in mind that some names aren't the same as displayed in game (Zapper, Grenadier, ...)
-- You can filter by status : Completed, In progress and Locked
-- On a Locked challenge you can show his prerequisites
-
 # Usage
 
-1. Log in using you [Starbreeze account](https://nebula.starbreeze.com)
-2. Enjoy
+1. Download latest release on github
+2. Log in using you [Starbreeze account](https://nebula.starbreeze.com)
+3. Enjoy
 
 # Data storage
 
 This program stores your access and refresh token inside your local storage.
+
+# Contributors
+
+- [@HW12Dev](https://github.com/HW12Dev)
+  - Helped to understand connection to Starbreeze API and requests
+- [@DudiVok](https://github.com/DudiVok)
+  - Improved UI & added functionalities

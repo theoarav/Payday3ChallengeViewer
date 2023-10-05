@@ -62,8 +62,8 @@ export default function Challenges({ onLogout }) {
     const newFilteredChallenges = challenges.filter((ch) => {
       const internalizedChallenge: internalizedChallenge = $$(ch.challenge.challengeId)
       const name = (
-        internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.title
-          ? internalizedChallenge.game.title
+        internalizedChallenge && internalizedChallenge.en && internalizedChallenge.en.title
+          ? internalizedChallenge.en.title
           : ch.challenge.name
       ).toLowerCase()
 

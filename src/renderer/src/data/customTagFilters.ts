@@ -28,7 +28,7 @@ export default {
     },
     {
       name: 'Very Hard',
-      tags: ['Very', 'Hard']
+      tags: ['Very']
     },
     {
       name: 'Overkill',

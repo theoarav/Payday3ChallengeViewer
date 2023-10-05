@@ -4,6 +4,8 @@ This application allows you to have a better view of the challenges.
 
 **Data from the Starbreeze API are messy, I don't know why.**
 
+*There are still a few texts that are still in english, regardless what language you pick (The labels before the filters, the selectbox texts, etc), but all the challenges should be in their respective languages. If you find a translation error within them please don't report it to us. All the text are ripped directly from the game, so if theres something wrong it's just as wrong in-game.*
+
 # Disclaimer
 
 - You must own a legitimate copy of PAYDAY 3 to use this software, which can be purchased at https://www.paydaythegame.com/payday3/#buy

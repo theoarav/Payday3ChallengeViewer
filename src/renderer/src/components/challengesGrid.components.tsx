@@ -26,12 +26,14 @@ const ListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `
+
 export default function ChallengesGrid({
   challenges,
   openModal,
   togglePinnedChallenge,
   pinnedChallenges,
-  getChallengesById
+  getChallengesById,
+  language
 }) {
   const handleChallengeModal = (challengeIds) => {
     const challengeIdSet = new Set(challengeIds.map((ch) => ch.challengeId))
@@ -62,6 +64,7 @@ export default function ChallengesGrid({
         }}
         itemContent={(index) => (
           <ChallengeCard
+            language={language}
             challenge={challenges[index]}
             openModal={handleChallengeModal}
             togglePinnedChallenge={togglePinnedChallenge}

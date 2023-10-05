@@ -11,7 +11,9 @@ import { ChallengesFilters } from './challengesFilters.components'
 import ChallengesGrid from './challengesGrid.components'
 import ChallengesHeader from './challengesHeader.components'
 import { ModalWrapper } from './modalWrapper.components'
-import { $$, internalizedChallenge } from './stringReplacer.components'
+import { $$, sanitizedChallengeData } from './stringReplacer.components'
+import { getChosenLanguage } from '@renderer/service/auth.service'
+
 
 export default function Challenges({ onLogout }) {
   const [challenges, setChallenges] = useState<Array<any>>([])
@@ -27,7 +29,7 @@ export default function Challenges({ onLogout }) {
   const [modalContent, setModalContent] = useState<any>()
   const [pinnedChallenges, setPinnedChallenges] = useState<Array<string>>(getPinnedChallenges)
   const [showOnlyPinned, setShowOnlyPinned] = useState(false)
-  const [language, setLanguage] = useState('en-US')
+  const [language, setLanguage] = useState(getChosenLanguage)
 
   useEffect(() => {
     fetchData()
@@ -36,6 +38,10 @@ export default function Challenges({ onLogout }) {
   useEffect(() => {
     savePinnedChallenges(pinnedChallenges)
   }, [pinnedChallenges])
+
+  useEffect(() => {
+    fetchData()
+  }, [language])
 
   const fetchData = async () => {
     try {
@@ -58,12 +64,8 @@ export default function Challenges({ onLogout }) {
 
   useEffect(() => {
     const newFilteredChallenges = challenges.filter((ch) => {
-      const internalizedChallenge: internalizedChallenge = $$(ch.challenge.challengeId)
-      const name = (
-        internalizedChallenge && internalizedChallenge.en && internalizedChallenge.en.title
-          ? internalizedChallenge.en.title
-          : ch.challenge.name
-      ).toLowerCase()
+      const sanitizedChallengeData: sanitizedChallengeData = $$(ch.challenge.challengeId, language)
+      const name = (sanitizedChallengeData.internalName !== "" ? sanitizedChallengeData.title : ch.challenge.name).toLowerCase();
 
       //In case you want to reapply searching in descriptions also.
       //const description = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc) ? internalizedChallenge.game.desc : ch.challenge.description).toLowerCase()
@@ -167,6 +169,7 @@ export default function Challenges({ onLogout }) {
         togglePinnedChallenge={togglePinnedChallenge}
         pinnedChallenges={pinnedChallenges}
         getChallengesById={getChallengesByIds}
+        language={language}
       />
       <ModalWrapper open={open} handleClose={handleCloseModal} modalContent={modalContent} />
     </Container>

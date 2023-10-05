@@ -8,7 +8,7 @@ import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgres
 import Box from '@mui/material/Box'
 import LockIcon from '@mui/icons-material/Lock'
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser'
-import { $$, internalizedChallenge } from './stringReplacer.components'
+import { $$, sanitizedChallengeData } from './stringReplacer.components'
 import PushPinIcon from '@mui/icons-material/PushPin'
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
 import { IconButton } from '@mui/material'
@@ -49,8 +49,10 @@ export default function ChallengeCard({
   challenge,
   openModal,
   togglePinnedChallenge,
-  isPinned
+  isPinned,
+  language
 }: any) {
+
   const challengeProgess = challenge.progress.objective.stats[0]
 
   const openChallengeModal = () => {
@@ -58,15 +60,9 @@ export default function ChallengeCard({
     openModal(challengesToComplete)
   }
 
-  const internalizedChallenge: internalizedChallenge = $$(challenge.challenge.challengeId)
-  const challengeName =
-    internalizedChallenge && internalizedChallenge.en && internalizedChallenge.en.title
-      ? internalizedChallenge.en.title
-      : challenge.challenge.name
-  const challengeDesc =
-    internalizedChallenge && internalizedChallenge.en && internalizedChallenge.en.desc
-      ? internalizedChallenge.en.desc
-      : challenge.challenge.description
+  const sanitizedChallengeData: sanitizedChallengeData = $$(challenge.challenge.challengeId, language)
+  const challengeName = sanitizedChallengeData.internalName !== "" ? sanitizedChallengeData.title : challenge.challenge.name;
+  const challengeDesc = sanitizedChallengeData.internalName !== "" ? sanitizedChallengeData.desc : challenge.challenge.description;
 
   let borderColor
   switch (challenge.status) {

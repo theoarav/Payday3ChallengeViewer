@@ -1,10 +1,11 @@
 import { AuthModel } from '../model/auth.model'
 
 export const DEFAULT_LANGUAGE = 'en'
+export const LANGUAGE = 'PD3CV-Language'
 
 const AUTH_INFOS = 'PD3CV-AuthInfos'
 const PINNED_CHALLENGES = 'PD3CV-PinnedChallenges'
-const LANGUAGE = 'PD3CV-Language'
+
 const NEBULA_ADDR = 'https://nebula.starbreeze.com'
 const FETCH_HEADERS = {
   Authorization: 'Basic MGIzYmZkZjVhMjVmNDUyZmJkMzNhMzYxMzNhMmRlYWI6'

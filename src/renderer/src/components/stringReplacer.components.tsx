@@ -19,31 +19,30 @@ export type internalizedChallenge =
   zh_Hant: {title: string, desc: string},
 }
 
-
-//Can be used for checking how many api challenges has no game variants paired.
-export const checkForMissingTranslations = (): string => {
-  let number = 0;
-
-  for (let resource in StringResources) {
-    let data = StringResources[resource];
-    if(data.game.title === "" || data.game.desc === "") number ++;
-  }
-
-  return number+" challenges have missing resourceString pairs!";
+export type sanitizedChallengeData = {
+  internalName: string,
+  title: string, 
+  desc: string
 }
-
 
 /**
  * Change a string to something else from a json array.
  * 
  * @param resourceKey The resourceId to be changed.
  */
-export const $$ = (resourceKey: StringResourceKey): internalizedChallenge => {
-    let replacedValues: any = resourceKey;
+export const $$ = (resourceKey: StringResourceKey, language: string): sanitizedChallengeData => {
+    let resource: any = resourceKey;
 
     if (StringResources[resourceKey]) {
-        replacedValues = StringResources[resourceKey];
+      resource = StringResources[resourceKey];
     }
-    else replacedValues = "{}";
-    return replacedValues;
+    else return { internalName: "", title: "", desc: ""};
+
+    let sanitizedValues: sanitizedChallengeData = {
+      internalName: resource["internalName"],
+      title: resource[language].title,
+      desc: resource[language].desc,
+    }
+
+    return sanitizedValues;
 }

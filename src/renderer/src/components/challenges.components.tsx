@@ -14,7 +14,6 @@ import { ModalWrapper } from './modalWrapper.components'
 import { $$, internalizedChallenge } from './stringReplacer.components'
 
 export default function Challenges({ onLogout }) {
-  // Gestion de l'état local avec React Hooks
   const [challenges, setChallenges] = useState<Array<any>>([])
   const [filteredChallenges, setFilteredChallenges] = useState<Array<Object>>([])
   const [searchTerm, setSearchTerm] = useState('')
@@ -38,7 +37,6 @@ export default function Challenges({ onLogout }) {
     savePinnedChallenges(pinnedChallenges)
   }, [pinnedChallenges])
 
-  // Récupération de données
   const fetchData = async () => {
     try {
       const fetchedChallenges = await getUserChallenges()
@@ -70,13 +68,10 @@ export default function Challenges({ onLogout }) {
       //In case you want to reapply searching in descriptions also.
       //const description = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc) ? internalizedChallenge.game.desc : ch.challenge.description).toLowerCase()
 
-      // Vérifie si le nom du challenge contient le terme de recherche
       const isNameMatch = name.toLowerCase().includes(searchTerm.toLowerCase())
 
-      // Vérifie si le statut du challenge est dans les statuts sélectionnés
       const isStatusMatch = selectedStatuses.includes(ch.status)
 
-      // Vérifie si tous les tags dans selectedTags sont présents dans ch.challenge.tags
       const areTagsMatch = Object.keys(selectedTags).every((key) => {
         return selectedTags[key].every((tag) => ch.challenge.tags.includes(tag))
       })
@@ -86,11 +81,9 @@ export default function Challenges({ onLogout }) {
         isPinned = pinnedChallenges.includes(ch.challenge.challengeId)
       }
 
-      // Retourne vrai si toutes les conditions sont vraies
       return isNameMatch && isStatusMatch && areTagsMatch && isPinned
     })
 
-    // Mettre à jour l'état
     setFilteredChallenges(newFilteredChallenges)
   }, [
     challenges,

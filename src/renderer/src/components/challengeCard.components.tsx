@@ -21,7 +21,7 @@ function LinearProgressWithLabel({
   const [currentValue, setCurrentValue] = useState(initialCurrentValue)
 
   useEffect(() => {
-    if (currentValue >= targetValue) {
+    if (initialCurrentValue >= targetValue) {
       setCurrentValue(targetValue)
     } else setCurrentValue(Math.floor(initialCurrentValue))
   }, [currentValue, targetValue])

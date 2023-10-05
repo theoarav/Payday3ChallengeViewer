@@ -1,15 +1,27 @@
-import { Button, Box, FormControlLabel, Checkbox } from '@mui/material'
 import RefreshIcon from '@mui/icons-material/Refresh'
-import SearchBar from './searchBar.components'
+import SettingsIcon from '@mui/icons-material/Settings'
+import { Box, Button, Checkbox, FormControlLabel, IconButton } from '@mui/material'
 import { useState } from 'react'
-import { exportPayCheck3Data } from '@renderer/service/auth.service'
+import SearchBar from './searchBar.components'
+import SettingsModal from './settingsModal.components'
 
-export const ChallengesHeader = ({ fetchData, setSearchTerm, signOut, onShowOnlyPinnedChange }) => {
+export default function ChallengesHeader({
+  fetchData,
+  setSearchTerm,
+  signOut,
+  onShowOnlyPinnedChange,
+  setLanguage,
+  openModal
+}) {
   const [showOnlyPinned, setShowOnlyPinned] = useState(false)
 
   const handleChange = (event) => {
     setShowOnlyPinned(event.target.checked)
     onShowOnlyPinnedChange(event.target.checked)
+  }
+
+  const openSettingsModal = () => {
+    openModal(<SettingsModal signOut={signOut} setLanguageSetting={setLanguage} />)
   }
 
   return (
@@ -46,8 +58,9 @@ export const ChallengesHeader = ({ fetchData, setSearchTerm, signOut, onShowOnly
           justifyContent: 'flex-end'
         }}
       >
-        <Button onClick={exportPayCheck3Data}>Export data (PayCheck3)</Button>
-        <Button onClick={signOut}>Sign out</Button>
+        <IconButton aria-label="pin" onClick={openSettingsModal}>
+          <SettingsIcon />
+        </IconButton>
       </Box>
     </Box>
   )

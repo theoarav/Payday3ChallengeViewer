@@ -1,7 +1,8 @@
-import { VirtuosoGrid } from 'react-virtuoso'
 import styled from '@emotion/styled'
-import ChallengeCardPlaceholder from './challengeCardPlaceholder.components'
+import { useState } from 'react'
+import { VirtuosoGrid } from 'react-virtuoso'
 import ChallengeCard from './challengeCard.components'
+import ChallengeCardPlaceholder from './challengeCardPlaceholder.components'
 
 const ItemContainer = styled.div`
   padding: 0.5rem;
@@ -24,7 +25,24 @@ const ListContainer = styled.div`
   flex-wrap: wrap;
 `
 
-export default function ChallengeModal({ challenges }: any) {
+export default function ChallengeModal({
+  challenges,
+  togglePinnedChallenge,
+  pinnedChallenges
+}: any) {
+  const [tmpPinnedChallenges, setTmpPinnedChallenges] = useState(pinnedChallenges)
+
+  const handleTogglePinnedChallenge = (challengeId) => {
+    setTmpPinnedChallenges((prevPinned) => {
+      if (prevPinned.includes(challengeId)) {
+        return prevPinned.filter((id) => id !== challengeId)
+      } else {
+        return [...prevPinned, challengeId]
+      }
+    })
+    togglePinnedChallenge(challengeId)
+  }
+
   return (
     <VirtuosoGrid
       totalCount={challenges.length}
@@ -39,7 +57,14 @@ export default function ChallengeModal({ challenges }: any) {
           </ItemContainer>
         )
       }}
-      itemContent={(index) => <ChallengeCard challenge={challenges[index]} openModal={false} />}
+      itemContent={(index) => (
+        <ChallengeCard
+          challenge={challenges[index]}
+          openModal={false}
+          togglePinnedChallenge={handleTogglePinnedChallenge}
+          isPinned={tmpPinnedChallenges.includes(challenges[index]?.challenge?.challengeId || '')}
+        />
+      )}
       scrollSeekConfiguration={{
         enter: (velocity) => Math.abs(velocity) > 200,
         exit: (velocity) => Math.abs(velocity) < 30

@@ -1,6 +1,10 @@
 import { AuthModel } from '../model/auth.model'
 
+export const DEFAULT_LANGUAGE = 'en'
+
 const AUTH_INFOS = 'PD3CV-AuthInfos'
+const PINNED_CHALLENGES = 'PD3CV-PinnedChallenges'
+const LANGUAGE = 'PD3CV-Language'
 const NEBULA_ADDR = 'https://nebula.starbreeze.com'
 const FETCH_HEADERS = {
   Authorization: 'Basic MGIzYmZkZjVhMjVmNDUyZmJkMzNhMzYxMzNhMmRlYWI6'
@@ -21,6 +25,7 @@ const setLocalStorageData = (authData: any) => {
 }
 
 export const logout = () => {
+  localStorage.removeItem(PINNED_CHALLENGES)
   localStorage.removeItem(AUTH_INFOS)
 }
 
@@ -179,4 +184,30 @@ export const exportPayCheck3Data = async () => {
   }
   downloadFile(JSON.stringify(statItems.data), 'statItems.json', 'text/plain')
   return true
+}
+
+export const savePinnedChallenges = (pinnedChallenges) => {
+  localStorage.setItem(PINNED_CHALLENGES, JSON.stringify(pinnedChallenges))
+}
+
+export const getPinnedChallenges = () => {
+  const pinnedChallenges = localStorage.getItem(PINNED_CHALLENGES)
+  if (pinnedChallenges) return JSON.parse(pinnedChallenges)
+  return []
+}
+
+export const deletePinnedChallenges = () => {
+  localStorage.removeItem(PINNED_CHALLENGES)
+}
+
+export const getChosenLanguage = () => {
+  return localStorage.getItem(LANGUAGE) || DEFAULT_LANGUAGE
+}
+
+export const saveChosenLanguage = (language) => {
+  localStorage.setItem(LANGUAGE, language)
+}
+
+export const deleteChosenLanguage = () => {
+  localStorage.removeItem(LANGUAGE)
 }

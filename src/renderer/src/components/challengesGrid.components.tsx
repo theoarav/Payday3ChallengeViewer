@@ -1,8 +1,9 @@
+import styled from '@emotion/styled'
 import { Box } from '@mui/material'
 import { VirtuosoGrid } from 'react-virtuoso'
 import ChallengeCard from './challengeCard.components'
-import styled from '@emotion/styled'
 import ChallengeCardPlaceholder from './challengeCardPlaceholder.components'
+import ChallengeModal from './challengeModal.components'
 
 const ItemContainer = styled.div`
   padding: 0.5rem;
@@ -25,12 +26,25 @@ const ListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `
-export const ChallengesGrid = ({
+export default function ChallengesGrid({
   challenges,
-  handleChallengeModal,
+  openModal,
   togglePinnedChallenge,
-  pinnedChallenges
-}) => {
+  pinnedChallenges,
+  getChallengesById
+}) {
+  const handleChallengeModal = (challengeIds) => {
+    const challengeIdSet = new Set(challengeIds.map((ch) => ch.challengeId))
+    const selectedChallenges = getChallengesById(Array.from(challengeIdSet))
+    openModal(
+      <ChallengeModal
+        challenges={selectedChallenges}
+        togglePinnedChallenge={togglePinnedChallenge}
+        pinnedChallenges={pinnedChallenges}
+      />
+    )
+  }
+
   return (
     <Box height={'100%'}>
       <VirtuosoGrid

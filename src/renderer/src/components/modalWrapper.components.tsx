@@ -1,7 +1,6 @@
 import { Modal, Box } from '@mui/material'
-import ChallengeModal from './challengeModal.components'
 
-export const ChallengeModalWrapper = ({ open, handleClose, challenges }) => {
+export const ModalWrapper = ({ open, handleClose, modalContent }) => {
   return (
     <Modal
       open={open}
@@ -23,7 +22,7 @@ export const ChallengeModalWrapper = ({ open, handleClose, challenges }) => {
           p: 4
         }}
       >
-        <ChallengeModal challenges={challenges} />
+        {modalContent}
       </Box>
     </Modal>
   )

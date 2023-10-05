@@ -1,10 +1,16 @@
-import { useState, useEffect } from 'react'
 import { Container } from '@mui/material'
-import { getUserChallenges, logout } from '../service/auth.service'
-import { ChallengesHeader } from './challengesHeader.components'
+import { useEffect, useState } from 'react'
+import {
+  getPinnedChallenges,
+  getUserChallenges,
+  logout,
+  saveChosenLanguage,
+  savePinnedChallenges
+} from '../service/auth.service'
 import { ChallengesFilters } from './challengesFilters.components'
-import { ChallengesGrid } from './challengesGrid.components'
-import { ChallengeModalWrapper } from './challengesModalWrapper.components'
+import ChallengesGrid from './challengesGrid.components'
+import ChallengesHeader from './challengesHeader.components'
+import { ModalWrapper } from './modalWrapper.components'
 import { $$, internalizedChallenge } from './stringReplacer.components'
 
 export default function Challenges({ onLogout }) {
@@ -19,13 +25,18 @@ export default function Challenges({ onLogout }) {
   ])
   const [selectedTags, setSelectedTags] = useState<Object>({})
   const [open, setOpen] = useState(false)
-  const [modalChallenges, setModalChallenges] = useState<Array<any>>([])
-  const [pinnedChallenges, setPinnedChallenges] = useState<Array<string>>([])
+  const [modalContent, setModalContent] = useState<any>()
+  const [pinnedChallenges, setPinnedChallenges] = useState<Array<string>>(getPinnedChallenges)
   const [showOnlyPinned, setShowOnlyPinned] = useState(false)
+  const [language, setLanguage] = useState('en-US')
 
   useEffect(() => {
     fetchData()
   }, [])
+
+  useEffect(() => {
+    savePinnedChallenges(pinnedChallenges)
+  }, [pinnedChallenges])
 
   // Récupération de données
   const fetchData = async () => {
@@ -49,9 +60,13 @@ export default function Challenges({ onLogout }) {
 
   useEffect(() => {
     const newFilteredChallenges = challenges.filter((ch) => {
-      const internalizedChallenge:internalizedChallenge = $$(ch.challenge.challengeId);
-      const name = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.title) ? internalizedChallenge.game.title : ch.challenge.name).toLowerCase()
-      
+      const internalizedChallenge: internalizedChallenge = $$(ch.challenge.challengeId)
+      const name = (
+        internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.title
+          ? internalizedChallenge.game.title
+          : ch.challenge.name
+      ).toLowerCase()
+
       //In case you want to reapply searching in descriptions also.
       //const description = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc) ? internalizedChallenge.game.desc : ch.challenge.description).toLowerCase()
 
@@ -77,15 +92,22 @@ export default function Challenges({ onLogout }) {
 
     // Mettre à jour l'état
     setFilteredChallenges(newFilteredChallenges)
-  }, [challenges, searchTerm, selectedStatuses, selectedTags, showOnlyPinned, pinnedChallenges])
+  }, [
+    challenges,
+    searchTerm,
+    selectedStatuses,
+    selectedTags,
+    showOnlyPinned,
+    pinnedChallenges,
+    language
+  ])
 
-  const handleChallengeModal = (challengeId) => {
-    const selectedChallenges = challenges.filter((ch) => ch.id === challengeId)
-    setModalChallenges(selectedChallenges)
+  const handleOpenModal = (modalContent) => {
+    setModalContent(modalContent)
     setOpen(true)
   }
 
-  const handleClose = () => {
+  const handleCloseModal = () => {
     setOpen(false)
   }
 
@@ -105,6 +127,15 @@ export default function Challenges({ onLogout }) {
         return [...prevPinned, challengeId]
       }
     })
+  }
+
+  const getChallengesByIds = (challengeIds: string[]) => {
+    return challenges.filter((ch) => challengeIds.includes(ch.challenge.challengeId))
+  }
+
+  const handleSetLanguage = (language: string) => {
+    saveChosenLanguage(language)
+    setLanguage(language)
   }
 
   const signOut = () => {
@@ -127,9 +158,11 @@ export default function Challenges({ onLogout }) {
     >
       <ChallengesHeader
         fetchData={fetchData}
+        openModal={handleOpenModal}
         setSearchTerm={setSearchTerm}
         signOut={signOut}
         onShowOnlyPinnedChange={setShowOnlyPinned}
+        setLanguage={handleSetLanguage}
       />
       <ChallengesFilters
         handleStatusChange={handleStatusChange}
@@ -137,11 +170,12 @@ export default function Challenges({ onLogout }) {
       />
       <ChallengesGrid
         challenges={filteredChallenges}
-        handleChallengeModal={handleChallengeModal}
+        openModal={handleOpenModal}
         togglePinnedChallenge={togglePinnedChallenge}
         pinnedChallenges={pinnedChallenges}
+        getChallengesById={getChallengesByIds}
       />
-      <ChallengeModalWrapper open={open} handleClose={handleClose} challenges={modalChallenges} />
+      <ModalWrapper open={open} handleClose={handleCloseModal} modalContent={modalContent} />
     </Container>
   )
 }

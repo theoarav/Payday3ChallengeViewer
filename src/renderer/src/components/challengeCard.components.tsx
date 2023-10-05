@@ -58,23 +58,29 @@ export default function ChallengeCard({
     openModal(challengesToComplete)
   }
 
-  const internalizedChallenge:internalizedChallenge = $$(challenge.challenge.challengeId);
-  const challengeName = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.title) ? internalizedChallenge.game.title : challenge.challenge.name);
-  const challengeDesc = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc) ? internalizedChallenge.game.desc : challenge.challenge.description);
-  
-  let borderColor;
-  switch(challenge.status){
-    case "COMPLETED":
-      borderColor = "rgba(0, 255, 0, 0.4)"
-      break;
-    case "INPROGRESS":
-      borderColor = "rgba(255, 255, 255, 0.6)"
-      break;
-    case "INIT": 
-      borderColor = "rgba(243, 27, 56, 0.5)"
-      break;
+  const internalizedChallenge: internalizedChallenge = $$(challenge.challenge.challengeId)
+  const challengeName =
+    internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.title
+      ? internalizedChallenge.game.title
+      : challenge.challenge.name
+  const challengeDesc =
+    internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc
+      ? internalizedChallenge.game.desc
+      : challenge.challenge.description
+
+  let borderColor
+  switch (challenge.status) {
+    case 'COMPLETED':
+      borderColor = 'rgba(0, 255, 0, 0.4)'
+      break
+    case 'INPROGRESS':
+      borderColor = 'rgba(255, 255, 255, 0.6)'
+      break
+    case 'INIT':
+      borderColor = 'rgba(243, 27, 56, 0.5)'
+      break
     default:
-      borderColor = "rgba(0, 0, 0, 0)"
+      borderColor = 'rgba(0, 0, 0, 0)'
   }
 
   const challengeRewards =
@@ -83,7 +89,16 @@ export default function ChallengeCard({
       : ''
 
   return (
-    <Card style={{ width: '100%', height: '175px', display: 'flex', flexDirection: 'column', borderStyle: "solid", borderColor: borderColor}}>
+    <Card
+      style={{
+        width: '100%',
+        height: '175px',
+        display: 'flex',
+        flexDirection: 'column',
+        borderStyle: 'solid',
+        borderColor: borderColor
+      }}
+    >
       <CardContent style={{ padding: 8 }}>
         <Box
           sx={{
@@ -115,7 +130,11 @@ export default function ChallengeCard({
               aria-label="pin"
               onClick={() => togglePinnedChallenge(challenge.challenge.challengeId)}
             >
-              {isPinned ? <PushPinIcon style={{color: "rgba(134, 154, 243, 0.6)"}}/> : <PushPinOutlinedIcon />}
+              {isPinned ? (
+                <PushPinIcon style={{ color: 'rgba(134, 154, 243, 0.6)' }} />
+              ) : (
+                <PushPinOutlinedIcon />
+              )}
             </IconButton>
           </Typography>
         </Box>

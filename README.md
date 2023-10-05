@@ -15,6 +15,9 @@ This application allows you to have a better view of the challenges.
 ![AppLogin](resources/appLogin.png)
 ![AppInterface](resources/appInterface.png)
 ![AppInterface2](resources/appInterface2.png)
+![AppInterface_French](resources/appInterface_french.png)
+![AppSettings](resources/appSettings.png)
+![AppSettingsTranslation](resources/appSettings_translations.png)
 
 # Usage
 

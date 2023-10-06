@@ -38,10 +38,12 @@ export const $$ = (resourceKey: StringResourceKey, language: string): sanitizedC
     }
     else return { internalName: "", title: "", desc: ""};
 
+    let languageData = resource[language];
+
     let sanitizedValues: sanitizedChallengeData = {
       internalName: resource["internalName"],
-      title: resource[language].title,
-      desc: resource[language].desc,
+      title: (languageData && languageData.title && languageData.title !== undefined) ? languageData.title : "undefined",
+      desc: (languageData && languageData.desc && languageData.desc !== undefined) ? languageData.desc : "undefined",
     }
 
     return sanitizedValues;

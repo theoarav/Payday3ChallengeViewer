@@ -65,7 +65,8 @@ export default function Challenges({ onLogout }) {
   useEffect(() => {
     const newFilteredChallenges = challenges.filter((ch) => {
       const sanitizedChallengeData: sanitizedChallengeData = $$(ch.challenge.challengeId, language)
-      const name = (sanitizedChallengeData.internalName !== "" ? sanitizedChallengeData.title : ch.challenge.name).toLowerCase();
+      const name = ((sanitizedChallengeData.internalName !== "" && sanitizedChallengeData.title !== "undefined") ? sanitizedChallengeData.title : ch.challenge.name).toLowerCase();
+  
 
       //In case you want to reapply searching in descriptions also.
       //const description = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc) ? internalizedChallenge.game.desc : ch.challenge.description).toLowerCase()

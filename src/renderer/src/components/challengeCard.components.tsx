@@ -61,8 +61,8 @@ export default function ChallengeCard({
   }
 
   const sanitizedChallengeData: sanitizedChallengeData = $$(challenge.challenge.challengeId, language)
-  const challengeName = (sanitizedChallengeData.internalName !== "" ? sanitizedChallengeData.title : challenge.challenge.name).toUpperCase();
-  const challengeDesc = sanitizedChallengeData.internalName !== "" ? sanitizedChallengeData.desc : challenge.challenge.description;
+  const challengeName = ((sanitizedChallengeData.internalName !== "" && sanitizedChallengeData.title !== "undefined") ? sanitizedChallengeData.title : challenge.challenge.name).toUpperCase();
+  const challengeDesc = (sanitizedChallengeData.internalName !== "" && sanitizedChallengeData.desc !== "undefined") ? sanitizedChallengeData.desc : challenge.challenge.description;
 
   let borderColor
   switch (challenge.status) {

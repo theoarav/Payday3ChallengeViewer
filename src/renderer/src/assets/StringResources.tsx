@@ -29153,298 +29153,298 @@ export const StringResources = {
 		}
 	},
 	"63ce81aa7f0dd5f341f2e213": {
-		"internalName": "I'mInI",
+		"internalName": "I-mInI",
 		"en": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "The Magic Word I",
+			"desc": "Hack a device."
 		},
 		"de_DE": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Das Zauberwort I",
+			"desc": "Hacke ein Gerät."
 		},
 		"es_419": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "La palabra mágica I",
+			"desc": "Hackear un dispositivo."
 		},
 		"es_ES": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "La palabra mágica I",
+			"desc": "Hackea un dispositivo."
 		},
 		"fr_FR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Le mot magique I",
+			"desc": "Piratez un appareil."
 		},
 		"it_IT": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Formula magica I",
+			"desc": "Hackera un dispositivo."
 		},
 		"ja_JP": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "魔法の言葉I",
+			"desc": "装置をハッキングする"
 		},
 		"ko_KR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "마법의 주문 1",
+			"desc": "장치를 1회 해킹하십시오."
 		},
 		"pl_PL": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Magiczne słowo I",
+			"desc": "Zhakuj urządzenie."
 		},
 		"pt_BR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "A Palavra Mágica I",
+			"desc": "Hackeie um dispositivo."
 		},
 		"ru_RU": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Волшебное слово I",
+			"desc": "Взломайте устройство."
 		},
-		"tr_TR": {
-			"title": "undefined",
-			"desc": "undefined"
+		"tr:TR": {
+			"title": "Sihirli Sözcük I",
+			"desc": "Bir cihaza sız."
 		},
 		"zh_Hans": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "咒语I",
+			"desc": "骇入一台设备。"
 		},
 		"zh_Hant": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "咒语I",
+			"desc": "骇入一台设备。"
 		}
 	},
 	"63ce82187f0dd5f341f2e4b5": {
-		"internalName": "I'mInII",
+		"internalName": "I-mInII",
 		"en": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "The Magic Word II",
+			"desc": "Hack 10 devices."
 		},
 		"de_DE": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Das Zauberwort II",
+			"desc": "Hacke 10 Geräte."
 		},
 		"es_419": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "La palabra mágica II",
+			"desc": "Hackear 10 dispositivos."
 		},
 		"es_ES": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "La palabra mágica II",
+			"desc": "Hackea 10 dispositivos."
 		},
 		"fr_FR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Le mot magique II",
+			"desc": "Piratez 10 appareils."
 		},
 		"it_IT": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Formula magica II",
+			"desc": "Hackera 10 dispositivi."
 		},
 		"ja_JP": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "魔法の言葉II",
+			"desc": "装置を10個ハッキングする"
 		},
 		"ko_KR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "마법의 주문 2",
+			"desc": "장치를 10회 해킹하십시오."
 		},
 		"pl_PL": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Magiczne słowo II",
+			"desc": "Zhakuj 10 urządzeń."
 		},
 		"pt_BR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "A Palavra Mágica II",
+			"desc": "Hackeie 10 dispositivos."
 		},
 		"ru_RU": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Волшебное слово II",
+			"desc": "Взломайте 10 устройств."
 		},
-		"tr_TR": {
-			"title": "undefined",
-			"desc": "undefined"
+		"tr:TR": {
+			"title": "Sihirli Sözcük II",
+			"desc": "10 cihaza sız."
 		},
 		"zh_Hans": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "咒语II",
+			"desc": "骇入10台设备。"
 		},
 		"zh_Hant": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "咒语II",
+			"desc": "骇入10台设备。"
 		}
 	},
 	"63ce826a7f0dd5f341f2e4b6": {
-		"internalName": "I'mInIII",
+		"internalName": "I-mInIII",
 		"en": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "The Magic Word III",
+			"desc": "Hack 30 devices."
 		},
 		"de_DE": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Das Zauberwort III",
+			"desc": "Hacke 30 Geräte."
 		},
 		"es_419": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "La palabra mágica III",
+			"desc": "Hackear 30 dispositivos."
 		},
 		"es_ES": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "La palabra mágica III",
+			"desc": "Hackea 30 dispositivos."
 		},
 		"fr_FR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Le mot magique III",
+			"desc": "Piratez 30 appareils."
 		},
 		"it_IT": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Formula magica III",
+			"desc": "Hackera 30 dispositivi."
 		},
 		"ja_JP": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "魔法の言葉III",
+			"desc": "装置を30個ハッキングする"
 		},
 		"ko_KR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "마법의 주문 3",
+			"desc": "장치를 30회 해킹하십시오."
 		},
 		"pl_PL": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Magiczne słowo III",
+			"desc": "Zhakuj 30 urządzeń."
 		},
 		"pt_BR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "A Palavra Mágica III",
+			"desc": "Hackeie 30 dispositivos."
 		},
 		"ru_RU": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Волшебное слово III",
+			"desc": "Взломайте 30 устройств."
 		},
-		"tr_TR": {
-			"title": "undefined",
-			"desc": "undefined"
+		"tr:TR": {
+			"title": "Sihirli Sözcük III",
+			"desc": "30 cihaza sız."
 		},
 		"zh_Hans": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "咒语III",
+			"desc": "骇入30台设备。"
 		},
 		"zh_Hant": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "咒语III",
+			"desc": "骇入30台设备。"
 		}
 	},
 	"63ce82ca7f0dd5f341f2e4b7": {
-		"internalName": "I'mInIV",
+		"internalName": "I-mInIV",
 		"en": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "The Magic Word IV",
+			"desc": "Hack 60 devices."
 		},
 		"de_DE": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Das Zauberwort IV",
+			"desc": "Hacke 60 Geräte."
 		},
 		"es_419": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "La palabra mágica IV",
+			"desc": "Hackear 60 dispositivos."
 		},
 		"es_ES": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "La palabra mágica IV",
+			"desc": "Hackea 60 dispositivos."
 		},
 		"fr_FR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Le mot magique IV",
+			"desc": "Piratez 60 appareils."
 		},
 		"it_IT": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Formula magica IV",
+			"desc": "Hackera 60 dispositivi."
 		},
 		"ja_JP": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "魔法の言葉IV",
+			"desc": "装置を60個ハッキングする"
 		},
 		"ko_KR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "마법의 주문 4",
+			"desc": "장치를 60회 해킹하십시오."
 		},
 		"pl_PL": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Magiczne słowo IV",
+			"desc": "Zhakuj 60 urządzeń."
 		},
 		"pt_BR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "A Palavra Mágica IV",
+			"desc": "Hackeie 60 dispositivos."
 		},
 		"ru_RU": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Волшебное слово IV",
+			"desc": "Взломайте 60 устройств."
 		},
-		"tr_TR": {
-			"title": "undefined",
-			"desc": "undefined"
+		"tr:TR": {
+			"title": "Sihirli Sözcük IV",
+			"desc": "60 cihaza sız."
 		},
 		"zh_Hans": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "咒语IV",
+			"desc": "骇入60台设备。"
 		},
 		"zh_Hant": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "咒语IV",
+			"desc": "骇入60台设备。"
 		}
 	},
 	"63ce83a17f0dd5f341f2e4ec": {
-		"internalName": "I'mInV",
+		"internalName": "I-mInV",
 		"en": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "The Magic Word V",
+			"desc": "Hack 100 devices."
 		},
 		"de_DE": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Das Zauberwort V",
+			"desc": "Hacke 100 Geräte."
 		},
 		"es_419": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "La palabra mágica V",
+			"desc": "Hackear 100 dispositivos."
 		},
 		"es_ES": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "La palabra mágica V",
+			"desc": "Hackea 100 dispositivos."
 		},
 		"fr_FR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Le mot magique V",
+			"desc": "Piratez 100 appareils."
 		},
 		"it_IT": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Formula magica V",
+			"desc": "Hackera 100 dispositivi."
 		},
 		"ja_JP": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "魔法の言葉V",
+			"desc": "装置を100個ハッキングする"
 		},
 		"ko_KR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "마법의 주문 5",
+			"desc": "장치를 100회 해킹하십시오."
 		},
 		"pl_PL": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Magiczne słowo V",
+			"desc": "Zhakuj 100 urządzeń."
 		},
 		"pt_BR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "A Palavra Mágica V",
+			"desc": "Hackeie 100 dispositivos."
 		},
 		"ru_RU": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Волшебное слово V",
+			"desc": "Взломайте 100 устройств."
 		},
-		"tr_TR": {
-			"title": "undefined",
-			"desc": "undefined"
+		"tr:TR": {
+			"title": "Sihirli Sözcük V",
+			"desc": "100 cihaza sız."
 		},
 		"zh_Hans": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "咒语V",
+			"desc": "骇入100台设备。"
 		},
 		"zh_Hant": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "咒语V",
+			"desc": "骇入100台设备。"
 		}
 	},
 	"632983f41db0ef9df33a6a10": {
@@ -52340,298 +52340,298 @@ export const StringResources = {
 		}
 	},
 	"63ce9fc17f0dd5f341f2fbe2": {
-		"internalName": "Picsoritdidn'thappenI",
+		"internalName": "Picsoritdidn-thappenI",
 		"en": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Shutterbug I",
+			"desc": "Place a Micro Camera."
 		},
 		"de_DE": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Knipswahn I",
+			"desc": "Platziere eine Mikrokamera."
 		},
 		"es_419": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotógrafo aficionado I",
+			"desc": "Colocar una microcámara."
 		},
 		"es_ES": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Pasión por la fotografía I",
+			"desc": "Coloca una microcámara."
 		},
 		"fr_FR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Photographe amateur I",
+			"desc": "Placez une micro-caméra."
 		},
 		"it_IT": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotografo I",
+			"desc": "Piazza una microcamera."
 		},
 		"ja_JP": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "写真愛好家I",
+			"desc": "超小型カメラを設置する"
 		},
 		"ko_KR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "사진광 1",
+			"desc": "초소형 카메라를 1개 배치하십시오."
 		},
 		"pl_PL": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Pasja fotografii I",
+			"desc": "Podłóż mikrokamerę."
 		},
 		"pt_BR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotógrafo Amador I",
+			"desc": "Posicione uma microcâmera."
 		},
 		"ru_RU": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Стоп, снято I",
+			"desc": "Установите микрокамеру."
 		},
-		"tr_TR": {
-			"title": "undefined",
-			"desc": "undefined"
+		"tr:TR": {
+			"title": "Fotoğraf Meraklısı I",
+			"desc": "Bir Mikro Kamera yerleştir."
 		},
 		"zh_Hans": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "摄影爱好者I",
+			"desc": "布置一台微型摄像头。"
 		},
 		"zh_Hant": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "摄影爱好者I",
+			"desc": "布置一台微型摄像头。"
 		}
 	},
 	"63ce9ffa7f0dd5f341f2fc2b": {
-		"internalName": "Picsoritdidn'thappenII",
+		"internalName": "Picsoritdidn-thappenII",
 		"en": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Shutterbug II",
+			"desc": "Place 10 Micro Cameras."
 		},
 		"de_DE": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Knipswahn II",
+			"desc": "Platziere 10 Mikrokameras."
 		},
 		"es_419": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotógrafo aficionado II",
+			"desc": "Colocar 10 microcámaras."
 		},
 		"es_ES": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Pasión por la fotografía II",
+			"desc": "Coloca 10 microcámaras."
 		},
 		"fr_FR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Photographe amateur II",
+			"desc": "Placez 10 micro-caméras."
 		},
 		"it_IT": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotografo II",
+			"desc": "Piazza 10 microcamere."
 		},
 		"ja_JP": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "写真愛好家II",
+			"desc": "超小型カメラを10台設置する"
 		},
 		"ko_KR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "사진광 2",
+			"desc": "초소형 카메라를 10개 배치하십시오."
 		},
 		"pl_PL": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Pasja fotografii II",
+			"desc": "Podłóż 10 mikrokamer."
 		},
 		"pt_BR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotógrafo Amador II",
+			"desc": "Posicione 10 microcâmeras."
 		},
 		"ru_RU": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Стоп, снято II",
+			"desc": "Установите 10 микрокамер."
 		},
-		"tr_TR": {
-			"title": "undefined",
-			"desc": "undefined"
+		"tr:TR": {
+			"title": "Fotoğraf Meraklısı II",
+			"desc": "10 Mikro Kamera yerleştir."
 		},
 		"zh_Hans": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "摄影爱好者II",
+			"desc": "放置10台微型摄像头。"
 		},
 		"zh_Hant": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "摄影爱好者II",
+			"desc": "放置10台微型摄像头。"
 		}
 	},
 	"63cea0377f0dd5f341f2fc2c": {
-		"internalName": "Picsoritdidn'thappenIII",
+		"internalName": "Picsoritdidn-thappenIII",
 		"en": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Shutterbug III",
+			"desc": "Place 30 Micro Cameras."
 		},
 		"de_DE": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Knipswahn III",
+			"desc": "Platziere 30 Mikrokameras."
 		},
 		"es_419": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotógrafo aficionado III",
+			"desc": "Colocar 30 microcámaras."
 		},
 		"es_ES": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Pasión por la fotografía III",
+			"desc": "Coloca 30 microcámaras."
 		},
 		"fr_FR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Photographe amateur III",
+			"desc": "Placez 30 micro-caméras."
 		},
 		"it_IT": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotografo III",
+			"desc": "Piazza 30 microcamere."
 		},
 		"ja_JP": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "写真愛好家III",
+			"desc": "超小型カメラを30台設置する"
 		},
 		"ko_KR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "사진광 3",
+			"desc": "초소형 카메라를 30개 배치하십시오."
 		},
 		"pl_PL": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Pasja fotografii III",
+			"desc": "Podłóż 30 mikrokamer."
 		},
 		"pt_BR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotógrafo Amador III",
+			"desc": "Posicione 30 microcâmeras."
 		},
 		"ru_RU": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Стоп, снято III",
+			"desc": "Установите 30 микрокамер."
 		},
-		"tr_TR": {
-			"title": "undefined",
-			"desc": "undefined"
+		"tr:TR": {
+			"title": "Fotoğraf Meraklısı III",
+			"desc": "30 Mikro Kamera yerleştir."
 		},
 		"zh_Hans": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "摄影爱好者III",
+			"desc": "放置30台微型摄像头。"
 		},
 		"zh_Hant": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "摄影爱好者III",
+			"desc": "放置30台微型摄像头。"
 		}
 	},
 	"63cea0747f0dd5f341f2fc2d": {
-		"internalName": "Picsoritdidn'thappenIV",
+		"internalName": "Picsoritdidn-thappenIV",
 		"en": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Shutterbug IV",
+			"desc": "Place 60 Micro Cameras."
 		},
 		"de_DE": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Knipswahn IV",
+			"desc": "Platziere 60 Mikrokameras."
 		},
 		"es_419": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotógrafo aficionado IV",
+			"desc": "Colocar 60 microcámaras."
 		},
 		"es_ES": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Pasión por la fotografía IV",
+			"desc": "Coloca 60 microcámaras."
 		},
 		"fr_FR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Photographe amateur IV",
+			"desc": "Placez 60 micro-caméras."
 		},
 		"it_IT": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotografo IV",
+			"desc": "Piazza 60 microcamere."
 		},
 		"ja_JP": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "写真愛好家IV",
+			"desc": "超小型カメラを60台設置する"
 		},
 		"ko_KR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "사진광 4",
+			"desc": "초소형 카메라를 60개 배치하십시오."
 		},
 		"pl_PL": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Pasja fotografii IV",
+			"desc": "Podłóż 60 mikrokamer."
 		},
 		"pt_BR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotógrafo Amador IV",
+			"desc": "Posicione 60 microcâmeras."
 		},
 		"ru_RU": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Стоп, снято IV",
+			"desc": "Установите 60 микрокамер."
 		},
-		"tr_TR": {
-			"title": "undefined",
-			"desc": "undefined"
+		"tr:TR": {
+			"title": "Fotoğraf Meraklısı IV",
+			"desc": "60 Mikro Kamera yerleştir."
 		},
 		"zh_Hans": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "摄影爱好者IV",
+			"desc": "放置60台微型摄像头。"
 		},
 		"zh_Hant": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "摄影爱好者IV",
+			"desc": "放置60台微型摄像头。"
 		}
 	},
 	"63cea1487f0dd5f341f2fc6f": {
-		"internalName": "Picsoritdidn'thappenV",
+		"internalName": "Picsoritdidn-thappenV",
 		"en": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Shutterbug V",
+			"desc": "Place 100 Micro Cameras."
 		},
 		"de_DE": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Knipswahn V",
+			"desc": "Platziere 100 Mikrokameras."
 		},
 		"es_419": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotógrafo aficionado V",
+			"desc": "Colocar 100 microcámaras."
 		},
 		"es_ES": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Pasión por la fotografía V",
+			"desc": "Coloca 100 microcámaras."
 		},
 		"fr_FR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Photographe amateur V",
+			"desc": "Placez 100 micro-caméras."
 		},
 		"it_IT": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotografo V",
+			"desc": "Piazza 100 microcamere."
 		},
 		"ja_JP": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "写真愛好家V",
+			"desc": "超小型カメラを100台設置する"
 		},
 		"ko_KR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "사진광 5",
+			"desc": "초소형 카메라를 100개 배치하십시오."
 		},
 		"pl_PL": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Pasja fotografii V",
+			"desc": "Podłóż 100 mikrokamer."
 		},
 		"pt_BR": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Fotógrafo Amador V",
+			"desc": "Posicione 100 microcâmeras."
 		},
 		"ru_RU": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "Стоп, снято V",
+			"desc": "Установите 100 микрокамер."
 		},
-		"tr_TR": {
-			"title": "undefined",
-			"desc": "undefined"
+		"tr:TR": {
+			"title": "Fotoğraf Meraklısı V",
+			"desc": "100 Mikro Kamera yerleştir."
 		},
 		"zh_Hans": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "摄影爱好者V",
+			"desc": "放置100台微型摄像头。"
 		},
 		"zh_Hant": {
-			"title": "undefined",
-			"desc": "undefined"
+			"title": "摄影爱好者V",
+			"desc": "放置100台微型摄像头。"
 		}
 	},
 	"63cfebfc7f0dd5f341f3e411": {

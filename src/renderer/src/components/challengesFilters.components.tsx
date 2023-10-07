@@ -1,28 +1,53 @@
-import { Box } from '@mui/material'
+import { Dialog, DialogActions, DialogTitle, IconButton, List, ListItem } from '@mui/material'
 import StatusSelect from './statusSelect.components'
 import FilterSelect from './filterSelect.components'
 import customTagFilters from '@renderer/data/customTagFilters'
+import { Dispatch, ReactElement, SetStateAction, useState } from 'react'
+import { Close } from '@mui/icons-material'
 
-export const ChallengesFilters = ({ handleStatusChange, onTagFilterChange }) => {
-  return (
-    <Box
-      style={{
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        width: '100%',
-        marginBottom: 4,
-        marginTop: 12
-      }}
-    >
-      <StatusSelect onStatusChange={handleStatusChange} />
-      {Object.entries(customTagFilters).map(([key, values]) => (
-        <FilterSelect
-          key={key}
-          optionName={key}
-          filterOptions={values.map((value) => ({ name: value.name, tags: value.tags }))}
-          filterChange={(tags: string[]) => onTagFilterChange(key, tags)}
-        />
-      ))}
-    </Box>
-  )
+export const ChallengesFilters = ({
+  handleStatusChange,
+  onTagFilterChange
+}: {
+  handleStatusChange
+  onTagFilterChange
+}): { element: ReactElement; setOpen: Dispatch<SetStateAction<boolean>>; open: boolean } => {
+  const [open, setOpen] = useState(false)
+
+  return {
+    element: (
+      <Dialog open={open}>
+        <DialogTitle>Filters</DialogTitle>
+        <DialogActions>
+          <List style={{ textAlign: 'center' }}>
+            {Object.entries(customTagFilters).map(([key, values]) => (
+              <ListItem key={key} style={{ display: 'inline-block' }}>
+                <FilterSelect
+                  key={key}
+                  optionName={key}
+                  filterOptions={values.map((value) => ({ name: value.name, tags: value.tags }))}
+                  filterChange={(tags: string[]): void => onTagFilterChange(key, tags)}
+                />
+              </ListItem>
+            ))}
+            <StatusSelect onStatusChange={handleStatusChange} />
+          </List>
+        </DialogActions>
+        <IconButton
+          onClick={(): void => {
+            setOpen(false)
+          }}
+          style={{
+            position: 'absolute',
+            right: "10px",
+            top: "10px"
+          }}
+        >
+          <Close />
+        </IconButton>
+      </Dialog>
+    ),
+    setOpen: setOpen,
+    open: open
+  }
 }

@@ -6,6 +6,7 @@ import icon from '../../build/icon.png?asset'
 let mainWindow
 
 //@InsulatorGMan
+
 const server = 'https://pd3-challenge-viewer-vercel-update-server-a18tj6086.vercel.app' // Vercel Deployment
 const url = `${server}/update/${process.platform}/${app.getVersion()}`
 
@@ -72,6 +73,7 @@ function createWindow(): void {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
 }
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.

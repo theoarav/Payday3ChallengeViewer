@@ -1,7 +1,7 @@
 import RefreshIcon from '@mui/icons-material/Refresh'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { Box, Button, Checkbox, FormControlLabel, IconButton } from '@mui/material'
-import { useState } from 'react'
+import { ReactElement, useState } from 'react'
 import SearchBar from './searchBar.components'
 import SettingsModal from './settingsModal.components'
 import CountDown from './countdownTimer.components'
@@ -12,25 +12,34 @@ export default function ChallengesHeader({
   signOut,
   onShowOnlyPinnedChange,
   setLanguage,
+  openModal,
+  setFiltersOpen
+}: {
+  fetchData
+  setSearchTerm
+  signOut
+  onShowOnlyPinnedChange
+  setLanguage
   openModal
-}) {
+  setFiltersOpen
+}): ReactElement {
   const [showOnlyPinned, setShowOnlyPinned] = useState(false)
   const [showCountdownRefresh, setShowCountdownRefresh] = useState(true)
 
-  const handleChange = (event) => {
+  const handleChange = (event): void => {
     setShowOnlyPinned(event.target.checked)
     onShowOnlyPinnedChange(event.target.checked)
   }
 
-  const openSettingsModal = () => {
+  const openSettingsModal = (): void => {
     openModal(<SettingsModal signOut={signOut} setLanguageSetting={setLanguage} />)
   }
 
-  function timerIsUp() {
+  function timerIsUp(): void {
     setShowCountdownRefresh(false)
   }
 
-  function refreshButtonFunc() {
+  function refreshButtonFunc(): void {
     setShowCountdownRefresh(true)
     fetchData()
   }
@@ -71,7 +80,7 @@ export default function ChallengesHeader({
           control={<Checkbox checked={showOnlyPinned} onChange={handleChange} color="success" />}
         />
       </Box>
-      <SearchBar onChange={setSearchTerm} />
+      <SearchBar onChange={setSearchTerm} open={false} setOpen={setFiltersOpen}/>
       <Box
         sx={{
           display: 'flex',

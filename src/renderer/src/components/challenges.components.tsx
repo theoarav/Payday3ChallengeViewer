@@ -117,7 +117,7 @@ export default function Challenges({ onLogout }) {
     setSelectedStatuses(statuses)
   }
 
-  const onTagFilterChange = (optionName: string, tag: string[]) => {
+  const onTagFilterChange = (optionName: string, tag: string[]): void => {
     setSelectedTags((prevTags) => ({ ...prevTags, [optionName]: tag }))
   }
 
@@ -145,6 +145,11 @@ export default function Challenges({ onLogout }) {
     onLogout()
   }
 
+  const challengesFilters = ChallengesFilters({
+    handleStatusChange:  handleStatusChange ,
+    onTagFilterChange:  onTagFilterChange 
+  })
+
   return (
     <Container
       style={{
@@ -165,11 +170,9 @@ export default function Challenges({ onLogout }) {
         signOut={signOut}
         onShowOnlyPinnedChange={setShowOnlyPinned}
         setLanguage={handleSetLanguage}
+        setFiltersOpen={challengesFilters.setOpen}
       />
-      <ChallengesFilters
-        handleStatusChange={handleStatusChange}
-        onTagFilterChange={onTagFilterChange}
-      />
+      {challengesFilters.element}
       <ChallengesGrid
         challenges={filteredChallenges}
         openModal={handleOpenModal}

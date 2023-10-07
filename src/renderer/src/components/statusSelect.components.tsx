@@ -29,20 +29,20 @@ export default function StatusSelect({ onStatusChange }: StatusSelectProps) {
       onStatusChange(Object.keys(newChecked).filter((key) => newChecked[key as Status]) as Status[])
     }
 
-  const handleSelectAllChange = () => {
-    const allChecked = !Object.values(checked).every(Boolean)
-    const newChecked = {
-      COMPLETED: allChecked,
-      INPROGRESS: allChecked,
-      INIT: allChecked
-    }
-    setChecked(newChecked)
-    onStatusChange(allChecked ? (Object.keys(statusMap) as Status[]) : [])
-  }
+  // const handleSelectAllChange = () => {
+  //   const allChecked = !Object.values(checked).every(Boolean)
+  //   const newChecked = {
+  //     COMPLETED: allChecked,
+  //     INPROGRESS: allChecked,
+  //     INIT: allChecked
+  //   }
+  //   setChecked(newChecked)
+  //   onStatusChange(allChecked ? (Object.keys(statusMap) as Status[]) : [])
+  // }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-      <FormControlLabel
+    <Box sx={{ display: 'flex', flexDirection: 'row' }} style={{ display: 'inline-block' }}>
+      {/* <FormControlLabel
         label="Select all"
         control={
           <Checkbox
@@ -54,7 +54,7 @@ export default function StatusSelect({ onStatusChange }: StatusSelectProps) {
             onChange={handleSelectAllChange}
           />
         }
-      />
+      /> */}
       <Box sx={{ display: 'flex', flexDirection: 'row' }}>
         {Object.entries(statusMap).map(([status, label]) => (
           <FormControlLabel

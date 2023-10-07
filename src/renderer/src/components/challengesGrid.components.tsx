@@ -40,15 +40,16 @@ export default function ChallengesGrid({
     const challengeIdSet = new Set(challengeIds.map((ch) => ch.challengeId))
     const selectedChallenges = getChallengesById(Array.from(challengeIdSet))
 
-
     //Replace the api values with the translated ones.
-    selectedChallenges.forEach(ch => {
-      let translatedData:sanitizedChallengeData = $$(ch.challenge.challengeId, language);
-      if(translatedData) {
-        if(translatedData.title && translatedData.title !== "undefined") ch.challenge.name = (translatedData.title).toUpperCase();
-        if(translatedData.desc && translatedData.desc !== "undefined") ch.challenge.description = translatedData.desc;
-      } 
-    });
+    selectedChallenges.forEach((ch) => {
+      let translatedData: sanitizedChallengeData = $$(ch.challenge.challengeId, language)
+      if (translatedData) {
+        if (translatedData.title && translatedData.title !== 'undefined')
+          ch.challenge.name = translatedData.title.toUpperCase()
+        if (translatedData.desc && translatedData.desc !== 'undefined')
+          ch.challenge.description = translatedData.desc
+      }
+    })
 
     openModal(
       <ChallengeModal

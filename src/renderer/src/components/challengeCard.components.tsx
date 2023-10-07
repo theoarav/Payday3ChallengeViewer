@@ -21,7 +21,7 @@ function LinearProgressWithLabel({
   const [currentValue, setCurrentValue] = useState(initialCurrentValue)
 
   useEffect(() => {
-    if (currentValue >= targetValue) {
+    if (initialCurrentValue >= targetValue) {
       setCurrentValue(targetValue)
     } else setCurrentValue(Math.floor(initialCurrentValue))
   }, [currentValue, targetValue])
@@ -52,18 +52,28 @@ export default function ChallengeCard({
   isPinned,
   language
 }: any) {
-
   const challengeProgess = challenge.progress.objective.stats[0]
-
+  console.log('===============================')
+  console.log(challenge.challenge.name)
+  console.log(challenge)
   const openChallengeModal = () => {
     const challengesToComplete = challenge.progress.prerequisite.completedChallengeIds
-    console.log("challengesToComplete:",challengesToComplete);
     openModal(challengesToComplete)
   }
 
-  const sanitizedChallengeData: sanitizedChallengeData = $$(challenge.challenge.challengeId, language)
-  const challengeName = ((sanitizedChallengeData.internalName && sanitizedChallengeData.title !== "undefined") ? sanitizedChallengeData.title : challenge.challenge.name).toUpperCase();
-  const challengeDesc = (sanitizedChallengeData.internalName && sanitizedChallengeData.desc !== "undefined") ? sanitizedChallengeData.desc : challenge.challenge.description;
+  const sanitizedChallengeData: sanitizedChallengeData = $$(
+    challenge.challenge.challengeId,
+    language
+  )
+  const challengeName = (
+    sanitizedChallengeData.internalName && sanitizedChallengeData.title !== 'undefined'
+      ? sanitizedChallengeData.title
+      : challenge.challenge.name
+  ).toUpperCase()
+  const challengeDesc =
+    sanitizedChallengeData.internalName && sanitizedChallengeData.desc !== 'undefined'
+      ? sanitizedChallengeData.desc
+      : challenge.challenge.description
 
   let borderColor
   switch (challenge.status) {

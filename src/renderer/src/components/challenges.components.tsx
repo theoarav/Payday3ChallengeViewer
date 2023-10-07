@@ -14,7 +14,6 @@ import { ModalWrapper } from './modalWrapper.components'
 import { $$, sanitizedChallengeData } from './stringReplacer.components'
 import { getChosenLanguage } from '@renderer/service/auth.service'
 
-
 export default function Challenges({ onLogout }) {
   const [challenges, setChallenges] = useState<Array<any>>([])
   const [filteredChallenges, setFilteredChallenges] = useState<Array<Object>>([])
@@ -65,8 +64,11 @@ export default function Challenges({ onLogout }) {
   useEffect(() => {
     const newFilteredChallenges = challenges.filter((ch) => {
       const sanitizedChallengeData: sanitizedChallengeData = $$(ch.challenge.challengeId, language)
-      const name = ((sanitizedChallengeData.internalName !== "" && sanitizedChallengeData.title !== "undefined") ? sanitizedChallengeData.title : ch.challenge.name).toLowerCase();
-  
+      const name = (
+        sanitizedChallengeData.internalName !== '' && sanitizedChallengeData.title !== 'undefined'
+          ? sanitizedChallengeData.title
+          : ch.challenge.name
+      ).toLowerCase()
 
       //In case you want to reapply searching in descriptions also.
       //const description = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc) ? internalizedChallenge.game.desc : ch.challenge.description).toLowerCase()
@@ -87,7 +89,11 @@ export default function Challenges({ onLogout }) {
       return isNameMatch && isStatusMatch && areTagsMatch && isPinned
     })
 
-    setFilteredChallenges(newFilteredChallenges)
+    const sortedChallenges = newFilteredChallenges.sort(
+      (a: any, b: any) => a.challenge.orderNo - b.challenge.orderNo
+    )
+
+    setFilteredChallenges(sortedChallenges)
   }, [
     challenges,
     searchTerm,

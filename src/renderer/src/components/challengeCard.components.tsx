@@ -57,12 +57,13 @@ export default function ChallengeCard({
 
   const openChallengeModal = () => {
     const challengesToComplete = challenge.progress.prerequisite.completedChallengeIds
+    console.log("challengesToComplete:",challengesToComplete);
     openModal(challengesToComplete)
   }
 
   const sanitizedChallengeData: sanitizedChallengeData = $$(challenge.challenge.challengeId, language)
-  const challengeName = ((sanitizedChallengeData.internalName !== "" && sanitizedChallengeData.title !== "undefined") ? sanitizedChallengeData.title : challenge.challenge.name).toUpperCase();
-  const challengeDesc = (sanitizedChallengeData.internalName !== "" && sanitizedChallengeData.desc !== "undefined") ? sanitizedChallengeData.desc : challenge.challenge.description;
+  const challengeName = ((sanitizedChallengeData.internalName && sanitizedChallengeData.title !== "undefined") ? sanitizedChallengeData.title : challenge.challenge.name).toUpperCase();
+  const challengeDesc = (sanitizedChallengeData.internalName && sanitizedChallengeData.desc !== "undefined") ? sanitizedChallengeData.desc : challenge.challenge.description;
 
   let borderColor
   switch (challenge.status) {

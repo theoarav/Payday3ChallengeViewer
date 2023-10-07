@@ -1,9 +1,44 @@
-import { app, shell, BrowserWindow } from 'electron'
+import { app, shell, BrowserWindow, autoUpdater, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../build/icon.png?asset'
 
 let mainWindow
+
+//@InsulatorGMan
+const server = 'https://pd3-challenge-viewer-vercel-update-server-a18tj6086.vercel.app' // Vercel Deployment
+const url = `${server}/update/${process.platform}/${app.getVersion()}`
+
+// Do not run in development
+if (app.isPackaged) {
+  autoUpdater.setFeedURL({ url })
+
+  // Check for updates every 5 minutes
+  setInterval(() => {
+    autoUpdater.checkForUpdates()
+  }, 300000)
+
+  // Prompt user to install update, if found.
+  autoUpdater.on('update-downloaded', (_event, releaseNotes, releaseName) => {
+    const dialogOpts = {
+      buttons: ['Restart', 'Later'],
+      title: 'Application Update',
+      message: process.platform === 'win32' ? releaseNotes : releaseName,
+      detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+    }
+
+    dialog.showMessageBox(dialogOpts).then((returnValue) => {
+      if (returnValue.response === 0) autoUpdater.quitAndInstall()
+    })
+  })
+
+  autoUpdater.on('error', (message) => {
+    console.error('There was a problem updating the application')
+    console.error(message)
+  })
+}
+
+//!@InsulatorGMan
 
 function createWindow(): void {
   // Create the browser window.

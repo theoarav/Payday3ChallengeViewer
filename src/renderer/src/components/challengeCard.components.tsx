@@ -18,13 +18,13 @@ function LinearProgressWithLabel({
   targetValue,
   ...rest
 }: LinearProgressProps & { initialCurrentValue: number; targetValue: number }) {
-  const [currentValue, setCurrentValue] = useState(initialCurrentValue)
+  const [currentValue, setCurrentValue] = useState(0)
 
   useEffect(() => {
     if (initialCurrentValue >= targetValue) {
       setCurrentValue(targetValue)
     } else setCurrentValue(Math.floor(initialCurrentValue))
-  }, [currentValue, targetValue])
+  }, [initialCurrentValue, targetValue])
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>

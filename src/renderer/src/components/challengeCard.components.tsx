@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ReactElement } from 'react'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
@@ -17,7 +17,7 @@ function LinearProgressWithLabel({
   initialCurrentValue,
   targetValue,
   ...rest
-}: LinearProgressProps & { initialCurrentValue: number; targetValue: number }) {
+}: LinearProgressProps & { initialCurrentValue: number; targetValue: number }): ReactElement {
   const [currentValue, setCurrentValue] = useState(0)
 
   useEffect(() => {
@@ -51,9 +51,15 @@ export default function ChallengeCard({
   togglePinnedChallenge,
   isPinned,
   language
-}: any) {
+}: ReactElement & {
+  challenge
+  openModal
+  togglePinnedChallenge
+  isPinned
+  language
+}): ReactElement {
   const challengeProgess = challenge.progress.objective.stats[0]
-  const openChallengeModal = () => {
+  const openChallengeModal = (): void => {
     const challengesToComplete = challenge.progress.prerequisite.completedChallengeIds
     openModal(challengesToComplete)
   }
@@ -132,7 +138,7 @@ export default function ChallengeCard({
           <Typography>
             <IconButton
               aria-label="pin"
-              onClick={() => togglePinnedChallenge(challenge.challenge.challengeId)}
+              onClick={(): void => togglePinnedChallenge(challenge.challenge.challengeId)}
             >
               {isPinned ? (
                 <PushPinIcon style={{ color: 'rgba(134, 154, 243, 0.6)' }} />
@@ -158,7 +164,7 @@ export default function ChallengeCard({
         ) : (
           ''
         )}
-        {!!challengeRewards ? (
+        {challengeRewards ? (
           <Typography variant="overline" display="block" style={{ marginLeft: 'auto' }}>
             Reward: {challengeRewards} Infamy points
           </Typography>

@@ -15,24 +15,24 @@ export default function ChallengesHeader({
   openModal
 }) {
   const [showOnlyPinned, setShowOnlyPinned] = useState(false)
-  const [showRefreshButton, setShowRefreshButton] = useState(false)
+  const [showCountdownRefresh, setShowCountdownRefresh] = useState(true)
 
   const handleChange = (event) => {
-    setShowOnlyPinned(event.target.checked);
-    onShowOnlyPinnedChange(event.target.checked);
+    setShowOnlyPinned(event.target.checked)
+    onShowOnlyPinnedChange(event.target.checked)
   }
 
   const openSettingsModal = () => {
     openModal(<SettingsModal signOut={signOut} setLanguageSetting={setLanguage} />)
   }
 
-  function timerIsUp(){
-    setShowRefreshButton(true);
+  function timerIsUp() {
+    setShowCountdownRefresh(false)
   }
 
-  function refreshButtonFunc(){
-    setShowRefreshButton(false);
-    fetchData();
+  function refreshButtonFunc() {
+    setShowCountdownRefresh(true)
+    fetchData()
   }
 
   return (
@@ -54,16 +54,18 @@ export default function ChallengesHeader({
           justifyContent: 'flex-start'
         }}
       >
-
-        {!showRefreshButton &&
-        <CountDown
-          startSeconds={300}
-          onComplete={timerIsUp}
-        />}
-        {showRefreshButton && 
-        <Button color="primary" onClick={refreshButtonFunc} startIcon={<RefreshIcon fontSize="inherit" />}>
-          Refresh data
-        </Button>}
+        <Button
+          color="primary"
+          onClick={refreshButtonFunc}
+          startIcon={<RefreshIcon fontSize="inherit" />}
+          disabled={showCountdownRefresh}
+          sx={{ marginRight: 2 }}
+        >
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            Refresh data
+            {showCountdownRefresh && <CountDown startSeconds={300} onComplete={timerIsUp} />}
+          </Box>
+        </Button>
         <FormControlLabel
           label={'Show only pinned challenges'}
           control={<Checkbox checked={showOnlyPinned} onChange={handleChange} color="success" />}

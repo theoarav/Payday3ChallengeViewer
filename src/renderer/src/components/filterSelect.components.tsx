@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { Box } from '@mui/material'
+import { ReactElement } from 'react'
 
 interface FilterOption {
   name: string
@@ -20,10 +21,10 @@ export default function FilterSelect({
   optionName,
   filterOptions,
   filterChange
-}: FilterSelectProps) {
+}: FilterSelectProps): ReactElement {
   const [selectedOption, setSelectedOption] = React.useState<FilterOption | 'All'>('All')
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event: SelectChangeEvent): void => {
     const value = event.target.value
     const selected = filterOptions.find((option) => option.name === value) || 'All'
     setSelectedOption(selected)

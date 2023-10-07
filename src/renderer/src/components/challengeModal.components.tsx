@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { useState } from 'react'
+import { ReactElement, useState } from 'react'
 import { VirtuosoGrid } from 'react-virtuoso'
 import ChallengeCard from './challengeCard.components'
 import ChallengeCardPlaceholder from './challengeCardPlaceholder.components'
@@ -29,10 +29,14 @@ export default function ChallengeModal({
   challenges,
   togglePinnedChallenge,
   pinnedChallenges
-}: any) {
+}: {
+  challenges
+  togglePinnedChallenge
+  pinnedChallenges
+}): ReactElement {
   const [tmpPinnedChallenges, setTmpPinnedChallenges] = useState(pinnedChallenges)
 
-  const handleTogglePinnedChallenge = (challengeId) => {
+  const handleTogglePinnedChallenge = (challengeId): void => {
     setTmpPinnedChallenges((prevPinned) => {
       if (prevPinned.includes(challengeId)) {
         return prevPinned.filter((id) => id !== challengeId)
@@ -49,7 +53,7 @@ export default function ChallengeModal({
       overscan={10}
       components={{
         Item: ItemContainer,
-        // @ts-ignore
+        // @ts-ignore, shush prettier
         List: ListContainer,
         ScrollSeekPlaceholder: () => (
           <ItemContainer>
@@ -57,12 +61,16 @@ export default function ChallengeModal({
           </ItemContainer>
         )
       }}
-      itemContent={(index) => (
+      itemContent={(index): ReactElement => (
         <ChallengeCard
           challenge={challenges[index]}
           openModal={false}
           togglePinnedChallenge={handleTogglePinnedChallenge}
           isPinned={tmpPinnedChallenges.includes(challenges[index]?.challenge?.challengeId || '')}
+          key={null}
+          type={''}
+          props={undefined}
+          language={undefined}
         />
       )}
       scrollSeekConfiguration={{

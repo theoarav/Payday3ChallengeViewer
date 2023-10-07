@@ -53,9 +53,6 @@ export default function ChallengeCard({
   language
 }: any) {
   const challengeProgess = challenge.progress.objective.stats[0]
-  console.log('===============================')
-  console.log(challenge.challenge.name)
-  console.log(challenge)
   const openChallengeModal = () => {
     const challengesToComplete = challenge.progress.prerequisite.completedChallengeIds
     openModal(challengesToComplete)

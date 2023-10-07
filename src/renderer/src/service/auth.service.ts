@@ -12,7 +12,14 @@ const FETCH_HEADERS = {
 }
 const CLIENT_ID = 'd682bcf949cb4744b3cd4295bbdd9fef'
 
-const setLocalStorageData = (authData: any) => {
+interface AuthData {
+  access_token: string
+  expires_in: number
+  refresh_token: string
+  refresh_expires_in: number
+}
+
+const setLocalStorageData = (authData: AuthData): void => {
   const currentDate = Date.now() / 1000
 
   const authInfos: AuthModel = {
@@ -25,12 +32,12 @@ const setLocalStorageData = (authData: any) => {
   localStorage.setItem(AUTH_INFOS, JSON.stringify(authInfos))
 }
 
-export const logout = () => {
+export const logout = (): void => {
   localStorage.removeItem(PINNED_CHALLENGES)
   localStorage.removeItem(AUTH_INFOS)
 }
 
-export const login = async (loginData: FormData) => {
+export const login = async (loginData: FormData): Promise<boolean> => {
   loginData.append('grant_type', 'password')
   loginData.append('client_id', CLIENT_ID)
   loginData.append('extend_exp', 'true')
@@ -56,7 +63,7 @@ export const login = async (loginData: FormData) => {
   return true
 }
 
-const refreshToken = async (refreshToken: string) => {
+const refreshToken = async (refreshToken: string): Promise<boolean> => {
   const urlEncondedData = new URLSearchParams()
   urlEncondedData.append('grant_type', 'refresh_token')
   urlEncondedData.append('client_id', CLIENT_ID)
@@ -78,7 +85,7 @@ const refreshToken = async (refreshToken: string) => {
   return true
 }
 
-export const isLoggedIn = async () => {
+export const isLoggedIn = async (): Promise<boolean> => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
   const authInfos = JSON.parse(authInfosStr) as AuthModel
@@ -90,12 +97,12 @@ export const isLoggedIn = async () => {
   return false
 }
 
-export const getUserChallenges = async () => {
+export const getUserChallenges = async (): Promise<unknown[] | boolean> => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
   const authInfos = JSON.parse(authInfosStr) as AuthModel
 
-  const allChallengesData: any = []
+  const allChallengesData: Array<unknown> = []
   let next = true
   let nextUrl = '/challenge/v1/public/namespaces/pd3/users/me/records?limit=100&offset=0'
 
@@ -107,7 +114,7 @@ export const getUserChallenges = async () => {
       }
     })
     const challengeData = await apiCall.json()
-    if (!!challengeData.paging.next) {
+    if (challengeData.paging.next) {
       nextUrl = challengeData.paging.next
     } else next = false
     allChallengesData.push(...challengeData.data)
@@ -116,7 +123,7 @@ export const getUserChallenges = async () => {
   return allChallengesData
 }
 
-export const getUserInfos = async () => {
+export const getUserInfos = async (): Promise<{ userId: string } | false> => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
   const authInfos = JSON.parse(authInfosStr) as AuthModel
@@ -134,7 +141,7 @@ export const getUserInfos = async () => {
   return userInfos
 }
 
-export const getStatItems = async () => {
+export const getStatItems = async (): Promise<false | { data: string }> => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
   const authInfos = JSON.parse(authInfosStr) as AuthModel
@@ -161,7 +168,7 @@ export const getStatItems = async () => {
   return statItems
 }
 
-export const exportPayCheck3Data = async () => {
+export const exportPayCheck3Data = async (): Promise<boolean> => {
   const statItems = await getStatItems()
   if (!statItems) return false
 
@@ -176,9 +183,9 @@ export const exportPayCheck3Data = async () => {
   //     value: 0.0
   //   })
   // }
-  const downloadFile = (content, fileName, contentType) => {
-    var a = document.createElement('a')
-    var file = new Blob([content], { type: contentType })
+  const downloadFile = (content, fileName, contentType): void => {
+    const a = document.createElement('a')
+    const file = new Blob([content], { type: contentType })
     a.href = URL.createObjectURL(file)
     a.download = fileName
     a.click()
@@ -187,28 +194,28 @@ export const exportPayCheck3Data = async () => {
   return true
 }
 
-export const savePinnedChallenges = (pinnedChallenges) => {
+export const savePinnedChallenges = (pinnedChallenges): void => {
   localStorage.setItem(PINNED_CHALLENGES, JSON.stringify(pinnedChallenges))
 }
 
-export const getPinnedChallenges = () => {
+export const getPinnedChallenges = (): [] => {
   const pinnedChallenges = localStorage.getItem(PINNED_CHALLENGES)
   if (pinnedChallenges) return JSON.parse(pinnedChallenges)
   return []
 }
 
-export const deletePinnedChallenges = () => {
+export const deletePinnedChallenges = (): void => {
   localStorage.removeItem(PINNED_CHALLENGES)
 }
 
-export const getChosenLanguage = () => {
+export const getChosenLanguage = (): string => {
   return localStorage.getItem(LANGUAGE) || DEFAULT_LANGUAGE
 }
 
-export const saveChosenLanguage = (language) => {
+export const saveChosenLanguage = (language): void => {
   localStorage.setItem(LANGUAGE, language)
 }
 
-export const deleteChosenLanguage = () => {
+export const deleteChosenLanguage = (): void => {
   localStorage.removeItem(LANGUAGE)
 }

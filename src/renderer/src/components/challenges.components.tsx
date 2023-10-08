@@ -45,9 +45,6 @@ export default function Challenges({ onLogout }) {
   const fetchData = async (): Promise<void> => {
     try {
       const fetchedChallenges = await getUserChallenges()
-      if (fetchedChallenges == false) {
-        return
-      }
       const filteredChallenges = fetchedChallenges.filter(
         (challenge: any) =>
           !challenge.challenge?.tags?.includes('Achievement') &&

@@ -1,4 +1,4 @@
-import { Container } from '@mui/material'
+import { Backdrop, CircularProgress, Container, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import {
   getPinnedChallenges,
@@ -13,6 +13,7 @@ import ChallengesHeader from './challengesHeader.components'
 import { ModalWrapper } from './modalWrapper.components'
 import { $$, sanitizedChallengeData } from './stringReplacer.components'
 import { getChosenLanguage } from '@renderer/service/auth.service'
+import React from 'react'
 
 export default function Challenges({ onLogout }) {
   const [challenges, setChallenges] = useState<Array<any>>([])
@@ -29,6 +30,7 @@ export default function Challenges({ onLogout }) {
   const [pinnedChallenges, setPinnedChallenges] = useState<Array<string>>(getPinnedChallenges)
   const [showOnlyPinned, setShowOnlyPinned] = useState(false)
   const [language, setLanguage] = useState(getChosenLanguage)
+  const [loadingModalVisible, setLoadingModalVisible] = useState(false)
 
   useEffect(() => {
     fetchData()
@@ -44,6 +46,7 @@ export default function Challenges({ onLogout }) {
 
   const fetchData = async (): Promise<void> => {
     try {
+      setLoadingModalVisible(true)
       const fetchedChallenges = await getUserChallenges()
       const filteredChallenges = fetchedChallenges.filter(
         (challenge: any) =>
@@ -56,6 +59,7 @@ export default function Challenges({ onLogout }) {
       )
       setChallenges(sortedChallenges)
       setFilteredChallenges(sortedChallenges)
+      setLoadingModalVisible(false)
     } catch (error) {
       console.error('Error fetching data: ', error)
     }
@@ -104,16 +108,16 @@ export default function Challenges({ onLogout }) {
     language
   ])
 
-  const handleOpenModal = (modalContent) => {
+  const handleOpenModal = (modalContent): void => {
     setModalContent(modalContent)
     setOpen(true)
   }
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (): void => {
     setOpen(false)
   }
 
-  const handleStatusChange = (statuses: string[]) => {
+  const handleStatusChange = (statuses: string[]): void => {
     setSelectedStatuses(statuses)
   }
 
@@ -121,7 +125,7 @@ export default function Challenges({ onLogout }) {
     setSelectedTags((prevTags) => ({ ...prevTags, [optionName]: tag }))
   }
 
-  const togglePinnedChallenge = (challengeId: string) => {
+  const togglePinnedChallenge = (challengeId: string): void => {
     setPinnedChallenges((prevPinned) => {
       if (prevPinned.includes(challengeId)) {
         return prevPinned.filter((id) => id !== challengeId)
@@ -131,16 +135,16 @@ export default function Challenges({ onLogout }) {
     })
   }
 
-  const getChallengesByIds = (challengeIds: string[]) => {
+  const getChallengesByIds = (challengeIds: string[]): void => {
     return challenges.filter((ch) => challengeIds.includes(ch.challenge.challengeId))
   }
 
-  const handleSetLanguage = (language: string) => {
+  const handleSetLanguage = (language: string): void => {
     saveChosenLanguage(language)
     setLanguage(language)
   }
 
-  const signOut = () => {
+  const signOut = (): void => {
     logout()
     onLogout()
   }
@@ -163,6 +167,19 @@ export default function Challenges({ onLogout }) {
       }}
       maxWidth={false}
     >
+      <Backdrop
+        open={loadingModalVisible}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          padding: '10px'
+        }}
+      >
+        <Typography variant="h4">Fetching data</Typography>
+        <CircularProgress color="success" style={{}} />
+      </Backdrop>
       <ChallengesHeader
         fetchData={fetchData}
         openModal={handleOpenModal}

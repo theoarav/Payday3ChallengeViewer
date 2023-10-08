@@ -98,6 +98,7 @@ export const isLoggedIn = async (): Promise<boolean> => {
 }
 
 export const getUserChallenges = async (): Promise<any> => {
+
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
   const authInfos = JSON.parse(authInfosStr) as AuthModel

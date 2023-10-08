@@ -42,9 +42,12 @@ export default function Challenges({ onLogout }) {
     fetchData()
   }, [language])
 
-  const fetchData = async () => {
+  const fetchData = async (): Promise<void> => {
     try {
       const fetchedChallenges = await getUserChallenges()
+      if (!fetchedChallenges == false) {
+        return
+      }
       const filteredChallenges = fetchedChallenges.filter(
         (challenge: any) =>
           !challenge.challenge?.tags?.includes('Achievement') &&
@@ -146,8 +149,8 @@ export default function Challenges({ onLogout }) {
   }
 
   const challengesFilters = ChallengesFilters({
-    handleStatusChange:  handleStatusChange ,
-    onTagFilterChange:  onTagFilterChange 
+    handleStatusChange: handleStatusChange,
+    onTagFilterChange: onTagFilterChange
   })
 
   return (

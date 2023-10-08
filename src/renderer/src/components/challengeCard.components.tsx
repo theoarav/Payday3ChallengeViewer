@@ -81,13 +81,13 @@ export default function ChallengeCard({
   let borderColor
   switch (challenge.status) {
     case 'COMPLETED':
-      borderColor = 'rgba(0, 255, 0, 0.4)'
+      borderColor = '#66bb6a'
       break
     case 'INPROGRESS':
-      borderColor = 'rgba(255, 255, 255, 0.6)'
+      borderColor = '#494949'
       break
     case 'INIT':
-      borderColor = 'rgba(243, 27, 56, 0.5)'
+      borderColor = '#f44336'
       break
     default:
       borderColor = 'rgba(0, 0, 0, 0)'

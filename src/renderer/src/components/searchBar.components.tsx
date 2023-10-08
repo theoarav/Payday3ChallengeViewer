@@ -1,4 +1,4 @@
-import { Container, InputAdornment, TextField, IconButton } from '@mui/material'
+import { Container, InputAdornment, TextField, Button } from '@mui/material'
 import { ReactElement, useState } from 'react'
 import { Search, FilterList } from '@mui/icons-material/'
 
@@ -28,16 +28,23 @@ export default function SearchBar({
         onChange={handleChange}
         sx={{ width: '100%' }}
         InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <Search />
+            </InputAdornment>
+          ),
           endAdornment: (
             <InputAdornment position="end">
-              <Search />
-              <IconButton>
-                <FilterList
-                  onClick={(): void => {
-                    setOpen(!open)
-                  }}
-                />
-              </IconButton>
+              <Button
+                variant="contained"
+                color="success"
+                onClick={(): void => {
+                  setOpen(!open)
+                }}
+                endIcon={<FilterList />}
+              >
+                Filters
+              </Button>
             </InputAdornment>
           )
         }}

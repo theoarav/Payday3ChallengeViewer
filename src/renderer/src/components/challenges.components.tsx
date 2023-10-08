@@ -45,7 +45,7 @@ export default function Challenges({ onLogout }) {
   const fetchData = async (): Promise<void> => {
     try {
       const fetchedChallenges = await getUserChallenges()
-      if (!fetchedChallenges == false) {
+      if (fetchedChallenges == false) {
         return
       }
       const filteredChallenges = fetchedChallenges.filter(

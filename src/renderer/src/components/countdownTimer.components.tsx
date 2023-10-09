@@ -28,43 +28,49 @@ type CountDownProps = {
 }
 
 type CountDownState = {
-  seconds: number
+  endTime: number
 }
 
 export default class CountDown extends React.Component<CountDownProps, CountDownState> {
-  private timeoutId: any
+  private intervalId: any
 
   constructor(props: any) {
     super(props)
     this.state = {
-      seconds: this.props.startSeconds
+      endTime: Date.now() + this.props.startSeconds * 1000
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.startTimer()
   }
 
   componentWillUnmount() {
-    if (this.timeoutId) clearInterval(this.timeoutId)
+    if (this.intervalId) clearInterval(this.intervalId)
   }
 
   private startTimer() {
-    this.timeoutId = setInterval(this.timeout.bind(this), 1000)
+    this.intervalId = setInterval(this.update.bind(this), 1000)
   }
 
-  private timeout() {
-    const seconds = this.state.seconds - 1
+  private update() {
+    const now = Date.now()
+    const remainingSeconds = Math.round((this.state.endTime - now) / 1000)
 
-    if (seconds < 0) {
+    if (remainingSeconds <= 0) {
+      clearInterval(this.intervalId)
       this.props.onComplete()
       return
     }
 
-    this.setState({ seconds })
+    this.forceUpdate()
+  }
+
+  private get remainingSeconds(): number {
+    return Math.max(0, Math.round((this.state.endTime - Date.now()) / 1000))
   }
 
   render() {
-    return <Typography>({durationSecondsConverter(this.state.seconds.toString())})</Typography>
+    return <Typography>({durationSecondsConverter(this.remainingSeconds.toString())})</Typography>
   }
 }

@@ -7,14 +7,17 @@ export const ChallengesFilters = ({ handleStatusChange, onTagFilterChange }) => 
   return (
     <Box
       style={{
-        display: 'flex',
-        justifyContent: 'space-evenly',
         width: '100%',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr 1fr',
+        columnGap: 8,
+        rowGap: 8,
         marginBottom: 4,
-        marginTop: 12
+        marginTop: 12,
+        paddingLeft: 12,
+        paddingRight: 12
       }}
     >
-      <StatusSelect onStatusChange={handleStatusChange} />
       {Object.entries(customTagFilters).map(([key, values]) => (
         <FilterSelect
           key={key}
@@ -23,6 +26,7 @@ export const ChallengesFilters = ({ handleStatusChange, onTagFilterChange }) => 
           filterChange={(tags: string[]) => onTagFilterChange(key, tags)}
         />
       ))}
+      <StatusSelect onStatusChange={handleStatusChange} />
     </Box>
   )
 }

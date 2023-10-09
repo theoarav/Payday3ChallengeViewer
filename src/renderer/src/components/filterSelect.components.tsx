@@ -3,7 +3,6 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import { Box } from '@mui/material'
 
 interface FilterOption {
   name: string
@@ -31,24 +30,22 @@ export default function FilterSelect({
   }
 
   return (
-    <Box sx={{ minWidth: 250 }}>
-      <FormControl fullWidth>
-        <InputLabel id={optionName + '-label'}>{optionName}</InputLabel>
-        <Select
-          labelId={optionName + '-label'}
-          value={selectedOption !== 'All' ? selectedOption.name : 'All'}
-          label={optionName}
-          onChange={handleChange}
-          autoWidth={true}
-        >
-          <MenuItem value="All">Show all</MenuItem>
-          {filterOptions.map((option, index) => (
-            <MenuItem value={option.name} key={index}>
-              {option.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
+    <FormControl variant="standard" fullWidth>
+      <InputLabel id={optionName + '-label'}>{optionName}</InputLabel>
+      <Select
+        labelId={optionName + '-label'}
+        value={selectedOption !== 'All' ? selectedOption.name : 'All'}
+        label={optionName}
+        onChange={handleChange}
+        autoWidth={true}
+      >
+        <MenuItem value="All">Show all</MenuItem>
+        {filterOptions.map((option, index) => (
+          <MenuItem value={option.name} key={index}>
+            {option.name}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   )
 }

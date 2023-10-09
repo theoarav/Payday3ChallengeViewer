@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography'
 import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress'
 import Box from '@mui/material/Box'
 import LockIcon from '@mui/icons-material/Lock'
-import VerifiedUserIcon from '@mui/icons-material/VerifiedUser'
 import { $$, sanitizedChallengeData } from './stringReplacer.components'
 import PushPinIcon from '@mui/icons-material/PushPin'
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
@@ -75,21 +74,32 @@ export default function ChallengeCard({
   const challengeIsBugged = (challengeProgess.currentValue >= challengeProgess.targetValue) && challenge.status !== "COMPLETED";
 
   let borderColor
+  let linearColor
   switch (challenge.status) {
     case 'COMPLETED':
-      borderColor = 'rgba(0, 255, 0, 0.4)'
+      borderColor = 'rgba(0, 255, 0, 0.4)';
+      linearColor = 'success';
       break
     case 'INPROGRESS':
-      borderColor = 'rgba(255, 255, 255, 0.6)'
+      borderColor = 'rgba(255, 255, 255, 0.6)';
+      linearColor = 'inherit';
       break
     case 'INIT':
-      borderColor = 'rgba(243, 27, 56, 0.5)'
+      borderColor = 'rgba(243, 27, 56, 0.5)';
+      linearColor = 'error';
       break
     default:
-      borderColor = 'rgba(0, 0, 0, 0)'
+      borderColor = 'rgba(0, 0, 0, 0)';
+      linearColor = '';
   }
 
-  if(challengeIsBugged) borderColor = 'rgba(255, 255, 0, 0.6)'
+  if(challengeProgess.currentValue > 0 && challenge.status === "INPROGRESS") linearColor = 'success';
+  if(challengeIsBugged){
+    borderColor = 'rgba(255, 180, 0, 1)';
+    linearColor = 'warning'
+  } 
+
+  if(isPinned) linearColor = 'primary'
 
   const challengeRewards =
     challenge.challenge.reward?.stats?.[0]?.statCode === 'infamy-point'
@@ -147,9 +157,7 @@ export default function ChallengeCard({
         <LinearProgressWithLabel
           initialCurrentValue={challengeProgess.currentValue}
           targetValue={challengeProgess.targetValue}
-          color={
-            challenge.status === "COMPLETED" ? 'success' : 'info'
-          }
+          color={linearColor !== "" ? linearColor : undefined}
         />
         <Typography variant="body2" color="text.secondary">
           {challengeDesc}

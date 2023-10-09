@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { VirtuosoGrid } from 'react-virtuoso'
 import ChallengeCard from './challengeCard.components'
 import ChallengeCardPlaceholder from './challengeCardPlaceholder.components'

@@ -73,11 +73,15 @@ export default function Challenges({ onLogout }) {
           ? sanitizedChallengeData.title
           : ch.challenge.name
       ).toLowerCase()
-
-      //In case you want to reapply searching in descriptions also.
-      //const description = ((internalizedChallenge && internalizedChallenge.game && internalizedChallenge.game.desc) ? internalizedChallenge.game.desc : ch.challenge.description).toLowerCase()
+      
+      const description = (
+        sanitizedChallengeData.internalName !== '' && sanitizedChallengeData.desc !== 'undefined'
+          ? sanitizedChallengeData.desc
+          : ch.challenge.description
+      ).toLowerCase()
 
       const isNameMatch = name.toLowerCase().includes(searchTerm.toLowerCase())
+      const isDescriptionMatch = description.toLowerCase().includes(searchTerm.toLowerCase())
 
       const isStatusMatch = selectedStatuses.includes(ch.status)
 
@@ -90,7 +94,7 @@ export default function Challenges({ onLogout }) {
         isPinned = pinnedChallenges.includes(ch.challenge.challengeId)
       }
 
-      return isNameMatch && isStatusMatch && areTagsMatch && isPinned
+      return (isNameMatch || isDescriptionMatch) && isStatusMatch && areTagsMatch && isPinned
     })
 
     const sortedChallenges = newFilteredChallenges.sort(

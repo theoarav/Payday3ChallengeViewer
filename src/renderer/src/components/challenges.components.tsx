@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import {
   getPinnedChallenges,
   getUserChallenges,
+  isLoggedIn,
   logout,
   saveChosenLanguage,
   savePinnedChallenges
@@ -44,6 +45,11 @@ export default function Challenges({ onLogout }) {
 
   const fetchData = async () => {
     try {
+      const loggedIn = await isLoggedIn()
+      if (!loggedIn) {
+        signOut()
+      }
+
       const fetchedChallenges = await getUserChallenges()
       const filteredChallenges = fetchedChallenges.filter(
         (challenge: any) =>
@@ -69,7 +75,7 @@ export default function Challenges({ onLogout }) {
           ? sanitizedChallengeData.title
           : ch.challenge.name
       ).toLowerCase()
-      
+
       const description = (
         sanitizedChallengeData.internalName !== '' && sanitizedChallengeData.desc !== 'undefined'
           ? sanitizedChallengeData.desc

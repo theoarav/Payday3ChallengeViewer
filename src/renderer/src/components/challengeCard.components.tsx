@@ -72,6 +72,8 @@ export default function ChallengeCard({
       ? sanitizedChallengeData.desc
       : challenge.challenge.description
 
+  const challengeIsBugged = (challengeProgess.currentValue >= challengeProgess.targetValue) && challenge.status !== "COMPLETED";
+
   let borderColor
   switch (challenge.status) {
     case 'COMPLETED':
@@ -87,6 +89,8 @@ export default function ChallengeCard({
       borderColor = 'rgba(0, 0, 0, 0)'
   }
 
+  if(challengeIsBugged) borderColor = 'rgba(255, 255, 0, 0.6)'
+
   const challengeRewards =
     challenge.challenge.reward?.stats?.[0]?.statCode === 'infamy-point'
       ? challenge.challenge.reward.stats[0].value
@@ -96,7 +100,7 @@ export default function ChallengeCard({
     <Card
       style={{
         width: '100%',
-        height: '175px',
+        minHeight: "12em",
         display: 'flex',
         flexDirection: 'column',
         borderStyle: 'solid',
@@ -122,9 +126,7 @@ export default function ChallengeCard({
               alignItems: 'center'
             }}
           >
-            {challenge.status === 'COMPLETED' ? (
-              <VerifiedUserIcon color="success" sx={{ mr: 1 }} />
-            ) : challenge.status === 'INIT' ? (
+            {challenge.status === 'INIT' ? (
               <LockIcon color="disabled" sx={{ mr: 1 }} />
             ) : null}
             {challengeName}
@@ -145,10 +147,19 @@ export default function ChallengeCard({
         <LinearProgressWithLabel
           initialCurrentValue={challengeProgess.currentValue}
           targetValue={challengeProgess.targetValue}
+          color={
+            challenge.status === "COMPLETED" ? 'success' : 'info'
+          }
         />
         <Typography variant="body2" color="text.secondary">
           {challengeDesc}
         </Typography>
+        {challengeIsBugged ? 
+          <Typography variant="body2" color="rgba(243, 27, 56, 0.5)">
+            This challenge is bugged in-game. You've unlocked it, but you didn't get the reward for it yet.
+          </Typography>
+         : 
+         ""}
       </CardContent>
       <CardActions style={{ alignItems: 'baseline', paddingTop: 0, marginTop: 'auto' }}>
         {!!openModal && challenge.status === 'INIT' ? (
@@ -166,6 +177,7 @@ export default function ChallengeCard({
           ''
         )}
       </CardActions>
+
     </Card>
   )
 }

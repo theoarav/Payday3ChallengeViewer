@@ -1,22 +1,34 @@
 import styled from '@emotion/styled'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { VirtuosoGrid } from 'react-virtuoso'
 import ChallengeCard from './challengeCard.components'
 import ChallengeCardPlaceholder from './challengeCardPlaceholder.components'
 
 const ItemContainer = styled.div`
   padding: 0.5rem;
-  width: 33%;
+  width: 20%;
   display: flex;
   flex: none;
   align-content: stretch;
   box-sizing: border-box;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 2700px) {
+    width: 20%;
+  }
+  
+  @media (max-width: 2200px) {
+    width: 25%;
+  }
+
+  @media (max-width: 1700px) {
+    width: 33%;
+  }
+
+  @media (max-width: 1200px) {
     width: 50%;
   }
 
-  @media (max-width: 300px) {
+  @media (max-width: 770px) {
     width: 100%;
   }
 `

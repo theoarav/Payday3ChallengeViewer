@@ -88,7 +88,13 @@ export default function Challenges({ onLogout }) {
       const isStatusMatch = selectedStatuses.includes(ch.status)
 
       const areTagsMatch = Object.keys(selectedTags).every((key) => {
-        return selectedTags[key].every((tag) => ch.challenge.tags.includes(tag))
+        return selectedTags[key].every((tag) =>{
+          if(tag === "Hard"){
+            return ch.challenge.tags.includes(tag) && !ch.challenge.tags.includes("Very")
+          }
+          return ch.challenge.tags.includes(tag);
+
+        } )
       })
 
       let isPinned = true

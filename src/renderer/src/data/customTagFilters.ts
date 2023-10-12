@@ -1,5 +1,51 @@
 export default {
-  Heist: [
+  Category: [
+    {
+      name: 'Heist',
+      tags: ['Heist']
+    },
+    {
+      name: 'Combat',
+      tags: ['Combat']
+    },
+    {
+      name: 'Career',
+      tags: ['General']
+    },
+    {
+      name: 'Weapons specific',
+      tags: ['Unlock']
+    }
+  ],
+  Difficulty: [
+    {
+      name: 'Normal',
+      tags: ['Normal']
+    },
+    {
+      name: 'Hard',
+      tags: ['Hard']
+    },
+    {
+      name: 'Very Hard',
+      tags: ['Very']
+    },
+    {
+      name: 'Overkill',
+      tags: ['Overkill']
+    }
+  ],
+  Tactic: [
+    {
+      name: 'Loud',
+      tags: ['Loud']
+    },
+    {
+      name: 'Stealth',
+      tags: ['Stealth']
+    }
+  ],
+  Map: [
     {
       name: 'No Rest For The Wicked',
       tags: ['Branch', 'Bank']
@@ -109,52 +155,6 @@ export default {
     {
       name: 'Ziv Commando',
       tags: ['Commando']
-    }
-  ],
-  Category: [
-    {
-      name: 'Heist',
-      tags: ['Heist']
-    },
-    {
-      name: 'Combat',
-      tags: ['Combat']
-    },
-    {
-      name: 'Career',
-      tags: ['General']
-    },
-    {
-      name: 'Weapons specific',
-      tags: ['Unlock']
-    }
-  ],
-  Difficulty: [
-    {
-      name: 'Normal',
-      tags: ['Normal']
-    },
-    {
-      name: 'Hard',
-      tags: ['Hard']
-    },
-    {
-      name: 'Very Hard',
-      tags: ['Very', 'Hard']
-    },
-    {
-      name: 'Overkill',
-      tags: ['Overkill']
-    }
-  ],
-  Tactic: [
-    {
-      name: 'Loud',
-      tags: ['Loud']
-    },
-    {
-      name: 'Stealth',
-      tags: ['Stealth']
     }
   ]
 }

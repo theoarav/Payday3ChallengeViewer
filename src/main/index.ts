@@ -7,37 +7,39 @@ let mainWindow
 
 //@InsulatorGMan
 
-const server = 'https://pd3-challenge-viewer-vercel-update-server-a18tj6086.vercel.app' // Vercel Deployment
-const url = `${server}/update/${process.platform}/${app.getVersion()}`
+// Commented for now see: https://github.com/theoarav/Payday3ChallengeViewer/pull/7#issuecomment-1761252564
 
-// Do not run in development
-if (app.isPackaged) {
-  autoUpdater.setFeedURL({ url })
+// const server = 'https://pd3-challenge-viewer-vercel-update-server-a18tj6086.vercel.app' // Vercel Deployment
+// const url = `${server}/update/${process.platform}/${app.getVersion()}`
 
-  // Check for updates every 5 minutes
-  setInterval(() => {
-    autoUpdater.checkForUpdates()
-  }, 300000)
+// // Do not run in development
+// if (app.isPackaged) {
+//   autoUpdater.setFeedURL({ url })
 
-  // Prompt user to install update, if found.
-  autoUpdater.on('update-downloaded', (_event, releaseNotes, releaseName) => {
-    const dialogOpts = {
-      buttons: ['Restart', 'Later'],
-      title: 'Application Update',
-      message: process.platform === 'win32' ? releaseNotes : releaseName,
-      detail: 'A new version has been downloaded. Restart the application to apply the updates.'
-    }
+//   // Check for updates every 5 minutes
+//   setInterval(() => {
+//     autoUpdater.checkForUpdates()
+//   }, 300000)
 
-    dialog.showMessageBox(dialogOpts).then((returnValue) => {
-      if (returnValue.response === 0) autoUpdater.quitAndInstall()
-    })
-  })
+//   // Prompt user to install update, if found.
+//   autoUpdater.on('update-downloaded', (_event, releaseNotes, releaseName) => {
+//     const dialogOpts = {
+//       buttons: ['Restart', 'Later'],
+//       title: 'Application Update',
+//       message: process.platform === 'win32' ? releaseNotes : releaseName,
+//       detail: 'A new version has been downloaded. Restart the application to apply the updates.'
+//     }
 
-  autoUpdater.on('error', (message) => {
-    console.error('There was a problem updating the application')
-    console.error(message)
-  })
-}
+//     dialog.showMessageBox(dialogOpts).then((returnValue) => {
+//       if (returnValue.response === 0) autoUpdater.quitAndInstall()
+//     })
+//   })
+
+//   autoUpdater.on('error', (message) => {
+//     console.error('There was a problem updating the application')
+//     console.error(message)
+//   })
+// }
 
 //!@InsulatorGMan
 

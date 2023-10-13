@@ -77,10 +77,6 @@ export default function ChallengeCard({
       ? sanitizedChallengeData.desc
       : challenge.challenge.description
 
-  const challengeIsBugged =
-    challengeProgess.currentValue >= challengeProgess.targetValue &&
-    challenge.status !== 'COMPLETED'
-
   let borderColor
   let linearColor
   switch (challenge.status) {
@@ -96,6 +92,10 @@ export default function ChallengeCard({
       borderColor = '#f44336'
       linearColor = 'error'
       break
+    case 'BUGGED':
+      borderColor = 'rgba(255, 180, 0, 1)'
+      linearColor = 'warning'
+      break
     default:
       borderColor = 'rgba(0, 0, 0, 0)'
       linearColor = ''
@@ -103,10 +103,6 @@ export default function ChallengeCard({
 
   if (challengeProgess.currentValue > 0 && challenge.status === 'INPROGRESS')
     linearColor = 'success'
-  if (challengeIsBugged) {
-    borderColor = 'rgba(255, 180, 0, 1)'
-    linearColor = 'warning'
-  }
 
   if (isPinned) linearColor = 'primary'
 
@@ -169,7 +165,7 @@ export default function ChallengeCard({
         <Typography variant="body2" color="text.secondary">
           {challengeDesc}
         </Typography>
-        {challengeIsBugged ? (
+        {challenge.status === "BUGGED" ? (
           <Typography variant="body2" color="rgba(243, 27, 56, 0.5)">
             This challenge is bugged in-game. You've unlocked it, but you didn't get the reward for
             it yet.

@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import * as React from 'react'
 
-//Converts seconds into a more reabled HH:MM:SS format.
+//Converts seconds into a more readable HH:MM:SS format.
 function durationSecondsConverter(duration: string) {
   if (duration && duration != 'undefined' && duration != null) {
     var temp = +duration

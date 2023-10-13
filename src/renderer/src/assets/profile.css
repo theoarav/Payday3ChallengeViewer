@@ -1,0 +1,10 @@
+.profileName {
+    margin-left: "5px"
+}
+
+/* In case a profile modal happens. This makes the profile name have an outline on hovering, making it more visible that its clickable.
+.profileName:hover {
+    text-shadow: -1px 0 #a8a7a7, 0 1px #a8a7a7, 1px 0 #a8a7a7, 0 -1px #a8a7a7;
+}
+*/
+

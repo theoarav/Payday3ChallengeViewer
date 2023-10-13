@@ -6,7 +6,8 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 const statusMap = {
   COMPLETED: 'Completed',
   INPROGRESS: 'In Progress',
-  INIT: 'Locked'
+  INIT: 'Locked',
+  BUGGED: 'Bugged'
 }
 
 type Status = keyof typeof statusMap
@@ -19,7 +20,8 @@ export default function StatusSelect({ onStatusChange }: StatusSelectProps) {
   const [checked, setChecked] = React.useState<Record<Status, boolean>>({
     COMPLETED: true,
     INPROGRESS: true,
-    INIT: true
+    INIT: true,
+    BUGGED: true,
   })
 
   const handleIndividualChange =

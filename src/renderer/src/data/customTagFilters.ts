@@ -45,7 +45,7 @@ export default {
       tags: ['Stealth']
     }
   ],
-  Map: [
+  Heist: [
     {
       name: 'No Rest For The Wicked',
       tags: ['Branch', 'Bank']

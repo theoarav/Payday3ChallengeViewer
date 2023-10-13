@@ -23,5 +23,7 @@ appImage:
   artifactName: ${name}.${ext}
 npmRebuild: false
 publish:
-  provider: generic
-  url: https://github.com/theoarav/Payday3ChallengeViewer
+  provider: github
+  owner: theoarav
+  repo: Payday3ChallengeViewer
+  releaseType: release

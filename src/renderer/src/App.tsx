@@ -6,7 +6,6 @@ import SignIn from './components/signin.components'
 import { isLoggedIn } from './service/auth.service'
 import Challenges from './components/challenges.components'
 import { useMediaQuery } from '@mui/material'
-import React from 'react'
 
 function App(): ReactElement {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')

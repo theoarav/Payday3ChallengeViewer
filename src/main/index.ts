@@ -1,47 +1,117 @@
-import { app, shell, BrowserWindow, autoUpdater, dialog } from 'electron'
+import { app, shell, BrowserWindow, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../build/icon.png?asset'
+import { autoUpdater } from 'electron-updater'
+
+const appPath = app.getAppPath()
+const isInsideTemp = appPath.toLowerCase().includes('appdata\\local\\temp')
+
+const IS_PORTABLE_VERSION = isInsideTemp
 
 let mainWindow
 
-//@InsulatorGMan
+function htmlToPlainText(html) {
+  const parser = new DOMParser()
+  const dom = parser.parseFromString(html, 'text/html')
+  return dom.body.textContent || ''
+}
 
-// Commented for now see: https://github.com/theoarav/Payday3ChallengeViewer/pull/7#issuecomment-1761252564
+// Do not run in development
+if (app.isPackaged) {
+  setInterval(() => {
+    autoUpdater.checkForUpdates()
 
-// const server = 'https://pd3-challenge-viewer-vercel-update-server-a18tj6086.vercel.app' // Vercel Deployment
-// const url = `${server}/update/${process.platform}/${app.getVersion()}`
+    if (IS_PORTABLE_VERSION) {
+      checkForUpdate()
+    }
+  }, 300000)
 
-// // Do not run in development
-// if (app.isPackaged) {
-//   autoUpdater.setFeedURL({ url })
+  autoUpdater.on('update-available', (info) => {
+    let detailMessage = ''
 
-//   // Check for updates every 5 minutes
-//   setInterval(() => {
-//     autoUpdater.checkForUpdates()
-//   }, 300000)
+    // Check if release notes are available. If not, use the release name.
+    if (info.releaseNotes) {
+      detailMessage = htmlToPlainText(info.releaseNotes)
+    } else {
+      detailMessage = `Release Name: ${info.releaseName}`
+    }
 
-//   // Prompt user to install update, if found.
-//   autoUpdater.on('update-downloaded', (_event, releaseNotes, releaseName) => {
-//     const dialogOpts = {
-//       buttons: ['Restart', 'Later'],
-//       title: 'Application Update',
-//       message: process.platform === 'win32' ? releaseNotes : releaseName,
-//       detail: 'A new version has been downloaded. Restart the application to apply the updates.'
-//     }
+    dialog
+      .showMessageBox({
+        type: 'info',
+        title: 'Update Available',
+        message: 'A new update is available. Would you like to download and install it?',
+        detail: detailMessage,
+        buttons: ['Yes', 'No']
+      })
+      .then((response) => {
+        // If the user clicks the "Yes" button (button index 0), start downloading the update.
+        if (response.response === 0) {
+          autoUpdater.downloadUpdate()
+        }
+      })
+  })
 
-//     dialog.showMessageBox(dialogOpts).then((returnValue) => {
-//       if (returnValue.response === 0) autoUpdater.quitAndInstall()
-//     })
-//   })
+  autoUpdater.on('update-downloaded', (info) => {
+    let detailMessage = ''
 
-//   autoUpdater.on('error', (message) => {
-//     console.error('There was a problem updating the application')
-//     console.error(message)
-//   })
-// }
+    // Check if release notes are available. If not, use the release name.
+    if (info.releaseNotes) {
+      detailMessage = htmlToPlainText(info.releaseNotes)
+    } else {
+      detailMessage = `Release Name: ${info.releaseName}`
+    }
 
-//!@InsulatorGMan
+    const dialogOpts = {
+      buttons: ['Restart', 'Later'],
+      title: 'Application Update',
+      message: 'A new update is available.',
+      detail: detailMessage
+    }
+
+    dialog.showMessageBox(dialogOpts).then((returnValue) => {
+      if (returnValue.response === 0) autoUpdater.quitAndInstall()
+    })
+  })
+
+  autoUpdater.on('error', (message) => {
+    console.error('There was a problem updating the application')
+    console.error(message)
+  })
+}
+
+function checkForUpdate() {
+  const GITHUB_API_URL =
+    'https://api.github.com/repos/theoarav/Payday3ChallengeViewer/releases/latest'
+
+  fetch(GITHUB_API_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      const latestVersion = data.tag_name
+      const currentVersion = app.getVersion() // Assurez-vous d'avoir importé 'app' depuis 'electron'
+
+      if (latestVersion !== currentVersion) {
+        const dialogOpts = {
+          buttons: ['Open GitHub', 'Later'],
+          title: 'New Update Available',
+          message: 'A newer version of the application is available.',
+          detail: `Version available: ${latestVersion}\nYour version: ${currentVersion}`
+        }
+
+        dialog.showMessageBox(dialogOpts).then((returnValue) => {
+          if (returnValue.response === 0) {
+            shell.openExternal(
+              `https://github.com/theoarav/Payday3ChallengeViewer/releases/tag/${latestVersion}`
+            )
+          }
+        })
+      }
+    })
+    .catch((err) => {
+      console.error('Error checking for updates:', err)
+    })
+}
 
 function createWindow(): void {
   // Create the browser window.
@@ -99,6 +169,14 @@ app.whenReady().then(() => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+})
+
+app.on('ready', function () {
+  autoUpdater.checkForUpdates()
+
+  if (IS_PORTABLE_VERSION) {
+    checkForUpdate()
+  }
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common

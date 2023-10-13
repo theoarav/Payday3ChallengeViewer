@@ -2,13 +2,13 @@ import RefreshIcon from '@mui/icons-material/Refresh'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { useEffect, useState } from 'react'
 import { Box, Button, Checkbox, FormControlLabel, IconButton } from '@mui/material'
-import SearchBar from './searchBar.components'
-import SettingsModal from './settingsModal.components'
-import CountDown from './countdownTimer.components'
-import { getUserInfos } from '@renderer/service/auth.service'
+import SearchBar from './SearchBar'
+import SettingsModal from '../../Modals/Settings'
+import CountDown from './CountdownTimer'
+import { getUserInfos } from '../../../../Services/auth.service'
 import Tooltip from '@mui/material/Tooltip';
-import '../assets/profile.css'
-import LevelFromIP from './levelFromIp.components'
+import './Profile.css'
+import LevelFromIP from './LevelFromIP'
 
 export type sanitizedUserInfo = {
   userId: string,

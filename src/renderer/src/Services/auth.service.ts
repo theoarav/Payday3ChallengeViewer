@@ -1,4 +1,4 @@
-import { AuthModel } from '../model/auth.model'
+import { AuthModel } from '../Model/auth.model'
 
 export const DEFAULT_LANGUAGE = 'en'
 export const LANGUAGE = 'PD3CV-Language'

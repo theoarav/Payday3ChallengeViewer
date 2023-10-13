@@ -1,4 +1,4 @@
-import { StringResourceKey, StringResources } from "../assets/StringResources"
+import { StringResourceKey, StringResources } from "./StringResources"
 
 export type internalizedChallenge = 
 {

@@ -7,13 +7,13 @@ import {
   logout,
   saveChosenLanguage,
   savePinnedChallenges
-} from '../service/auth.service'
-import { ChallengesFilters } from './challengesFilters.components'
-import ChallengesGrid from './challengesGrid.components'
-import ChallengesHeader from './challengesHeader.components'
-import { ModalWrapper } from './modalWrapper.components'
-import { $$, sanitizedChallengeData } from './stringReplacer.components'
-import { getChosenLanguage } from '@renderer/service/auth.service'
+} from '../../../Services/auth.service'
+import { ChallengesFilters } from './Filters'
+import ChallengesGrid from './Grid'
+import ChallengesHeader from './Header/Header'
+import { ModalWrapper } from '../Modals/Wrapper'
+import { $$, sanitizedChallengeData } from '../Language/StringReplacer'
+import { getChosenLanguage } from '../../../Services/auth.service'
 
 export default function Challenges({ onLogout }) {
   const [challenges, setChallenges] = useState<Array<any>>([])

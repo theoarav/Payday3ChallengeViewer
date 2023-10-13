@@ -1,7 +1,7 @@
 import { Dialog, DialogActions, DialogTitle, IconButton, List, ListItem } from '@mui/material'
-import StatusSelect from './statusSelect.components'
-import FilterSelect from './filterSelect.components'
-import customTagFilters from '@renderer/data/customTagFilters'
+import StatusSelect from './Header/StatusSelect'
+import FilterSelect from '../FilterSelect/FilterSelect'
+import customTagFilters from './CustomTagFilters'
 import { Dispatch, ReactElement, SetStateAction, useState } from 'react'
 import { Close } from '@mui/icons-material'
 

@@ -1,10 +1,10 @@
 import { useState, useEffect, useMemo, ReactElement } from 'react'
-import './assets/App.css'
+import './App.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import SignIn from './components/signin.components'
-import { isLoggedIn } from './service/auth.service'
-import Challenges from './components/challenges.components'
+import SignIn from './Components/SignIn/SignIn'
+import { isLoggedIn } from '../Services/auth.service'
+import Challenges from './Components/Challenges/Challenges'
 import { useMediaQuery } from '@mui/material'
 
 function App(): ReactElement {

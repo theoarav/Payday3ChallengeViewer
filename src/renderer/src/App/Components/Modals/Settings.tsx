@@ -13,7 +13,7 @@ import {
   DEFAULT_LANGUAGE,
   exportPayCheck3Data,
   getChosenLanguage
-} from '@renderer/service/auth.service'
+} from '@renderer/Services/auth.service'
 import { useState } from 'react'
 
 export default function SettingsModal({ signOut, setLanguageSetting }: any) {

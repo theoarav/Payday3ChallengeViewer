@@ -1,11 +1,19 @@
-import { Container, InputAdornment, TextField } from '@mui/material'
-import { useState } from 'react'
-import SearchIcon from '@mui/icons-material/Search'
+import { Container, InputAdornment, TextField, Button } from '@mui/material'
+import { ReactElement, useState } from 'react'
+import { Search, FilterList } from '@mui/icons-material/'
 
-export default function SearchBar({ onChange }: any) {
+export default function SearchBar({
+  onChange,
+  setOpen,
+  open
+}: {
+  onChange
+  setOpen
+  open
+}): ReactElement {
   const [searchTerm, setSearchTerm] = useState('')
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: { target: { value: string } }): void => {
     setSearchTerm(event.target.value)
     onChange(event.target.value)
   }
@@ -20,9 +28,23 @@ export default function SearchBar({ onChange }: any) {
         onChange={handleChange}
         sx={{ width: '100%' }}
         InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <Search />
+            </InputAdornment>
+          ),
           endAdornment: (
             <InputAdornment position="end">
-              <SearchIcon />
+              <Button
+                variant="contained"
+                color="success"
+                onClick={(): void => {
+                  setOpen(!open)
+                }}
+                endIcon={<FilterList />}
+              >
+                Filters
+              </Button>
             </InputAdornment>
           )
         }}

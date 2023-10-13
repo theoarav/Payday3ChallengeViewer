@@ -94,6 +94,9 @@ export default function ChallengesGrid({
             openModal={handleChallengeModal}
             togglePinnedChallenge={togglePinnedChallenge}
             isPinned={pinnedChallenges.includes(challenges[index]?.challenge?.challengeId || '')}
+            key={null}
+            type={''}
+            props={undefined}
           />
         )}
         scrollSeekConfiguration={{

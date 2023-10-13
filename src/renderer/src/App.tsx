@@ -1,25 +1,33 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo, ReactElement } from 'react'
 import './assets/App.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import SignIn from './components/signin.components'
 import { isLoggedIn } from './service/auth.service'
 import Challenges from './components/challenges.components'
+import { useMediaQuery } from '@mui/material'
+import React from 'react'
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark'
-  }
-})
+function App(): ReactElement {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
-function App() {
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: prefersDarkMode ? 'dark' : 'light'
+        }
+      }),
+    [prefersDarkMode]
+  )
+
   const [loggedIn, setLoggedIn] = useState(false)
 
-  const handleLogin = () => {
+  const handleLogin = (): void => {
     checkLoginStatus()
   }
 
-  const checkLoginStatus = async () => {
+  const checkLoginStatus = async (): Promise<void> => {
     const loggedIn = await isLoggedIn()
     setLoggedIn(loggedIn)
   }
@@ -29,7 +37,7 @@ function App() {
   }, [])
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       {loggedIn ? <Challenges onLogout={handleLogin} /> : <SignIn onLogin={handleLogin} />}
     </ThemeProvider>

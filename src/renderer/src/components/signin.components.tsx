@@ -17,7 +17,7 @@ interface SignInProps {
 export default function SignIn({ onLogin }: SignInProps) {
   const [loginSuccessful, setLoginSuccessful] = useState(true)
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     const loginResult = await login(data)

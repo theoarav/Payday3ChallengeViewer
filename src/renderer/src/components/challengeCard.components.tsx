@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ReactElement } from 'react'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
@@ -16,7 +16,7 @@ function LinearProgressWithLabel({
   initialCurrentValue,
   targetValue,
   ...rest
-}: LinearProgressProps & { initialCurrentValue: number; targetValue: number }) {
+}: LinearProgressProps & { initialCurrentValue: number; targetValue: number }): ReactElement {
   const [currentValue, setCurrentValue] = useState(0)
 
   useEffect(() => {
@@ -50,9 +50,15 @@ export default function ChallengeCard({
   togglePinnedChallenge,
   isPinned,
   language
-}: any) {
+}: ReactElement & {
+  challenge
+  openModal
+  togglePinnedChallenge
+  isPinned
+  language
+}): ReactElement {
   const challengeProgess = challenge.progress.objective.stats[0]
-  const openChallengeModal = () => {
+  const openChallengeModal = (): void => {
     const challengesToComplete = challenge.progress.prerequisite.completedChallengeIds
     openModal(challengesToComplete)
   }
@@ -71,35 +77,38 @@ export default function ChallengeCard({
       ? sanitizedChallengeData.desc
       : challenge.challenge.description
 
-  const challengeIsBugged = (challengeProgess.currentValue >= challengeProgess.targetValue) && challenge.status !== "COMPLETED";
+  const challengeIsBugged =
+    challengeProgess.currentValue >= challengeProgess.targetValue &&
+    challenge.status !== 'COMPLETED'
 
   let borderColor
   let linearColor
   switch (challenge.status) {
     case 'COMPLETED':
-      borderColor = 'rgba(0, 255, 0, 0.4)';
-      linearColor = 'success';
+      borderColor = '#66bb6a'
+      linearColor = 'success'
       break
     case 'INPROGRESS':
-      borderColor = 'rgba(255, 255, 255, 0.6)';
-      linearColor = 'inherit';
+      borderColor = '#494949'
+      linearColor = 'inherit'
       break
     case 'INIT':
-      borderColor = 'rgba(243, 27, 56, 0.5)';
-      linearColor = 'error';
+      borderColor = '#f44336'
+      linearColor = 'error'
       break
     default:
-      borderColor = 'rgba(0, 0, 0, 0)';
-      linearColor = '';
+      borderColor = 'rgba(0, 0, 0, 0)'
+      linearColor = ''
   }
 
-  if(challengeProgess.currentValue > 0 && challenge.status === "INPROGRESS") linearColor = 'success';
-  if(challengeIsBugged){
-    borderColor = 'rgba(255, 180, 0, 1)';
+  if (challengeProgess.currentValue > 0 && challenge.status === 'INPROGRESS')
+    linearColor = 'success'
+  if (challengeIsBugged) {
+    borderColor = 'rgba(255, 180, 0, 1)'
     linearColor = 'warning'
-  } 
+  }
 
-  if(isPinned) linearColor = 'primary'
+  if (isPinned) linearColor = 'primary'
 
   const challengeRewards =
     challenge.challenge.reward?.stats?.[0]?.statCode === 'infamy-point'
@@ -110,7 +119,7 @@ export default function ChallengeCard({
     <Card
       style={{
         width: '100%',
-        minHeight: "12em",
+        minHeight: '12em',
         display: 'flex',
         flexDirection: 'column',
         borderStyle: 'solid',
@@ -136,15 +145,13 @@ export default function ChallengeCard({
               alignItems: 'center'
             }}
           >
-            {challenge.status === 'INIT' ? (
-              <LockIcon color="disabled" sx={{ mr: 1 }} />
-            ) : null}
+            {challenge.status === 'INIT' ? <LockIcon color="disabled" sx={{ mr: 1 }} /> : null}
             {challengeName}
           </Typography>
           <Typography>
             <IconButton
               aria-label="pin"
-              onClick={() => togglePinnedChallenge(challenge.challenge.challengeId)}
+              onClick={(): void => togglePinnedChallenge(challenge.challenge.challengeId)}
             >
               {isPinned ? (
                 <PushPinIcon style={{ color: 'rgba(134, 154, 243, 0.6)' }} />
@@ -157,17 +164,19 @@ export default function ChallengeCard({
         <LinearProgressWithLabel
           initialCurrentValue={challengeProgess.currentValue}
           targetValue={challengeProgess.targetValue}
-          color={linearColor !== "" ? linearColor : undefined}
+          color={linearColor !== '' ? linearColor : undefined}
         />
         <Typography variant="body2" color="text.secondary">
           {challengeDesc}
         </Typography>
-        {challengeIsBugged ? 
+        {challengeIsBugged ? (
           <Typography variant="body2" color="rgba(243, 27, 56, 0.5)">
-            This challenge is bugged in-game. You've unlocked it, but you didn't get the reward for it yet.
+            This challenge is bugged in-game. You've unlocked it, but you didn't get the reward for
+            it yet.
           </Typography>
-         : 
-         ""}
+        ) : (
+          ''
+        )}
       </CardContent>
       <CardActions style={{ alignItems: 'baseline', paddingTop: 0, marginTop: 'auto' }}>
         {!!openModal && challenge.status === 'INIT' ? (
@@ -177,7 +186,7 @@ export default function ChallengeCard({
         ) : (
           ''
         )}
-        {!!challengeRewards ? (
+        {challengeRewards ? (
           <Typography variant="overline" display="block" style={{ marginLeft: 'auto' }}>
             Reward: {challengeRewards} Infamy points
           </Typography>
@@ -185,7 +194,6 @@ export default function ChallengeCard({
           ''
         )}
       </CardActions>
-
     </Card>
   )
 }

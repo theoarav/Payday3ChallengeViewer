@@ -6,6 +6,7 @@ import SearchBar from './searchBar.components'
 import SettingsModal from './settingsModal.components'
 import CountDown from './countdownTimer.components'
 import { getUserInfos } from '@renderer/service/auth.service'
+import Tooltip from '@mui/material/Tooltip';
 import '../assets/profile.css'
 
 export type sanitizedUserInfo = {
@@ -116,7 +117,9 @@ export default function ChallengesHeader({
         }}
       >      
         <IconButton aria-label="pin" onClick={openSettingsModal} style={{cursor: "pointer"}}>
-          <SettingsIcon />
+          <Tooltip placement="top" title="Options">
+            <SettingsIcon />
+          </Tooltip>
         </IconButton>
         <div style={{display: "contents"}}>
         {userInfos && <h4 className="profileName" style={{marginLeft: "5px"}}>{userInfos.displayName}</h4>}

@@ -1,6 +1,6 @@
 import RefreshIcon from '@mui/icons-material/Refresh'
 import SettingsIcon from '@mui/icons-material/Settings'
-import { ReactElement, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Button, Checkbox, FormControlLabel, IconButton } from '@mui/material'
 import SearchBar from './searchBar.components'
 import SettingsModal from './settingsModal.components'

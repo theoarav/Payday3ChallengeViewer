@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import {
   getPinnedChallenges,
   getUserChallenges,
-  getUserInfos,
   isLoggedIn,
   logout,
   saveChosenLanguage,

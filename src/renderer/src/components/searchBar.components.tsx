@@ -1,6 +1,6 @@
 import { Container, InputAdornment, TextField, Button } from '@mui/material'
 import { ReactElement, useState } from 'react'
-import { Search, FilterList, Sort } from '@mui/icons-material/'
+import { Search, FilterList } from '@mui/icons-material/'
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Select, { SelectChangeEvent } from '@mui/material/Select'

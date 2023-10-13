@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 import { Box } from '@mui/material'
 import { VirtuosoGrid } from 'react-virtuoso'
-import ChallengeCard from './challengeCard.components'
-import ChallengeCardPlaceholder from './challengeCardPlaceholder.components'
-import ChallengeModal from './challengeModal.components'
-import { $$, sanitizedChallengeData } from './stringReplacer.components'
+import ChallengeCard from '../ChallengeCard/ChallengeCard'
+import ChallengeCardPlaceholder from '../ChallengeCard/ChallengeCardPlaceholder'
+import ChallengeModal from '../ChallengeCard/ChallengeModel'
+import { $$, sanitizedChallengeData } from '../Language/StringReplacer'
 
 const ItemContainer = styled.div`
   padding: 0.5rem;

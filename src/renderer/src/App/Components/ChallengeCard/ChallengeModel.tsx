@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { ReactElement, useState } from 'react'
 import { VirtuosoGrid } from 'react-virtuoso'
-import ChallengeCard from './challengeCard.components'
-import ChallengeCardPlaceholder from './challengeCardPlaceholder.components'
+import ChallengeCard from './ChallengeCard'
+import ChallengeCardPlaceholder from './ChallengeCardPlaceholder'
 
 const ItemContainer = styled.div`
   padding: 0.5rem;

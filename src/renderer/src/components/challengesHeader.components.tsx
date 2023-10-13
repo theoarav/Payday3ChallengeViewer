@@ -8,6 +8,7 @@ import CountDown from './countdownTimer.components'
 import { getUserInfos } from '@renderer/service/auth.service'
 import Tooltip from '@mui/material/Tooltip';
 import '../assets/profile.css'
+import LevelFromIP from './levelFromIp.components'
 
 export type sanitizedUserInfo = {
   userId: string,
@@ -25,6 +26,8 @@ export default function ChallengesHeader({
   setFiltersOpen,
   onShowOnlyPinnedChange,
   handleSortOption,
+  totalIP,
+  ipAcquired
 }: {
   fetchData
   setSearchTerm
@@ -34,6 +37,8 @@ export default function ChallengesHeader({
   setFiltersOpen
   onShowOnlyPinnedChange
   handleSortOption
+  totalIP,
+  ipAcquired
 }) {
   const [showCountdownRefresh, setShowCountdownRefresh] = useState(true)
   const [showOnlyPinned, setShowOnlyPinned] = useState(false)
@@ -122,6 +127,8 @@ export default function ChallengesHeader({
           </Tooltip>
         </IconButton>
         <div style={{display: "contents"}}>
+        <LevelFromIP ip={ipAcquired} totalIP={totalIP}/>
+        <label>&#160;|</label>
         {userInfos && <h4 className="profileName" style={{marginLeft: "5px"}}>{userInfos.displayName}</h4>}
         {userInfos && <img
             src={userInfos.avatar}

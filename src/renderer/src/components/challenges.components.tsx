@@ -18,6 +18,8 @@ import { getChosenLanguage } from '@renderer/service/auth.service'
 
 export default function Challenges({ onLogout }) {
   const [challenges, setChallenges] = useState<Array<any>>([])
+  const [ipAcquired, setIpAcquired] = useState(0)
+  const [totalIP, setTotalIP] = useState(0)
   const [filteredChallenges, setFilteredChallenges] = useState<Array<Object>>([])
   const [sortMethod, setSortMethod] = useState('A-Z')
   const [challengeKey, setchallengeKey] = useState('A-Z')
@@ -35,6 +37,7 @@ export default function Challenges({ onLogout }) {
   const [showOnlyPinned, setShowOnlyPinned] = useState(false)
   const [language, setLanguage] = useState(getChosenLanguage)
   const [loadingModalVisible, setLoadingModalVisible] = useState(false)
+  
 
   useEffect(() => {
     fetchData()
@@ -67,9 +70,17 @@ export default function Challenges({ onLogout }) {
           challenge.challenge?.tags.length > 0
       )
 
+      let totalIP: number =  0;
+      let ipAcquired: number =  0;
 
       const translatedNamesArray: any[] = [];
+      console.log("filteredChallenges:",filteredChallenges)
       filteredChallenges.forEach(ch => {
+        if(ch.challenge.reward?.stats?.[0]?.statCode === 'infamy-point'){
+          totalIP += ch.challenge.reward.stats[0].value;
+          if (ch.status === "COMPLETED" || ch.progress.objective.stats[0].currentValue >= ch.progress.objective.stats[0].targetValue) ipAcquired += ch.challenge.reward.stats[0].value;
+        }
+
         const sanitizedChallengeData: sanitizedChallengeData = $$(ch.challenge.challengeId, language)
         const name = sanitizedChallengeData.internalName !== '' && sanitizedChallengeData.title !== 'undefined'
             ? sanitizedChallengeData.title
@@ -86,6 +97,8 @@ export default function Challenges({ onLogout }) {
         (a: any, b: any) => a.challenge.name.localeCompare(b.challenge.name)
       )
 
+      setTotalIP(totalIP)
+      setIpAcquired(ipAcquired)
       setChallenges(translatedAndSortedArray)
       setFilteredChallenges(translatedAndSortedArray)
       setLoadingModalVisible(false)
@@ -242,6 +255,8 @@ export default function Challenges({ onLogout }) {
         setFiltersOpen={challengesFilters.setOpen}
         onShowOnlyPinnedChange={setShowOnlyPinned}
         handleSortOption={handleSortOption}
+        ipAcquired={ipAcquired}
+        totalIP={totalIP}
       />
       {challengesFilters.element}
       {loadingModalVisible === false &&

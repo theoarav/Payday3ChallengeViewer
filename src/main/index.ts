@@ -21,10 +21,6 @@ function htmlToPlainText(html) {
 if (app.isPackaged) {
   setInterval(() => {
     autoUpdater.checkForUpdates()
-
-    if (IS_PORTABLE_VERSION) {
-      checkForUpdate()
-    }
   }, 300000)
 
   autoUpdater.on('update-available', (info) => {
@@ -93,14 +89,14 @@ function checkForUpdate() {
 
       if (latestVersion !== currentVersion) {
         const dialogOpts = {
-          buttons: ['Open GitHub', 'Later'],
+          buttons: ['Later', 'Open Github'],
           title: 'New Update Available',
           message: 'A newer version of the application is available.',
           detail: `Version available: ${latestVersion}\nYour version: ${currentVersion}`
         }
 
         dialog.showMessageBox(dialogOpts).then((returnValue) => {
-          if (returnValue.response === 0) {
+          if (returnValue.response === 1) {
             shell.openExternal(
               `https://github.com/theoarav/Payday3ChallengeViewer/releases/tag/${latestVersion}`
             )

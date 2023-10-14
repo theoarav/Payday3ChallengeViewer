@@ -167,7 +167,8 @@ export default function ChallengesHeader({
             <SettingsIcon />
           </Tooltip>
         </IconButton>
-        <Tooltip
+        <LevelFromIP ip={ipAcquired} totalIP={totalIP}/>
+        {userInfos && <Tooltip
           placement="top"
           title={
             <div>
@@ -189,9 +190,8 @@ export default function ChallengesHeader({
             </div>
           }
         >
-          <LocalAtmIcon /> 
-        </Tooltip>
-        <LevelFromIP ip={ipAcquired} totalIP={totalIP}/>
+          <LocalAtmIcon style={{marginLeft: "5px"}}/> 
+        </Tooltip>}
         <label>&#160;|</label>
         {userInfos && <h4 className="profileName" style={{marginLeft: "5px"}}>{userInfos.displayName}</h4>}
         {userInfos && <img

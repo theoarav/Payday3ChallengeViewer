@@ -1,20 +1,29 @@
 import RefreshIcon from '@mui/icons-material/Refresh'
 import SettingsIcon from '@mui/icons-material/Settings'
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import { useEffect, useState } from 'react'
 import { Box, Button, Checkbox, FormControlLabel, IconButton } from '@mui/material'
 import SearchBar from './SearchBar'
 import SettingsModal from '../../Modals/Settings'
 import CountDown from './CountdownTimer'
 import { getUserInfos } from '../../../../Services/User/User'
+import { getWalletGold, getWalletCash, getWalletCred } from '../../../../Services/Wallet/Wallet'
 import Tooltip from '@mui/material/Tooltip';
 import './Profile.css'
 import LevelFromIP from './LevelFromIP'
+import { numbersWithSeparator } from '../../Utils/Utils';
 
 export type sanitizedUserInfo = {
   userId: string,
   displayName: string,
   avatar: string,
   email: string,
+}
+
+export type walletInfo = {
+  cash: number,
+  gold: number,
+  cred: number,
 }
 
 export default function ChallengesHeader({
@@ -43,9 +52,12 @@ export default function ChallengesHeader({
   const [showCountdownRefresh, setShowCountdownRefresh] = useState(true)
   const [showOnlyPinned, setShowOnlyPinned] = useState(false)
   const [userInfos, setUserInfos] = useState<sanitizedUserInfo>()
+  const [walletData, setWalletData] = useState<walletInfo>()
+  const [secondsTillNextCReset] = useState<number>(getSeconds())
 
   useEffect(() => {
     fetchUserInfo()
+    fetchWalletData()
   }, [])
 
 
@@ -77,6 +89,34 @@ export default function ChallengesHeader({
     }
   }
 
+  const fetchWalletData = async () => {
+    try {
+      const walletCash:any = await getWalletCash()
+      const walletGold:any = await getWalletGold()
+      const walletCred:any = await getWalletCred()
+
+      let walletData:walletInfo = {cash: walletCash.balance, gold: walletGold.balance, cred: walletCred.balance}
+      setWalletData(walletData)
+    } catch (error) {
+      console.error('Error fetching wallet data: ', error)
+    }
+  }
+
+
+  //Hétfő hajnali 2-kor reset
+  function getSeconds() {
+    var nowDate = new Date();
+    let cStackResetFirstTime = new Date('2023-10-16 02:00');
+
+    while(nowDate>cStackResetFirstTime)
+    {
+      cStackResetFirstTime.setDate(cStackResetFirstTime.getDate() + 7)
+    }
+
+    var diff:number = (cStackResetFirstTime.getTime() - nowDate.getTime())/1000;
+    return diff;
+   }
+
   return (
     <Box
       sx={{
@@ -105,7 +145,7 @@ export default function ChallengesHeader({
         >
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             Refresh data
-            {showCountdownRefresh && userInfos && <CountDown startSeconds={(userInfos && ["5feeacfaac5d4758a21b50ffdff13a08", "5feeacfaac5d4758a21b50ffdff13a09"].includes(userInfos.userId)) ? 3 : 300} onComplete={timerIsUp} />}
+            {showCountdownRefresh && userInfos && <CountDown startSeconds={(userInfos && ["5feeacfaac5d4758a21b50ffdff13a08"].includes(userInfos.userId)) ? 3 : 300} onComplete={timerIsUp} />}
           </Box>
         </Button>
         <FormControlLabel
@@ -121,12 +161,36 @@ export default function ChallengesHeader({
           alignItems: "center",
         }}
       >      
+        <div style={{display: "contents"}}>
         <IconButton aria-label="pin" onClick={openSettingsModal} style={{cursor: "pointer"}}>
           <Tooltip placement="top" title="Options">
             <SettingsIcon />
           </Tooltip>
         </IconButton>
-        <div style={{display: "contents"}}>
+        <Tooltip
+          placement="top"
+          title={
+            <div>
+              <span style={{fontSize:"16px"}}>Current Wallet:</span>
+              <br/>
+                <span className='tooltipText'>- Cash: </span>
+                <span className='tooltipText cash outlined'>${numbersWithSeparator(walletData ? walletData.cash : 0)}</span>
+              <br/>
+                <span className='tooltipText'>- C-Stacks: </span>
+                <span className='tooltipText gold outlined'>{numbersWithSeparator(walletData ? walletData.gold : 0)}</span>
+              <br/>
+                <span className='tooltipText'>- Payday Credits: </span>
+                <span className='tooltipText cred outlined'>{numbersWithSeparator(walletData ? walletData.cred : 0)} </span>
+              <br/>
+              <br/>
+              <span className='tooltipText'>Next C-Stack vendor reset in: </span>
+              <span className='tooltipText'><CountDown startSeconds={secondsTillNextCReset} format="DAY"/></span>
+              
+            </div>
+          }
+        >
+          <LocalAtmIcon /> 
+        </Tooltip>
         <LevelFromIP ip={ipAcquired} totalIP={totalIP}/>
         <label>&#160;|</label>
         {userInfos && <h4 className="profileName" style={{marginLeft: "5px"}}>{userInfos.displayName}</h4>}

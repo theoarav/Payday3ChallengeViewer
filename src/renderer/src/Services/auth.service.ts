@@ -142,7 +142,7 @@ export const getUserInfos = async (): Promise<{ userId: string } | false> => {
   return userInfos
 }
 
-export const getStatItems = async (): Promise<false | { data: string }> => {
+export const getStatItems = async (): Promise<false | { data: any }> => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
   const authInfos = JSON.parse(authInfosStr) as AuthModel
@@ -168,6 +168,34 @@ export const getStatItems = async (): Promise<false | { data: string }> => {
 
   return statItems
 }
+
+export const getSaveData = async (): Promise<false | { data: any }> => {
+  const authInfosStr = localStorage.getItem(AUTH_INFOS)
+  if (!authInfosStr) return false
+  const authInfos = JSON.parse(authInfosStr) as AuthModel
+
+  const userInfos = await getUserInfos()
+  if (!userInfos) return false
+
+  const apiCall = await fetch(
+    NEBULA_ADDR +
+      '/cloudsave/v1/namespaces/pd3/users/' +
+      userInfos.userId +
+      '/records/progressionsavegame',
+    {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + authInfos.accessToken
+      }
+    }
+  )
+  if (apiCall.status !== 200) return false
+
+  const statItems = await apiCall.json()
+
+  return statItems
+}
+
 
 export const exportPayCheck3Data = async (): Promise<boolean> => {
   const statItems = await getStatItems()

@@ -4,6 +4,7 @@ import { useState, useEffect, ReactElement } from 'react'
 import Box from '@mui/material/Box'
 import Tooltip from '@mui/material/Tooltip';
 import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress'
+import { isLoggedIn, getUserInfos, getStatItems, getSaveData } from '../../../../Services/auth.service'
 
 type LevelFromIPProps = {
   ip: number,
@@ -11,6 +12,7 @@ type LevelFromIPProps = {
 }
 
 type LevelFromIPState = {
+  ip: number,
   level: number,
   previousIP: number,
   nextIP: number,
@@ -51,18 +53,39 @@ function LinearProgressWithLabel({
 export default class LevelFromIP extends React.Component<LevelFromIPProps, LevelFromIPState> {
   constructor(props: any) {
     super(props)
-    this.state = { level: 0, previousIP: 0, nextIP: 0 }
+    this.state = { ip: 0, level: 0, previousIP: 0, nextIP: 0 }
   }
 
   componentDidMount() {
+    this.fetchStatItemsAsync();
+  }
+
+  private fetchStatItemsAsync = async () => {
+    const loggedIn = await isLoggedIn()
+    if (!loggedIn) return;
+
+    try {
+      const statItems = await getStatItems();
+
+      if(statItems)
+      {
+        const ipStat = statItems.data.find((stat) => stat.statCode === "infamy-point")
+        this.setState({ip: ipStat.value})
+      }
+
+    } catch (error) {
+      //Fallback to calculated ip values in case the API fails
+      this.setState({ip: this.props.ip})
+      console.log("Error during fetching infamy points:",error)
+    }
+
     this.fetchLevelsFromIP()
   }
 
-  componentDidUpdate(prevprops: any) {
-    if (this.props.ip !== prevprops.ip) {
-      this.fetchLevelsFromIP()
-    }
+  private numberWithCommas(x:number) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+    
 
   private fetchLevelsFromIP() {
     let ipNeededPerLevel: number[] = [
@@ -220,7 +243,7 @@ export default class LevelFromIP extends React.Component<LevelFromIPProps, Level
 
     for(let i=0; i < ipNeededPerLevel.length; i++)
     {
-        if(this.props.ip<ipNeededPerLevel[i])
+        if(this.state.ip<ipNeededPerLevel[i])
         {
             this.setState({
                 level: i,
@@ -238,13 +261,13 @@ export default class LevelFromIP extends React.Component<LevelFromIPProps, Level
     <div> 
     Level Progression:      
     <LinearProgressWithLabel
-      initialCurrentValue={this.props.ip-this.state.previousIP}
+      initialCurrentValue={this.state.ip-this.state.previousIP}
       targetValue={this.state.nextIP-this.state.previousIP}
     />
     <br/>
-    Current IP: {this.props.ip} IP
+    Current IP: {this.numberWithCommas(this.state.ip)} IP
     <br/>
-    Total IP: {this.props.totalIP} IP
+    Total IP: {this.numberWithCommas(this.props.totalIP)} IP
     </div>}>
         <Typography noWrap>Level: {this.state.level}</Typography>
     </Tooltip>

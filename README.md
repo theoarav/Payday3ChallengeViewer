@@ -60,3 +60,7 @@ This program stores your data (access, refresh token, selected language, pinned 
   - Helped to understand connection to Starbreeze API and requests
 - [@DudiVok](https://github.com/DudiVok)
   - Improved UI & added functionalities
+- [@InsulatorGMan](https://github.com/InsulatorGMan)
+  - Codebase, Features, UI
+- [All-Ki](https://github.com/All-Ki)
+  - Bug fixes

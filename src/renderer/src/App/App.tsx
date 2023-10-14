@@ -3,7 +3,7 @@ import './App.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import SignIn from './Components/SignIn/SignIn'
-import { isLoggedIn } from '../Services/auth.service'
+import { isLoggedIn } from '../Services/Auth/Auth'
 import Challenges from './Components/Challenges/Challenges'
 import { useMediaQuery } from '@mui/material'
 

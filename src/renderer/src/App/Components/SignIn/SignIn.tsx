@@ -7,7 +7,7 @@ import Box from '@mui/material/Box'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import { login } from '../../../Services/auth.service'
+import { login } from '@renderer/Services/Auth/Auth'
 import Alert from '@mui/material/Alert'
 
 interface SignInProps {

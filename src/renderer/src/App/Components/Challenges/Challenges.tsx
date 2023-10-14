@@ -1,19 +1,13 @@
 import { Backdrop, CircularProgress, Container, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
-import {
-  getPinnedChallenges,
-  getUserChallenges,
-  isLoggedIn,
-  logout,
-  saveChosenLanguage,
-  savePinnedChallenges
-} from '../../../Services/auth.service'
+import { getPinnedChallenges, getUserChallenges, savePinnedChallenges } from '@renderer/Services/Challenges/Challenges'
+import { isLoggedIn, logout } from '@renderer/Services/Auth/Auth'
 import { ChallengesFilters } from './Filters'
 import ChallengesGrid from './Grid'
 import ChallengesHeader from './Header/Header'
 import { ModalWrapper } from '../Modals/Wrapper'
 import { $$, sanitizedChallengeData } from '../Language/StringReplacer'
-import { getChosenLanguage } from '../../../Services/auth.service'
+import { getChosenLanguage, saveChosenLanguage } from '../../../Services/Language/Language'
 
 export default function Challenges({ onLogout }) {
   const [challenges, setChallenges] = useState<Array<any>>([])

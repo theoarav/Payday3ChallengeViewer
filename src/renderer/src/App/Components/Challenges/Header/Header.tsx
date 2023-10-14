@@ -5,7 +5,7 @@ import { Box, Button, Checkbox, FormControlLabel, IconButton } from '@mui/materi
 import SearchBar from './SearchBar'
 import SettingsModal from '../../Modals/Settings'
 import CountDown from './CountdownTimer'
-import { getUserInfos } from '../../../../Services/auth.service'
+import { getUserInfos } from '../../../../Services/User/User'
 import Tooltip from '@mui/material/Tooltip';
 import './Profile.css'
 import LevelFromIP from './LevelFromIP'

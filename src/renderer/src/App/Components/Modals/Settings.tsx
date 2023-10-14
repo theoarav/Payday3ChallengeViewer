@@ -9,11 +9,8 @@ import {
   SelectChangeEvent,
   Typography
 } from '@mui/material'
-import {
-  DEFAULT_LANGUAGE,
-  exportPayCheck3Data,
-  getChosenLanguage
-} from '@renderer/Services/auth.service'
+import { DEFAULT_LANGUAGE, getChosenLanguage } from '../../../Services/Language/Language'
+import { exportPayCheck3Data } from '@renderer/Services/Paycheck3/Paycheck3'
 import { useState } from 'react'
 
 export default function SettingsModal({ signOut, setLanguageSetting }: any) {

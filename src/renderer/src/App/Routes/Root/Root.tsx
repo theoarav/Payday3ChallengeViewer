@@ -1,4 +1,4 @@
-import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material'
+import { BottomNavigation, BottomNavigationAction, /* Paper */ } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 import './Root.css'
 

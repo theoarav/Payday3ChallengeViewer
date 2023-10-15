@@ -8,7 +8,7 @@ import Challenges from './Components/Challenges/Challenges'
 import { useMediaQuery } from '@mui/material'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root, { RootProps } from './Routes/Root/Root'
-import { BarChart, TrackChanges } from '@mui/icons-material'
+import { /* BarChart, */ TrackChanges } from '@mui/icons-material'
 import Error from './Routes/Error/Error'
 
 function App(): ReactElement {

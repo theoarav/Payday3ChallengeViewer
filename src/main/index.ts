@@ -85,7 +85,7 @@ function checkForUpdate() {
     .then((res) => res.json())
     .then((data) => {
       const latestVersion = data.tag_name
-      const currentVersion = app.getVersion() // Assurez-vous d'avoir importé 'app' depuis 'electron'
+      const currentVersion = 'v' + app.getVersion() // Assurez-vous d'avoir importé 'app' depuis 'electron'
 
       if (latestVersion !== currentVersion) {
         const dialogOpts = {

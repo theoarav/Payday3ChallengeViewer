@@ -1,0 +1,7 @@
+#BottomNavigation {
+    position: absolute;
+    bottom: 0;
+    z-index: 9999;
+    width: 100%;
+    background-color: rgb(33, 33, 33);
+}

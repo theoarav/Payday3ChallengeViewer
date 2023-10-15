@@ -6,6 +6,10 @@ import SignIn from './Components/SignIn/SignIn'
 import { isLoggedIn } from '../Services/Auth/Auth'
 import Challenges from './Components/Challenges/Challenges'
 import { useMediaQuery } from '@mui/material'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Root, { RootProps } from './Routes/Root/Root'
+import { BarChart, TrackChanges } from '@mui/icons-material'
+import Error from './Routes/Error/Error'
 
 function App(): ReactElement {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
@@ -35,10 +39,39 @@ function App(): ReactElement {
     checkLoginStatus()
   }, [])
 
+  const routes: RootProps = {
+    navigationRoutes: [
+      {
+        label: 'Challenges',
+        icon: <TrackChanges />,
+        route: '/challenges'
+      }
+      // {
+      //   label: 'Stats',
+      //   icon: <BarChart />,
+      //   route: '/stats'
+      // }
+    ]
+  }
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Root navigationRoutes={routes.navigationRoutes} />,
+      errorElement: <Error />,
+      children: [
+        {
+          path: '/challenges',
+          element: <Challenges onLogout={handleLogin} />
+        }
+      ]
+    }
+  ])
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {loggedIn ? <Challenges onLogout={handleLogin} /> : <SignIn onLogin={handleLogin} />}
+      {loggedIn ? <RouterProvider router={router} /> : <SignIn onLogin={handleLogin} />}
     </ThemeProvider>
   )
 }

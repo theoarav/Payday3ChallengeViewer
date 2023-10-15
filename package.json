@@ -27,6 +27,7 @@
     "@mui/icons-material": "^5.14.11",
     "@mui/material": "^5.14.11",
     "electron-updater": "^6.1.4",
+    "react-router-dom": "^6.16.0",
     "react-virtuoso": "^4.6.0"
   },
   "devDependencies": {

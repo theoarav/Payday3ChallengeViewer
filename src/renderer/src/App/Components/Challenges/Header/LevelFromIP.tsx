@@ -82,7 +82,7 @@ export default class LevelFromIP extends React.Component<LevelFromIPProps, Level
     } catch (error) {
       //Fallback to calculated ip values in case the API fails
       this.setState({ ip: this.props.ip })
-      console.log('Error during fetching infamy points:', error)
+      console.error('Error during fetching infamy points:', error)
     }
 
     this.fetchLevelsFromIP()

@@ -28,10 +28,14 @@ jobs:
       - name: build-win-portable
         if: matrix.buildType == 'portable'
         run: npm run build:win:portable
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: build-win
         if: matrix.buildType == 'non-portable'
         run: npm run build:win
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: release
         uses: softprops/action-gh-release@v1

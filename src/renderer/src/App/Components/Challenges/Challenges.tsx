@@ -24,6 +24,7 @@ export default function Challenges({ onLogout }) {
     'BUGGED'
   ])
   const [selectedTags, setSelectedTags] = useState<Object>({})
+  const [storedFilters, setStoredFilters] = useState<Object[]>([])
   const [open, setOpen] = useState(false)
   const [modalContent, setModalContent] = useState<any>()
   const [pinnedChallenges, setPinnedChallenges] = useState<Array<string>>(getPinnedChallenges)
@@ -126,7 +127,11 @@ export default function Challenges({ onLogout }) {
   }
 
   const onTagFilterChange = (optionName: string, tag: string[]): void => {
-    setSelectedTags((prevTags) => ({ ...prevTags, [optionName]: tag }))
+    setSelectedTags((prevTags) => ({ ...prevTags, [optionName]: tag}))
+  }
+
+  const storeFilters = (optionName: string, value: string): void => {
+    setStoredFilters((prevFilters) => ({ ...prevFilters, [optionName]: value}))
   }
 
   const handleSortOption = (sorting_method: string): void => {
@@ -211,7 +216,8 @@ export default function Challenges({ onLogout }) {
   const challengesFilters = ChallengesFilters({
     handleStatusChange: handleStatusChange,
     onTagFilterChange: onTagFilterChange,
-    selectedFilters: selectedTags,
+    storeFilters: storeFilters,
+    storedFilters: storedFilters,
     selectedStatuses: selectedStatuses,
   })
 

@@ -14,34 +14,13 @@ interface FilterOption {
 interface FilterSelectProps {
   optionName: string
   filterOptions: FilterOption[]
-  selectedFilters: FilterOption[]
   filterChange: (selectedTags: string[], optionName: string) => void
+  storeFilters: (optionName: string, value: string) => void
+  storedFilters: {optionName: string, value: string}
 }
 
 interface FilterSelectStates {
   selectedOption: FilterOption | 'All',
-}
-
-enum weaponNames{
-  CAR4 = "CAR-4",
-  NWB9 = "Northwest B-9",
-  KU59 = "KU-59",
-  VF7S = "VF-7S",
-  A114 = "SA A144",
-  R900S = "Reinfeld 900S",
-  PC9 = "FIK PC9",
-  Commando = "Ziv Commando",
-  Compact7 = "SG Compact-7",
-  R880 = "Reinfeld 880",
-  Mosconi12C = "Mosconi 12 Classic",
-  S40 = "Signature 40",
-  S403 = "Signature 403",
-  Stryk7 = "Stryk 7",
-  SPM11 = "SP Model 11",
-  Castigo44 = "J&M Castigo 44",
-  Bison = "Sforza Bison",
-  HET5 = "Het-5 Red Fox",
-  Mamba = "Marcom Mamba GL",
 }
 
 export default class FilterSelect extends React.Component<FilterSelectProps, FilterSelectStates> {
@@ -53,15 +32,13 @@ export default class FilterSelect extends React.Component<FilterSelectProps, Fil
   }
 
   componentDidMount(): void {
-    let selected:FilterOption | 'All' = this.props.selectedFilters[this.props.optionName]
-    if(selected === undefined) selected = 'All'
-    else {
-      if(this.props.optionName === "Weapon"){
-        selected = {name: weaponNames[selected[0]] || 'All', tags: []}
-      } 
-      else selected = {name:selected[0], tags: []}
+    let value:string = this.props.storedFilters[this.props.optionName]
+
+    if(value !== undefined)
+    {
+      this.setState({selectedOption: {name: value, tags: []}})
     }
-    this.setState({selectedOption: selected})
+    else this.setState({selectedOption: 'All'})
   }
 
   private handleChange = (event: SelectChangeEvent): void => {
@@ -69,6 +46,7 @@ export default class FilterSelect extends React.Component<FilterSelectProps, Fil
     const selected = this.props.filterOptions.find((option) => option.name === value) || 'All'
     this.setState({selectedOption: selected})
     this.props.filterChange(selected !== 'All' ? selected.tags : [], this.props.optionName)
+    this.props.storeFilters(this.props.optionName, value)
   }
 
   render() {

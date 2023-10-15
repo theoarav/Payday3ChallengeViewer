@@ -3,7 +3,6 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import { ReactElement } from 'react'
 import ListSubheader from '@mui/material/ListSubheader';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -16,38 +15,56 @@ interface FilterSelectProps {
   optionName: string
   filterOptions: FilterOption[]
   filterChange: (selectedTags: string[], optionName: string) => void
+  storeFilters: (optionName: string, value: string) => void
+  storedFilters: {optionName: string, value: string}
 }
 
-export default function FilterSelect({
-  optionName,
-  filterOptions,
-  filterChange
-}: FilterSelectProps): ReactElement {
-  const [selectedOption, setSelectedOption] = React.useState<FilterOption | 'All'>('All')
+interface FilterSelectStates {
+  selectedOption: FilterOption | 'All',
+}
 
-  const handleChange = (event: SelectChangeEvent): void => {
-    const value = event.target.value
-    const selected = filterOptions.find((option) => option.name === value) || 'All'
-    setSelectedOption(selected)
-    filterChange(selected !== 'All' ? selected.tags : [], optionName)
-    console.log("optionName:",optionName);
+export default class FilterSelect extends React.Component<FilterSelectProps, FilterSelectStates> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      selectedOption: 'All',
+    }
   }
 
+  componentDidMount(): void {
+    let value:string = this.props.storedFilters[this.props.optionName]
+
+    if(value !== undefined)
+    {
+      this.setState({selectedOption: {name: value, tags: []}})
+    }
+    else this.setState({selectedOption: 'All'})
+  }
+
+  private handleChange = (event: SelectChangeEvent): void => {
+    const value = event.target.value
+    const selected = this.props.filterOptions.find((option) => option.name === value) || 'All'
+    this.setState({selectedOption: selected})
+    this.props.filterChange(selected !== 'All' ? selected.tags : [], this.props.optionName)
+    this.props.storeFilters(this.props.optionName, value)
+  }
+
+  render() {
   return (
     <FormControl variant="standard" fullWidth>
-      <InputLabel id={optionName + '-label'}>{optionName}</InputLabel>
+      <InputLabel id={this.props.optionName + '-label'}>{this.props.optionName}</InputLabel>
       <Select
-        labelId={optionName + '-label'}
-        value={selectedOption !== 'All' ? selectedOption.name : 'All'}
-        label={optionName}
-        onChange={handleChange}
+        labelId={this.props.optionName + '-label'}
+        value={this.state.selectedOption && this.state.selectedOption !== 'All' ? this.state.selectedOption.name : 'All'}
+        label={this.props.optionName}
+        onChange={this.handleChange}
         autoWidth={true}
       >
         <MenuItem value="All">Show all</MenuItem>
         {
           //Doing a separate filter for weapons is not a good practice because it wont be dynamic, but theres no real way of implementing subgroups for the weapons otherwise :(
         }
-        {optionName === "Weapon" ? [
+        {this.props.optionName === "Weapon" ? [
           <ListSubheader>Assault Rifle</ListSubheader>,
             <MenuItem value="CAR-4" key={"weapons-"+0}>
               <Tooltip placement="left" title="Max level: 29">
@@ -128,7 +145,6 @@ export default function FilterSelect({
                 <label>Ziv Commando</label>
               </Tooltip>
             </MenuItem>,
-
           <ListSubheader>Shotgun</ListSubheader>,
             <MenuItem value="Mosconi 12 Classic" key={"weapons-"+15}>
               <Tooltip placement="left" title="Max level: 12">
@@ -140,8 +156,6 @@ export default function FilterSelect({
                 <label>Reinfeld 880</label>
               </Tooltip>
             </MenuItem>,
-
-
           <ListSubheader>Overkill Weapon</ListSubheader>,
             <MenuItem value="Het-5 Red Fox" key={"weapons-"+17}>
               <label>Het-5 Red Fox</label>
@@ -150,7 +164,7 @@ export default function FilterSelect({
               <label>Marcom Mamba GL</label>
             </MenuItem> ]
         : 
-        filterOptions.map((option, index) => (
+        this.props.filterOptions.map((option, index) => (
           <MenuItem value={option.name} key={index}>
             {option.name}
           </MenuItem>
@@ -160,4 +174,5 @@ export default function FilterSelect({
       </Select>
     </FormControl>
   )
+}
 }

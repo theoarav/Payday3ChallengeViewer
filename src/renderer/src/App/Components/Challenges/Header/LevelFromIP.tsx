@@ -6,6 +6,7 @@ import Tooltip from '@mui/material/Tooltip'
 import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress'
 import { isLoggedIn } from '@renderer/Services/Auth/Auth'
 import { getStatItems } from '@renderer/Services/Stats/Stats'
+import { numbersWithSeparator } from '@renderer/App/Components/Utils/Utils'
 
 type LevelFromIPProps = {
   ip: number
@@ -33,8 +34,8 @@ function LinearProgressWithLabel({
   }, [initialCurrentValue, targetValue])
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-      <Box sx={{ width: '150px', mr: 1 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, maxWidth: "220px"}}> 
+      <Box sx={{ minWidth: '120px', mr: 1 }}>
         <LinearProgress
           variant="determinate"
           color="success"
@@ -42,7 +43,7 @@ function LinearProgressWithLabel({
           value={Math.round((currentValue / targetValue) * 100)}
         />
       </Box>
-      <Box sx={{ minWidth: 110 }}>
+      <Box sx={{ minWidth: 100 }}>
         <Typography variant="body2" color="text.secondary">
           {currentValue} / {targetValue}
         </Typography>
@@ -61,6 +62,12 @@ export default class LevelFromIP extends React.Component<LevelFromIPProps, Level
     this.fetchStatItemsAsync()
   }
 
+  componentDidUpdate(prevprops: any) {
+    if (this.props.ip !== prevprops.ip) {
+      this.fetchStatItemsAsync()
+    }
+  }
+
   private fetchStatItemsAsync = async () => {
     const loggedIn = await isLoggedIn()
     if (!loggedIn) return
@@ -75,14 +82,10 @@ export default class LevelFromIP extends React.Component<LevelFromIPProps, Level
     } catch (error) {
       //Fallback to calculated ip values in case the API fails
       this.setState({ ip: this.props.ip })
-      console.log('Error during fetching infamy points:', error)
+      console.error('Error during fetching infamy points:', error)
     }
 
     this.fetchLevelsFromIP()
-  }
-
-  private numberWithCommas(x: number) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
   private fetchLevelsFromIP() {
@@ -119,15 +122,21 @@ export default class LevelFromIP extends React.Component<LevelFromIPProps, Level
         placement="top"
         title={
           <div>
-            Level Progression:
+            <span style={{fontSize:"16px"}}>
+              Level Progression:
+            </span>
             <LinearProgressWithLabel
               initialCurrentValue={this.state.ip - this.state.previousIP}
               targetValue={this.state.nextIP - this.state.previousIP}
             />
+            <span style={{fontSize:"13px"}}>
+              Current IP: {numbersWithSeparator(this.state.ip, ",")} IP
+            </span>
             <br />
-            Current IP: {this.numberWithCommas(this.state.ip)} IP
-            <br />
-            Total IP: {this.numberWithCommas(this.props.totalIP)} IP
+            <span style={{fontSize:"13px"}}>
+              Total IP: {numbersWithSeparator(this.props.totalIP, ",")} IP
+            </span>
+
           </div>
         }
       >

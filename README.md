@@ -39,6 +39,8 @@ This application allows you to check your challenge progression from outside the
 ![AppLogin](resources/appLogin.png)
 ![AppInterface](resources/appInterface.png)
 ![AppInterface2](resources/appInterface2.png)
+![AppInterface_Filters](resources/appInterface_filters.png)
+![AppInterface_Filters_weapons](resources/appInterface_filters_weapons.png)
 ![AppInterface_French](resources/appInterface_french.png)
 ![AppSettings](resources/appSettings.png)
 ![AppSettingsTranslation](resources/appSettings_translations.png)

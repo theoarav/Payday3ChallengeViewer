@@ -2,6 +2,23 @@
     margin-left: "5px"
 }
 
+.tooltipText {
+    font-size: 12px;
+    &.outlined{
+        text-shadow: -1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000;
+    }
+    &.cash{
+        color:rgba(0, 255, 0, 0.6)
+    }
+    &.gold{
+        color:rgba(0, 255, 255, 0.6)
+    }
+    &.cred{
+        color:rgba(255, 255, 0, 0.8)
+        
+    }
+}
+
 /* In case a profile modal happens. This makes the profile name have an outline on hovering, making it more visible that its clickable.
 .profileName:hover {
     text-shadow: -1px 0 #a8a7a7, 0 1px #a8a7a7, 1px 0 #a8a7a7, 0 -1px #a8a7a7;

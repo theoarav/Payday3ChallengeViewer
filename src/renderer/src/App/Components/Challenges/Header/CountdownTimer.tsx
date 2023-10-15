@@ -1,30 +1,11 @@
 import { Typography } from '@mui/material'
 import * as React from 'react'
-
-//Converts seconds into a more readable HH:MM:SS format.
-function durationSecondsConverter(duration: string) {
-  if (duration && duration != 'undefined' && duration != null) {
-    var temp = +duration
-    var hrs = ~~((temp / 3600) % 24)
-    var mins = ~~((temp % 3600) / 60)
-    var secs = temp % 60
-
-    var ret = ''
-
-    if (hrs > 0) {
-      ret += '' + hrs + ':' + (mins < 10 ? '0' : '')
-    }
-
-    ret += '' + mins + ':' + (secs < 10 ? '0' : '')
-    ret += '' + secs
-
-    return ret
-  } else return ''
-}
+import { secondsToHourlyFormat, secondsToDhms } from '../../Utils/Utils'
 
 type CountDownProps = {
   startSeconds: number
-  onComplete: () => void
+  format?: string
+  onComplete?: () => void
 }
 
 type CountDownState = {
@@ -59,7 +40,7 @@ export default class CountDown extends React.Component<CountDownProps, CountDown
 
     if (remainingSeconds <= 0) {
       clearInterval(this.intervalId)
-      this.props.onComplete()
+      if(this.props.onComplete) this.props.onComplete()
       return
     }
 
@@ -71,6 +52,9 @@ export default class CountDown extends React.Component<CountDownProps, CountDown
   }
 
   render() {
-    return <Typography>({durationSecondsConverter(this.remainingSeconds.toString())})</Typography>
+    return this.props.format === "DAY" ? 
+      <span>{secondsToDhms(this.remainingSeconds)}</span>
+      : 
+      <Typography>({secondsToHourlyFormat(this.remainingSeconds.toString())})</Typography>
   }
 }

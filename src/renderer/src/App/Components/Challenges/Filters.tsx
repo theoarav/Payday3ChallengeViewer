@@ -7,10 +7,14 @@ import { Close } from '@mui/icons-material'
 
 export const ChallengesFilters = ({
   handleStatusChange,
-  onTagFilterChange
+  onTagFilterChange,
+  selectedFilters,
+  selectedStatuses
 }: {
   handleStatusChange
   onTagFilterChange
+  selectedFilters
+  selectedStatuses
 }): { element: ReactElement; setOpen: Dispatch<SetStateAction<boolean>>; open: boolean } => {
   const [open, setOpen] = useState(false)
 
@@ -26,11 +30,12 @@ export const ChallengesFilters = ({
                   key={key}
                   optionName={key}
                   filterOptions={values.map((value) => ({ name: value.name, tags: value.tags }))}
+                  selectedFilters={selectedFilters}
                   filterChange={(tags: string[]): void => onTagFilterChange(key, tags)}
                 />
               </ListItem>
             ))}
-            <StatusSelect onStatusChange={handleStatusChange} />
+            <StatusSelect onStatusChange={handleStatusChange} selectedStatuses={selectedStatuses}/>
           </List>
         </DialogActions>
         <IconButton

@@ -67,7 +67,7 @@ export default function Challenges({ onLogout }) {
       let ipAcquired: number =  0;
 
       const translatedNamesArray: any[] = [];
-      console.log("filteredChallenges:",filteredChallenges)
+
       filteredChallenges.forEach(ch => {
         if(ch.challenge.reward?.stats?.[0]?.statCode === 'infamy-point'){
           totalIP += ch.challenge.reward.stats[0].value;
@@ -210,7 +210,9 @@ export default function Challenges({ onLogout }) {
 
   const challengesFilters = ChallengesFilters({
     handleStatusChange: handleStatusChange,
-    onTagFilterChange: onTagFilterChange
+    onTagFilterChange: onTagFilterChange,
+    selectedFilters: selectedTags,
+    selectedStatuses: selectedStatuses,
   })
 
   return (

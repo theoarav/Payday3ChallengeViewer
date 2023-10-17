@@ -29,7 +29,6 @@ export type walletInfo = {
 export default function ChallengesHeader({
   fetchData,
   setSearchTerm,
-  signOut,
   setLanguage,
   openModal,
   setFiltersOpen,
@@ -40,7 +39,6 @@ export default function ChallengesHeader({
 }: {
   fetchData
   setSearchTerm
-  signOut
   setLanguage
   openModal
   setFiltersOpen
@@ -67,7 +65,7 @@ export default function ChallengesHeader({
   }
 
   const openSettingsModal = (): void => {
-    openModal(<SettingsModal signOut={signOut} setLanguageSetting={setLanguage} />)
+    openModal(<SettingsModal setLanguageSetting={setLanguage} />)
   }
 
   function timerIsUp(): void {

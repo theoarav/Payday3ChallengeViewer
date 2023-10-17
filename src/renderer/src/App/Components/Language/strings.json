@@ -1,6 +1,4 @@
-export type StringResourceKey = keyof typeof StringResources;
-
-export const StringResources = {
+{
 	"wallet.cash": {
 		"en": "Cash",
 		"de_DE": "Geld",
@@ -10,44 +8,44 @@ export const StringResources = {
 		"it_IT": "Contanti",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Gotówka",
+		"pl_PL": "",
 		"pt_BR": "Dinheiro",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "现金",
-		"zh_Hant": "現金"
+		"zh_Hant": ""
 	},
 	"wallet.gold": {
 		"en": "C-Stack",
-		"de_DE": "C-Stack",
+		"de_DE": "",
 		"es_419": "",
 		"es_ES": "",
 		"fr_FR": "C-Stack",
 		"it_IT": "C-Stack",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "C-Stack",
+		"pl_PL": "",
 		"pt_BR": "C-Stacks",
 		"ru_RU": "",
 		"tr_TR": "",
-		"zh_Hans": "C-堆栈",
-		"zh_Hant": "C-貨幣"
+		"zh_Hans": "C堆栈",
+		"zh_Hant": ""
 	},
 	"wallet.cred": {
 		"en": "Payday Credits",
-		"de_DE": "Payday Kredit",
+		"de_DE": "",
 		"es_419": "",
 		"es_ES": "",
 		"fr_FR": "Crédits Payday",
 		"it_IT": "Crediti Payday",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Payday Credits",
+		"pl_PL": "",
 		"pt_BR": "Créditos Payday",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "收获日积分",
-		"zh_Hant": "劫薪日積分"
+		"zh_Hant": ""
 	},
 	"misc.loading": {
 		"en": "Fetching Data",
@@ -58,12 +56,12 @@ export const StringResources = {
 		"it_IT": "Recuperando i dati",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Pobieranie Danych",
+		"pl_PL": "",
 		"pt_BR": "Buscando Dados",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "获取数据",
-		"zh_Hant": "獲取數據"
+		"zh_Hant": ""
 	},
 	"header.refreshButtonTitle": {
 		"en": "Refresh Data",
@@ -74,12 +72,12 @@ export const StringResources = {
 		"it_IT": "Aggiorna dati",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Odświeżanie Danych",
+		"pl_PL": "",
 		"pt_BR": "Atualizar Dados",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "刷新数据",
-		"zh_Hant": "刷新數據"
+		"zh_Hant": ""
 	},
 	"header.showOnlyPinnedButtonTitle": {
 		"en": "Show only pinned challenges",
@@ -90,12 +88,12 @@ export const StringResources = {
 		"it_IT": "Mostra solo le sfide segnate",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Pokaż tylko przypięte wyzwania",
+		"pl_PL": "",
 		"pt_BR": "Mostrar apenas desafios fixados",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "仅显示固定的挑战",
-		"zh_Hant": "僅顯示固定的挑戰"
+		"zh_Hant": ""
 	},
 	"header.searchBarTitle": {
 		"en": "Search",
@@ -106,12 +104,12 @@ export const StringResources = {
 		"it_IT": "Cerca",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Szukaj",
+		"pl_PL": "",
 		"pt_BR": "Buscar",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "搜索",
-		"zh_Hant": "搜索"
+		"zh_Hant": ""
 	},
 	"header.searchBarSortByTitle": {
 		"en": "Sort by",
@@ -122,12 +120,12 @@ export const StringResources = {
 		"it_IT": "Ordina per",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Sortuj według",
+		"pl_PL": "",
 		"pt_BR": "Ordenar por",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "排序方式",
-		"zh_Hant": "排序方式"
+		"zh_Hant": ""
 	},
 	"sortBy.HighPerc": {
 		"en": "High %",
@@ -138,12 +136,12 @@ export const StringResources = {
 		"it_IT": "Alta %",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Wysoki %",
+		"pl_PL": "",
 		"pt_BR": "Alta %",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "高 %",
-		"zh_Hant": "高 %"
+		"zh_Hant": ""
 	},
 	"sortBy.LowPerc": {
 		"en": "Low %",
@@ -154,12 +152,12 @@ export const StringResources = {
 		"it_IT": "Bassa %",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Niski %",
+		"pl_PL": "",
 		"pt_BR": "Baixa %",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "低 %",
-		"zh_Hant": "低 %"
+		"zh_Hant": ""
 	},
 	"header.optionsButtonTooltip": {
 		"en": "Options",
@@ -170,12 +168,12 @@ export const StringResources = {
 		"it_IT": "Opzioni",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Opcje",
+		"pl_PL": "",
 		"pt_BR": "Opções",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "选项",
-		"zh_Hant": "選項"
+		"zh_Hant": ""
 	},
 	"header.accountLevelText": {
 		"en": "Level",
@@ -186,12 +184,12 @@ export const StringResources = {
 		"it_IT": "Livello",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Poziom",
+		"pl_PL": "",
 		"pt_BR": "Nível",
 		"ru_RU": "",
 		"tr_TR": "",
-		"zh_Hans": "恶名等级",
-		"zh_Hant": "惡名等級"
+		"zh_Hans": "等级",
+		"zh_Hant": ""
 	},
 	"account.tooltipTitle": {
 		"en": "Level Progression",
@@ -202,12 +200,12 @@ export const StringResources = {
 		"it_IT": "Progressione del livello",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Postęp Poziomu",
+		"pl_PL": "",
 		"pt_BR": "Progresso do Nível",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "挑战进度",
-		"zh_Hant": "挑戰進度"
+		"zh_Hant": ""
 	},
 	"account.currentIp": {
 		"en": "Current IP",
@@ -218,12 +216,12 @@ export const StringResources = {
 		"it_IT": "IP corrente",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Aktualne PZŁ",
+		"pl_PL": "",
 		"pt_BR": "IP Atual",
 		"ru_RU": "",
 		"tr_TR": "",
-		"zh_Hans": "当前恶名点数",
-		"zh_Hant": "當前惡名點數"
+		"zh_Hans": "当前经验",
+		"zh_Hant": ""
 	},
 	"account.totalIp": {
 		"en": "Total IP",
@@ -234,12 +232,12 @@ export const StringResources = {
 		"it_IT": "IP totale",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Całkowite PZŁ",
+		"pl_PL": "",
 		"pt_BR": "IP Total",
 		"ru_RU": "",
 		"tr_TR": "",
-		"zh_Hans": "总共恶名点数",
-		"zh_Hant": "總共惡名點數"
+		"zh_Hans": "总共经验",
+		"zh_Hant": ""
 	},
 	"wallet.tooltipTitle": {
 		"en": "Current Wallet",
@@ -250,12 +248,12 @@ export const StringResources = {
 		"it_IT": "Portafoglio attuale",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Stan Portfela",
+		"pl_PL": "",
 		"pt_BR": "Carteira",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "当前钱包",
-		"zh_Hant": "當前錢包"
+		"zh_Hant": ""
 	},
 	"wallet.nextVendorReset": {
 		"en": "Next C-Stack vendor reset in",
@@ -266,12 +264,12 @@ export const StringResources = {
 		"it_IT": "I C-Stack si aggiornano in",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Następny reset dostawcy C-Stack",
+		"pl_PL": "",
 		"pt_BR": "C-Stacks resetam em",
 		"ru_RU": "",
 		"tr_TR": "",
-		"zh_Hans": "下次C-堆栈刷新时间",
-		"zh_Hant": "下次C-貨幣刷新時間"
+		"zh_Hans": "下次C堆栈刷新",
+		"zh_Hant": ""
 	},
 	"date.day": {
 		"en": "day",
@@ -282,12 +280,12 @@ export const StringResources = {
 		"it_IT": "giorno",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "dzień",
+		"pl_PL": "",
 		"pt_BR": "dia",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "天",
-		"zh_Hant": "天"
+		"zh_Hant": ""
 	},
 	"date.days": {
 		"en": "days",
@@ -298,12 +296,12 @@ export const StringResources = {
 		"it_IT": "giorni",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "dni",
+		"pl_PL": "",
 		"pt_BR": "dias",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "天",
-		"zh_Hant": "天"
+		"zh_Hant": ""
 	},
 	"date.hour": {
 		"en": "hour",
@@ -314,12 +312,12 @@ export const StringResources = {
 		"it_IT": "ora",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "godzina",
+		"pl_PL": "",
 		"pt_BR": "hora",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "时",
-		"zh_Hant": "時"
+		"zh_Hant": ""
 	},
 	"date.hours": {
 		"en": "hours",
@@ -330,12 +328,12 @@ export const StringResources = {
 		"it_IT": "ore",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "godziny",
+		"pl_PL": "",
 		"pt_BR": "horas",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "时",
-		"zh_Hant": "時"
+		"zh_Hant": ""
 	},
 	"date.minute": {
 		"en": "minute",
@@ -346,12 +344,12 @@ export const StringResources = {
 		"it_IT": "minuto",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "minuta",
+		"pl_PL": "",
 		"pt_BR": "minuto",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "分",
-		"zh_Hant": "分"
+		"zh_Hant": ""
 	},
 	"date.minutes": {
 		"en": "minutes",
@@ -362,12 +360,12 @@ export const StringResources = {
 		"it_IT": "minuti",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "minuty",
+		"pl_PL": "",
 		"pt_BR": "minutos",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "分",
-		"zh_Hant": "分"
+		"zh_Hant": ""
 	},
 	"date.second": {
 		"en": "second",
@@ -378,12 +376,12 @@ export const StringResources = {
 		"it_IT": "secondo",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "sekunda",
+		"pl_PL": "",
 		"pt_BR": "segundo",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "秒",
-		"zh_Hant": "秒"
+		"zh_Hant": ""
 	},
 	"date.seconds": {
 		"en": "seconds",
@@ -394,12 +392,12 @@ export const StringResources = {
 		"it_IT": "secondi",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "sekundy",
+		"pl_PL": "",
 		"pt_BR": "segundos",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "秒",
-		"zh_Hant": "秒"
+		"zh_Hant": ""
 	},
 	"options.languageSelectorTitle": {
 		"en": "Language",
@@ -410,12 +408,12 @@ export const StringResources = {
 		"it_IT": "Lingua",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Język",
+		"pl_PL": "",
 		"pt_BR": "Idioma",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "语言",
-		"zh_Hant": "語言"
+		"zh_Hant": ""
 	},
 	"options.signOutButtonTitle": {
 		"en": "Sign out",
@@ -426,12 +424,12 @@ export const StringResources = {
 		"it_IT": "Disconnetti",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Wyloguj się",
+		"pl_PL": "",
 		"pt_BR": "Sair",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "登出",
-		"zh_Hant": "登出"
+		"zh_Hant": ""
 	},
 	"options.paycheckAlert": {
 		"en": "undefined",
@@ -458,12 +456,12 @@ export const StringResources = {
 		"it_IT": "Esporta dati (PayCheck3)",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Eksportuj dane (PayCheck3)",
+		"pl_PL": "",
 		"pt_BR": "Exportar informações (PayCheck3)",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "导出数据至 (PayCheck3)",
-		"zh_Hant": "導出數據（PayCheck3）"
+		"zh_Hant": ""
 	},
 	"filters.menuTitle": {
 		"en": "Filters",
@@ -474,12 +472,12 @@ export const StringResources = {
 		"it_IT": "Filtri",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Filtry",
+		"pl_PL": "",
 		"pt_BR": "Filtros",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "过滤器",
-		"zh_Hant": "過濾器"
+		"zh_Hant": ""
 	},
 	"filters.optionCategory": {
 		"en": "Category",
@@ -490,12 +488,12 @@ export const StringResources = {
 		"it_IT": "Categoria",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Kategoria",
+		"pl_PL": "",
 		"pt_BR": "Categoria",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "类别",
-		"zh_Hant": "類別"
+		"zh_Hant": ""
 	},
 	"filters.optionDifficulty": {
 		"en": "Difficulty",
@@ -506,12 +504,12 @@ export const StringResources = {
 		"it_IT": "Difficoltà",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Poziom Trudności",
+		"pl_PL": "",
 		"pt_BR": "Dificuldade",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "难度",
-		"zh_Hant": "難度"
+		"zh_Hant": ""
 	},
 	"filters.optionTactic": {
 		"en": "Tactic",
@@ -522,12 +520,12 @@ export const StringResources = {
 		"it_IT": "Tattica",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Taktyka",
+		"pl_PL": "",
 		"pt_BR": "Tática",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "策略",
-		"zh_Hant": "策略"
+		"zh_Hant": ""
 	},
 	"filters.optionHeist": {
 		"en": "Heist",
@@ -538,12 +536,12 @@ export const StringResources = {
 		"it_IT": "Rapina",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Napad",
+		"pl_PL": "",
 		"pt_BR": "Golpe",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "劫案挑战",
-		"zh_Hant": "搶案挑戰"
+		"zh_Hant": ""
 	},
 	"filters.optionWeapon": {
 		"en": "Weapon",
@@ -554,12 +552,12 @@ export const StringResources = {
 		"it_IT": "Arma",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Broń",
+		"pl_PL": "",
 		"pt_BR": "Arma",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "武器",
-		"zh_Hant": "武器"
+		"zh_Hant": ""
 	},
 	"filters.statusComplete": {
 		"en": "Completed",
@@ -570,12 +568,12 @@ export const StringResources = {
 		"it_IT": "Completato",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Ukończone",
+		"pl_PL": "",
 		"pt_BR": "Completo",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "已完成",
-		"zh_Hant": "已完成"
+		"zh_Hant": ""
 	},
 	"filters.statusInProgress": {
 		"en": "In Progress",
@@ -586,12 +584,12 @@ export const StringResources = {
 		"it_IT": "In corso",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "W Trakcie",
+		"pl_PL": "",
 		"pt_BR": "Em Progresso",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "进行中",
-		"zh_Hant": "進行中"
+		"zh_Hant": ""
 	},
 	"filters.statusLocked": {
 		"en": "Locked",
@@ -602,12 +600,12 @@ export const StringResources = {
 		"it_IT": "Bloccato",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Zablokowane",
+		"pl_PL": "",
 		"pt_BR": "Bloqueado",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "锁定中",
-		"zh_Hant": "已鎖定"
+		"zh_Hant": ""
 	},
 	"filters.statusBugged": {
 		"en": "Bugged",
@@ -618,12 +616,12 @@ export const StringResources = {
 		"it_IT": "Buggato",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Zbugowane",
+		"pl_PL": "",
 		"pt_BR": "Bugado",
 		"ru_RU": "",
 		"tr_TR": "",
-		"zh_Hans": "解锁失败",
-		"zh_Hant": "解鎖失敗"
+		"zh_Hans": "窃听",
+		"zh_Hant": ""
 	},
 	"filters.showAll": {
 		"en": "Show all",
@@ -634,12 +632,12 @@ export const StringResources = {
 		"it_IT": "Mostra tutto",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Pokaż wszystko",
+		"pl_PL": "",
 		"pt_BR": "Mostrar todos",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "显示全部",
-		"zh_Hant": "顯示全部"
+		"zh_Hant": ""
 	},
 	"filters.categoryOptionCombat": {
 		"en": "Combat",
@@ -650,12 +648,12 @@ export const StringResources = {
 		"it_IT": "Combattimento",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Walka",
+		"pl_PL": "",
 		"pt_BR": "Combate",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "战斗挑战",
-		"zh_Hant": "戰鬥挑戰"
+		"zh_Hant": ""
 	},
 	"filters.categoryOptionCareer": {
 		"en": "Career",
@@ -666,12 +664,12 @@ export const StringResources = {
 		"it_IT": "Carriera",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Kariera",
+		"pl_PL": "",
 		"pt_BR": "Carreira",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "职业挑战",
-		"zh_Hant": "職業挑戰"
+		"zh_Hant": ""
 	},
 	"filters.categoryOptionWeaponSpec": {
 		"en": "Weapon specific",
@@ -682,12 +680,12 @@ export const StringResources = {
 		"it_IT": "Arma specifica",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Specyficzna broń",
+		"pl_PL": "",
 		"pt_BR": "Arma específica",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "武器挑战",
-		"zh_Hant": "武器挑戰"
+		"zh_Hant": ""
 	},
 	"filters.tacticOptionLoud": {
 		"en": "Loud",
@@ -698,12 +696,12 @@ export const StringResources = {
 		"it_IT": "Rumoroso",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Głośno",
+		"pl_PL": "",
 		"pt_BR": "Ruidoso",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "突袭",
-		"zh_Hant": "火拼"
+		"zh_Hant": ""
 	},
 	"filters.tacticOptionStealth": {
 		"en": "Stealth",
@@ -714,12 +712,12 @@ export const StringResources = {
 		"it_IT": "Furtivo",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Cicho",
+		"pl_PL": "",
 		"pt_BR": "Furtivo",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "潜入",
-		"zh_Hant": "潛行"
+		"zh_Hant": ""
 	},
 	"filters.heistOptionNoRestForTheWicked": {
 		"en": "No Rest For The Wicked",
@@ -730,12 +728,12 @@ export const StringResources = {
 		"it_IT": "I Cattivi Non Dormono Mai",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Nie Ma Zmiłuj",
+		"pl_PL": "",
 		"pt_BR": "Os Maus Nunca Descansam",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "恶者不息",
-		"zh_Hant": "永無寧日"
+		"zh_Hant": ""
 	},
 	"filters.heistOptionRoadRage": {
 		"en": "Road Rage",
@@ -746,12 +744,12 @@ export const StringResources = {
 		"it_IT": "Guida Pericolosa",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Godziny Szczytu",
+		"pl_PL": "",
 		"pt_BR": "Fúria na Estrada",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "路怒症",
-		"zh_Hant": "路怒症"
+		"zh_Hant": ""
 	},
 	"filters.heistOptionDirtyIce": {
 		"en": "Dirty Ice",
@@ -762,12 +760,12 @@ export const StringResources = {
 		"it_IT": "Diamanti Sporchi",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Brudny Lód",
+		"pl_PL": "",
 		"pt_BR": "Diamantes Sujos",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "脏冰",
-		"zh_Hant": "血冰塊"
+		"zh_Hant": ""
 	},
 	"filters.heistOptionRockTheCradle": {
 		"en": "Rock the Cradle",
@@ -778,12 +776,12 @@ export const StringResources = {
 		"it_IT": "Assalto Alla Culla",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Impreza w Klubie",
+		"pl_PL": "",
 		"pt_BR": "Arrasando a Cradle",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "摇动摇篮",
-		"zh_Hant": "嗨翻搖籃"
+		"zh_Hant": ""
 	},
 	"filters.heistOptionUnderTheSurphaze": {
 		"en": "Under the Surphaze",
@@ -794,12 +792,12 @@ export const StringResources = {
 		"it_IT": "Impara L'Arte e... Prendila",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Galeria Powierzchowności",
+		"pl_PL": "",
 		"pt_BR": "Sob a Surphaze",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "浮华之下",
-		"zh_Hant": "『超顯露』之下"
+		"zh_Hant": ""
 	},
 	"filters.heistOptionGoldAndSharke": {
 		"en": "Gold & Sharke",
@@ -810,12 +808,12 @@ export const StringResources = {
 		"it_IT": "Gold & Sharke",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Gold & Sharke",
+		"pl_PL": "",
 		"pt_BR": "Gold & Shark",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "黄金和沙克",
-		"zh_Hant": "黃金&鯊克"
+		"zh_Hant": ""
 	},
 	"filters.heistOption99Boxes": {
 		"en": "99 Boxes",
@@ -826,12 +824,12 @@ export const StringResources = {
 		"it_IT": "99 Container",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "99 Skrzyń",
+		"pl_PL": "",
 		"pt_BR": "99 Caixas",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "99盒",
-		"zh_Hant": "99箱"
+		"zh_Hant": ""
 	},
 	"filters.heistOptionTouchTheSky": {
 		"en": "Touch the Sky",
@@ -842,12 +840,12 @@ export const StringResources = {
 		"it_IT": "A Un Passo Dal Cielo",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Sięgając Nieba",
+		"pl_PL": "",
 		"pt_BR": "Tocando o Céu",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "触摸天空",
-		"zh_Hant": "直上雲霄"
+		"zh_Hant": ""
 	},
 	"filters.weaponOptionTypeAR": {
 		"en": "Assault Rifle",
@@ -858,12 +856,12 @@ export const StringResources = {
 		"it_IT": "Fucile d'Assalto",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Karabin Szturmowy",
+		"pl_PL": "",
 		"pt_BR": "Fuzil de Assalto",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "突击步枪",
-		"zh_Hant": "突擊步槍"
+		"zh_Hant": ""
 	},
 	"filters.weaponOptionTypeDMR": {
 		"en": "Marksman Rifle",
@@ -874,12 +872,12 @@ export const StringResources = {
 		"it_IT": "Fucile di Precisione",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Karabin Wyborowy",
+		"pl_PL": "",
 		"pt_BR": "Atirador",
 		"ru_RU": "",
 		"tr_TR": "",
-		"zh_Hans": "神射手步枪",
-		"zh_Hant": "神槍手步槍"
+		"zh_Hans": "神射手",
+		"zh_Hant": ""
 	},
 	"filters.weaponOptionTypePistol": {
 		"en": "Pistol",
@@ -890,12 +888,12 @@ export const StringResources = {
 		"it_IT": "Pistola",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Pistolet",
+		"pl_PL": "",
 		"pt_BR": "Pistola",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "手枪",
-		"zh_Hant": "手槍"
+		"zh_Hant": ""
 	},
 	"filters.weaponOptionTypeRevolver": {
 		"en": "Revolver",
@@ -906,12 +904,12 @@ export const StringResources = {
 		"it_IT": "Revolver",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Rewolwer",
+		"pl_PL": "",
 		"pt_BR": "Revólver",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "左轮手枪",
-		"zh_Hant": "左輪手槍"
+		"zh_Hant": ""
 	},
 	"filters.weaponOptionTypeSMG": {
 		"en": "SMG",
@@ -922,12 +920,12 @@ export const StringResources = {
 		"it_IT": "Mitragliatrice",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Pistolet Maszynowy",
+		"pl_PL": "",
 		"pt_BR": "Submetralhadora",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "冲锋枪",
-		"zh_Hant": "衝鋒槍"
+		"zh_Hant": ""
 	},
 	"filters.weaponOptionTypeShotgun": {
 		"en": "Shotgun",
@@ -938,12 +936,12 @@ export const StringResources = {
 		"it_IT": "Fucile a Pompa",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Strzelba",
+		"pl_PL": "",
 		"pt_BR": "Espingarda",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "霰弹枪",
-		"zh_Hant": "霰彈槍"
+		"zh_Hant": ""
 	},
 	"filters.weaponOptionTypeOverkill": {
 		"en": "Overkill Weapon",
@@ -954,108 +952,11 @@ export const StringResources = {
 		"it_IT": "Arma Overkill",
 		"ja_JP": "",
 		"ko_KR": "",
-		"pl_PL": "Broń Overkill",
+		"pl_PL": "",
 		"pt_BR": "Arma OVERKILL",
 		"ru_RU": "",
 		"tr_TR": "",
 		"zh_Hans": "枪林弹雨武器",
-		"zh_Hant": "過度殺傷武器"
-	},
-	"card.showPrerequisitesText": {
-		"en": "Show Prerequisites",
-		"de_DE": "",
-		"es_419": "",
-		"es_ES": "",
-		"fr_FR": "Afficher les prérequis",
-		"it_IT": "",
-		"ja_JP": "",
-		"ko_KR": "",
-		"pl_PL": "",
-		"pt_BR": "",
-		"ru_RU": "",
-		"tr_TR": "",
-		"zh_Hans": "显示前置挑战",
-		"zh_Hant": "顯示前置挑戰"
-	},
-	"card.rewardText": {
-		"en": "Reward",
-		"de_DE": "",
-		"es_419": "",
-		"es_ES": "",
-		"fr_FR": "Récompense",
-		"it_IT": "",
-		"ja_JP": "",
-		"ko_KR": "",
-		"pl_PL": "",
-		"pt_BR": "",
-		"ru_RU": "",
-		"tr_TR": "",
-		"zh_Hans": "奖励",
-		"zh_Hant": "獎勵"
-	},
-	"card.rewardInfamyPoints": {
-		"en": "Infamy Points",
-		"de_DE": "",
-		"es_419": "",
-		"es_ES": "",
-		"fr_FR": "Points d'Infamie",
-		"it_IT": "",
-		"ja_JP": "",
-		"ko_KR": "",
-		"pl_PL": "",
-		"pt_BR": "",
-		"ru_RU": "",
-		"tr_TR": "",
-		"zh_Hans": "恶名点数",
-		"zh_Hant": "惡名點數"
-	},
-	"card.buggedText": {
-		"en": "This Challenge is Bugged!",
-		"de_DE": "",
-		"es_419": "",
-		"es_ES": "",
-		"fr_FR": "Ce défi est buggé, vous pouvez le compléter à nouveau pour obtenir les récompenses une autre fois.",
-		"it_IT": "",
-		"ja_JP": "",
-		"ko_KR": "",
-		"pl_PL": "",
-		"pt_BR": "",
-		"ru_RU": "",
-		"tr_TR": "",
-		"zh_Hans": "当前挑战有BUG！",
-		"zh_Hant": "當前挑戰有BUG！"
-	},
-	"card.buggedTooltip": {
-		"en": "undefined",
-		"de_DE": "undefined",
-		"es_419": "undefined",
-		"es_ES": "undefined",
-		"fr_FR": "undefined",
-		"it_IT": "undefined",
-		"ja_JP": "undefined",
-		"ko_KR": "undefined",
-		"pl_PL": "undefined",
-		"pt_BR": "undefined",
-		"ru_RU": "undefined",
-		"tr_TR": "undefined",
-		"zh_Hans": "undefined",
-		"zh_Hant": "undefined"
-	},
-	"main.localizationMadeBy": {
-		"en": "Application made by: <a href=\"https://github.com/theoarav\">Elmoren</a>, <a href=\"https://github.com/InsulatorGMan\">InsulatorGMan</a> and <a href=\"https://github.com/DudiVok\">DudiVok</a>",
-		"de_DE": "",
-		"es_419": "",
-		"es_ES": "",
-		"fr_FR": "",
-		"it_IT": "",
-		"ja_JP": "",
-		"ko_KR": "",
-		"pl_PL": "",
-		"pt_BR": "",
-		"ru_RU": "",
-		"tr_TR": "",
-		"zh_Hans": "简体中文翻译自：cirnoice9",
-		"zh_Hant": "繁體中文翻譯由：cirnoice9"
-	},
-
+		"zh_Hant": ""
+	}
 }

@@ -12,8 +12,9 @@ import {
 import { DEFAULT_LANGUAGE, getChosenLanguage } from '../../../Services/Language/Language'
 import { exportPayCheck3Data } from '@renderer/Services/Paycheck3/Paycheck3'
 import { useState } from 'react'
+import { generateLocalizatons } from '@renderer/Services/Language/GenerateLocalizations'
 
-export default function SettingsModal({ signOut, setLanguageSetting }: any) {
+export default function SettingsModal({ setLanguageSetting }: any) {
   const [language, setLanguage] = useState(getChosenLanguage)
 
   const handleLanguageSelect = (event: SelectChangeEvent) => {
@@ -65,8 +66,6 @@ export default function SettingsModal({ signOut, setLanguageSetting }: any) {
         </FormControl>
       </Box>
 
-      <Button onClick={signOut}>Sign out</Button>
-
       <Box
         sx={{
           display: 'flex',
@@ -83,6 +82,10 @@ export default function SettingsModal({ signOut, setLanguageSetting }: any) {
         </Typography>
         <Button color="error" onClick={exportPayCheck3Data}>
           Export data (PayCheck3)
+        </Button>
+
+        <Button color="error" onClick={generateLocalizatons}>
+          Generate Localizations
         </Button>
       </Box>
     </Container>

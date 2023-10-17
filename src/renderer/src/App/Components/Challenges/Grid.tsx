@@ -4,7 +4,7 @@ import { VirtuosoGrid } from 'react-virtuoso'
 import ChallengeCard from '../ChallengeCard/ChallengeCard'
 import ChallengeCardPlaceholder from '../ChallengeCard/ChallengeCardPlaceholder'
 import ChallengeModal from '../ChallengeCard/ChallengeModel'
-import { $$, sanitizedChallengeData } from '../Language/StringReplacer'
+import { $$Challenge, sanitizedChallengeData } from '../Language/StringReplacer'
 
 const ItemContainer = styled.div`
   padding: 0.5rem;
@@ -54,7 +54,7 @@ export default function ChallengesGrid({
 
     //Replace the api values with the translated ones.
     selectedChallenges.forEach((ch) => {
-      let translatedData: sanitizedChallengeData = $$(ch.challenge.challengeId, language)
+      let translatedData: sanitizedChallengeData = $$Challenge(ch.challenge.challengeId, language)
       if (translatedData) {
         if (translatedData.title && translatedData.title !== 'undefined')
           ch.challenge.name = translatedData.title.toUpperCase()

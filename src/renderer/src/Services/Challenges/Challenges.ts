@@ -1,8 +1,6 @@
 import { AuthModel } from '@renderer/Model/auth.model';
 import { AUTH_INFOS, NEBULA_ADDR, PINNED_CHALLENGES } from '../auth.service';
 
-
-
 export const savePinnedChallenges = (pinnedChallenges): void => {
   localStorage.setItem(PINNED_CHALLENGES, JSON.stringify(pinnedChallenges));
 };
@@ -40,6 +38,5 @@ export const getUserChallenges = async (): Promise<any> => {
     } else next = false
     allChallengesData.push(...challengeData.data)
   }
-
   return allChallengesData
 }

@@ -1,3 +1,4 @@
+import { ChallengeResourceKey, ChallengeResources } from "./ChallengeResources"
 import { StringResourceKey, StringResources } from "./StringResources"
 
 export type internalizedChallenge = 
@@ -26,15 +27,15 @@ export type sanitizedChallengeData = {
 }
 
 /**
- * Change a string to something else from a json array.
+ * Change a challenge string to something else from the ChallengeResources json array.
  * 
  * @param resourceKey The resourceId to be changed.
  */
-export const $$ = (resourceKey: StringResourceKey, language: string): sanitizedChallengeData => {
+export const $$Challenge = (resourceKey: ChallengeResourceKey, language: string): sanitizedChallengeData => {
     let resource: any = resourceKey;
 
-    if (StringResources[resourceKey]) {
-      resource = StringResources[resourceKey];
+    if (ChallengeResources[resourceKey]) {
+      resource = ChallengeResources[resourceKey];
     }
     else return { internalName: "", title: "", desc: ""};
 
@@ -47,4 +48,21 @@ export const $$ = (resourceKey: StringResourceKey, language: string): sanitizedC
     }
 
     return sanitizedValues;
+}
+
+/**
+ * Change a string to something else from the StringResources json array.
+ * 
+ * @param resourceKey The resourceId to be changed.
+ */
+export const $$ = (resourceKey: StringResourceKey, language: string): string => {
+  let resource: any = resourceKey;
+
+  if (StringResources[resourceKey]) {
+    resource = StringResources[resourceKey];
+  }
+  else return "Missing StringResource :(";
+
+  let localizedString = resource[language] !== "" ? resource[language] : resource["en"];
+  return localizedString;
 }

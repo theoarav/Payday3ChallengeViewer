@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography'
 import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress'
 import Box from '@mui/material/Box'
 import LockIcon from '@mui/icons-material/Lock'
-import { $$, sanitizedChallengeData } from '../Language/StringReplacer'
+import { $$Challenge, sanitizedChallengeData } from '../Language/StringReplacer'
 import PushPinIcon from '@mui/icons-material/PushPin'
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
 import { IconButton } from '@mui/material'
@@ -63,7 +63,7 @@ export default function ChallengeCard({
     openModal(challengesToComplete)
   }
 
-  const sanitizedChallengeData: sanitizedChallengeData = $$(
+  const sanitizedChallengeData: sanitizedChallengeData = $$Challenge(
     challenge.challenge.challengeId,
     language
   )

@@ -6,10 +6,10 @@ import { ChallengesFilters } from './Filters'
 import ChallengesGrid from './Grid'
 import ChallengesHeader from './Header/Header'
 import { ModalWrapper } from '../Modals/Wrapper'
-import { $$, sanitizedChallengeData } from '../Language/StringReplacer'
+import { $$Challenge, sanitizedChallengeData } from '../Language/StringReplacer'
 import { getChosenLanguage, saveChosenLanguage } from '../../../Services/Language/Language'
 
-export default function Challenges({ onLogout }) {
+export default function Challenges() {
   const [challenges, setChallenges] = useState<Array<any>>([])
   const [ipAcquired, setIpAcquired] = useState(0)
   const [totalIP, setTotalIP] = useState(0)
@@ -52,9 +52,6 @@ export default function Challenges({ onLogout }) {
   const fetchData = async (): Promise<void> => {
     try {
       const loggedIn = await isLoggedIn()
-      if (!loggedIn) {
-        signOut()
-      }
 
       setLoadingModalVisible(true)
       const fetchedChallenges = await getUserChallenges()
@@ -75,7 +72,7 @@ export default function Challenges({ onLogout }) {
           if (ch.status === "COMPLETED" || ch.progress.objective.stats[0].currentValue >= ch.progress.objective.stats[0].targetValue) ipAcquired += ch.challenge.reward.stats[0].value;
         }
 
-        const sanitizedChallengeData: sanitizedChallengeData = $$(ch.challenge.challengeId, language)
+        const sanitizedChallengeData: sanitizedChallengeData = $$Challenge(ch.challenge.challengeId, language)
         const name = sanitizedChallengeData.internalName !== '' && sanitizedChallengeData.title !== 'undefined'
             ? sanitizedChallengeData.title
             : ch.challenge.name
@@ -208,11 +205,6 @@ export default function Challenges({ onLogout }) {
     setLanguage(language)
   }
 
-  const signOut = (): void => {
-    logout()
-    onLogout()
-  }
-
   const challengesFilters = ChallengesFilters({
     handleStatusChange: handleStatusChange,
     onTagFilterChange: onTagFilterChange,
@@ -251,7 +243,6 @@ export default function Challenges({ onLogout }) {
         fetchData={fetchData}
         openModal={handleOpenModal}
         setSearchTerm={setSearchTerm}
-        signOut={signOut}
         setLanguage={handleSetLanguage}
         setFiltersOpen={challengesFilters.setOpen}
         onShowOnlyPinnedChange={setShowOnlyPinned}

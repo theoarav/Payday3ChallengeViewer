@@ -7,7 +7,7 @@
     background-color: rgb(33, 33, 33);
 }
 
-.rootInfo{
+.aboutInfo{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,9 +16,5 @@
 
     img{
         max-width: 300px;
-    }
-
-    .appName{
-       font-family: 'Montserrat', sans-serif;
     }
 }

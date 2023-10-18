@@ -7,6 +7,7 @@ import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgres
 import { isLoggedIn } from '@renderer/Services/Auth/Auth'
 import { getStatItems } from '@renderer/Services/Stats/Stats'
 import { numbersWithSeparator } from '@renderer/App/Components/Utils/Utils'
+import { $$ } from '../../Language/StringReplacer'
 
 type LevelFromIPProps = {
   ip: number
@@ -123,24 +124,24 @@ export default class LevelFromIP extends React.Component<LevelFromIPProps, Level
         title={
           <div>
             <span style={{fontSize:"16px"}}>
-              Level Progression:
+              {$$("account.tooltipTitle")}
             </span>
             <LinearProgressWithLabel
               initialCurrentValue={this.state.ip - this.state.previousIP}
               targetValue={this.state.nextIP - this.state.previousIP}
             />
             <span style={{fontSize:"13px"}}>
-              Current IP: {numbersWithSeparator(this.state.ip, ",")} IP
+              {$$("account.currentIp")}: {numbersWithSeparator(this.state.ip, ",")} IP
             </span>
             <br />
             <span style={{fontSize:"13px"}}>
-              Total IP: {numbersWithSeparator(this.props.totalIP, ",")} IP
+              {$$("account.totalIp")}: {numbersWithSeparator(this.props.totalIP, ",")} IP
             </span>
 
           </div>
         }
       >
-        <Typography noWrap>Level: {this.state.level}</Typography>
+        <Typography noWrap>{$$("header.accountLevelText")}: {this.state.level}</Typography>
       </Tooltip>
     )
   }

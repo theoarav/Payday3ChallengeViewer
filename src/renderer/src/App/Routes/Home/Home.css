@@ -1,0 +1,17 @@
+.homeInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 50px);
+
+    .splash-img{
+        max-width: 150px;
+        width: 15vw;
+    }
+
+    .appName{
+       font-family: 'Montserrat', sans-serif;
+       font-size: large;
+    }
+}

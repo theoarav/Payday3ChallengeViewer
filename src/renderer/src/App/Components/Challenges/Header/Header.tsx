@@ -12,6 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import './Profile.css'
 import LevelFromIP from './LevelFromIP'
 import { numbersWithSeparator } from '../../Utils/Utils';
+import { $$ } from '../../Language/StringReplacer';
 
 export type sanitizedUserInfo = {
   userId: string,
@@ -142,12 +143,12 @@ export default function ChallengesHeader({
           sx={{ marginRight: 2 }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            Refresh data
+            {$$("header.refreshButtonTitle")}
             {showCountdownRefresh && userInfos && <CountDown startSeconds={(userInfos && ["5feeacfaac5d4758a21b50ffdff13a08"].includes(userInfos.userId)) ? 3 : 300} onComplete={timerIsUp} />}
           </Box>
         </Button>
         <FormControlLabel
-          label={'Show only pinned challenges'}
+          label={$$("header.showOnlyPinnedButtonTitle")}
           control={<Checkbox checked={showOnlyPinned} onChange={handleChange} color="success" />}
         />
       </Box>
@@ -170,19 +171,19 @@ export default function ChallengesHeader({
           placement="top"
           title={
             <div>
-              <span style={{fontSize:"16px"}}>Current Wallet:</span>
+              <span style={{fontSize:"16px"}}>{$$("wallet.tooltipTitle")}</span>
               <br/>
-                <span className='tooltipText'>- Cash: </span>
+                <span className='tooltipText'>- {$$("wallet.cash")}: </span>
                 <span className='tooltipText cash outlined'>${numbersWithSeparator(walletData ? walletData.cash : 0)}</span>
               <br/>
-                <span className='tooltipText'>- C-Stacks: </span>
+                <span className='tooltipText'>- {$$("wallet.gold")} </span>
                 <span className='tooltipText gold outlined'>{numbersWithSeparator(walletData ? walletData.gold : 0)}</span>
               <br/>
-                <span className='tooltipText'>- Payday Credits: </span>
+                <span className='tooltipText'>- {$$("wallet.cred")}: </span>
                 <span className='tooltipText cred outlined'>{numbersWithSeparator(walletData ? walletData.cred : 0)} </span>
               <br/>
               <br/>
-              <span className='tooltipText'>Next C-Stack vendor reset in: </span>
+              <span className='tooltipText'>{$$("wallet.nextVendorReset")}: </span>
               <span className='tooltipText'><CountDown startSeconds={secondsTillNextCReset} format="DAY"/></span>
               
             </div>

@@ -1,5 +1,7 @@
 export const DEFAULT_LANGUAGE = 'en'
 export const LANGUAGE = 'PD3CV-Language'
+export const USER_ID = 'PD3CV-UserID'
+export const USER_DATA = 'PD3CV-UserData'
 
 export const AUTH_INFOS = 'PD3CV-AuthInfos'
 export const PINNED_CHALLENGES = 'PD3CV-PinnedChallenges'

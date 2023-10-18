@@ -2,12 +2,13 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import { $$ } from '../../Language/StringReplacer'
 
 const statusMap = {
-  COMPLETED: 'Completed',
-  INPROGRESS: 'In Progress',
-  INIT: 'Locked',
-  BUGGED: 'Bugged'
+  COMPLETED: $$("filters.Complete"),
+  INPROGRESS: $$("filters.InProgress"),
+  INIT: $$("filters.Locked"),
+  BUGGED: $$("filters.Bugged")
 }
 
 type Status = keyof typeof statusMap

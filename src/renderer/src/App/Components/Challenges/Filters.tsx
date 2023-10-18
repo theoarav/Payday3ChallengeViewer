@@ -4,6 +4,7 @@ import FilterSelect from '../FilterSelect/FilterSelect'
 import customTagFilters from './CustomTagFilters'
 import { Dispatch, ReactElement, SetStateAction, useState } from 'react'
 import { Close } from '@mui/icons-material'
+import { $$ } from '../Language/StringReplacer'
 
 export const ChallengesFilters = ({
   handleStatusChange,
@@ -23,7 +24,7 @@ export const ChallengesFilters = ({
   return {
     element: (
       <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>Filters</DialogTitle>
+        <DialogTitle>{$$("filters.menuTitle")}</DialogTitle>
         <DialogActions>
           <List style={{ textAlign: 'center' }}>
             {Object.entries(customTagFilters).map(([key, values]) => (

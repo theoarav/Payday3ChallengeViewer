@@ -1,5 +1,6 @@
 import { ChallengeResourceKey, ChallengeResources } from "./ChallengeResources"
 import { StringResourceKey, StringResources } from "./StringResources"
+import { getChosenLanguage } from "@renderer/Services/Language/Language"
 
 export type internalizedChallenge = 
 {
@@ -26,12 +27,14 @@ export type sanitizedChallengeData = {
   desc: string
 }
 
+const language = getChosenLanguage();
+
 /**
  * Change a challenge string to something else from the ChallengeResources json array.
  * 
  * @param resourceKey The resourceId to be changed.
  */
-export const $$Challenge = (resourceKey: ChallengeResourceKey, language: string): sanitizedChallengeData => {
+export const $$Challenge = (resourceKey: ChallengeResourceKey): sanitizedChallengeData => {
     let resource: any = resourceKey;
 
     if (ChallengeResources[resourceKey]) {
@@ -55,14 +58,17 @@ export const $$Challenge = (resourceKey: ChallengeResourceKey, language: string)
  * 
  * @param resourceKey The resourceId to be changed.
  */
-export const $$ = (resourceKey: StringResourceKey, language: string): string => {
+export const $$ = (resourceKey: StringResourceKey, fallBack?: string): string => {
   let resource: any = resourceKey;
 
   if (StringResources[resourceKey]) {
     resource = StringResources[resourceKey];
   }
-  else return "Missing StringResource :(";
+  else {
+    console.log("no resourckey found: "+resourceKey)
+    return fallBack ? fallBack : "Missing StringResource :(";
+  }
 
-  let localizedString = resource[language] !== "" ? resource[language] : resource["en"];
+  let localizedString = resource[language] !== "undefined" ? resource[language] : resource["en"];
   return localizedString;
 }

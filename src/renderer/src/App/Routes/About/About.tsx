@@ -1,4 +1,3 @@
-import { BottomNavigation, BottomNavigationAction, /* Paper */ } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 import './About.css'
 import Typography from '@mui/material/Typography'
@@ -15,7 +14,7 @@ const language = getChosenLanguage();
 export default function About(): JSX.Element {
   return (
     <>
-      <div className='AboutInfo'>
+      <div className='homeInfo'>
         <Grid container direction="column" alignItems="center" justifyContent="center">
           <Grid item xs={12}>
             <div>Version: v1.2.0</div>
@@ -24,7 +23,7 @@ export default function About(): JSX.Element {
             <div>Application made by: <a href="https://github.com/theoarav">Elmoren</a>, <a href="https://github.com/InsulatorGMan">InsulatorGMan</a> and <a href="https://github.com/DudiVok">DudiVok</a></div> 
           </Grid>
           {language!=="en" && <Grid item xs={12}>
-            <Typography>{$$("main.localizationMadeBy", language)}</Typography>
+            <Typography>{$$("about.localizationMadeBy")}</Typography>
           </Grid>}
           <Grid item xs={12}>
             <Button color="error" onClick={generateLocalizatons}>

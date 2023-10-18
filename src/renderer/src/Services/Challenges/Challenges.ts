@@ -1,5 +1,5 @@
 import { AuthModel } from '@renderer/Model/auth.model';
-import { AUTH_INFOS, NEBULA_ADDR, PINNED_CHALLENGES } from '../auth.service';
+import { AUTH_INFOS, NEBULA_ADDR, PINNED_CHALLENGES } from '../globals';
 
 export const savePinnedChallenges = (pinnedChallenges): void => {
   localStorage.setItem(PINNED_CHALLENGES, JSON.stringify(pinnedChallenges));

@@ -54,7 +54,7 @@ export default function ChallengesGrid({
 
     //Replace the api values with the translated ones.
     selectedChallenges.forEach((ch) => {
-      let translatedData: sanitizedChallengeData = $$Challenge(ch.challenge.challengeId, language)
+      let translatedData: sanitizedChallengeData = $$Challenge(ch.challenge.challengeId)
       if (translatedData) {
         if (translatedData.title && translatedData.title !== 'undefined')
           ch.challenge.name = translatedData.title.toUpperCase()
@@ -89,7 +89,6 @@ export default function ChallengesGrid({
         }}
         itemContent={(index) => (
           <ChallengeCard
-            language={language}
             challenge={challenges[index]}
             openModal={handleChallengeModal}
             togglePinnedChallenge={togglePinnedChallenge}

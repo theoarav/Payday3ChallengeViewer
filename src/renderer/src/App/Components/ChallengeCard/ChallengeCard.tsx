@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography'
 import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress'
 import Box from '@mui/material/Box'
 import LockIcon from '@mui/icons-material/Lock'
-import { $$Challenge, sanitizedChallengeData } from '../Language/StringReplacer'
+import { $$, $$Challenge, sanitizedChallengeData } from '../Language/StringReplacer'
 import PushPinIcon from '@mui/icons-material/PushPin'
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
 import { IconButton } from '@mui/material'
@@ -49,13 +49,11 @@ export default function ChallengeCard({
   openModal,
   togglePinnedChallenge,
   isPinned,
-  language
 }: ReactElement & {
   challenge
   openModal
   togglePinnedChallenge
   isPinned
-  language
 }): ReactElement {
   const challengeProgess = challenge.progress.objective.stats[0]
   const openChallengeModal = (): void => {
@@ -63,10 +61,7 @@ export default function ChallengeCard({
     openModal(challengesToComplete)
   }
 
-  const sanitizedChallengeData: sanitizedChallengeData = $$Challenge(
-    challenge.challenge.challengeId,
-    language
-  )
+  const sanitizedChallengeData: sanitizedChallengeData = $$Challenge(challenge.challenge.challengeId)
   const challengeName = (
     sanitizedChallengeData.internalName && sanitizedChallengeData.title !== 'undefined'
       ? sanitizedChallengeData.title
@@ -167,8 +162,7 @@ export default function ChallengeCard({
         </Typography>
         {challenge.status === "BUGGED" ? (
           <Typography variant="body2" color="rgba(243, 27, 56, 0.5)">
-            This challenge is bugged in-game. You've unlocked it, but you didn't get the reward for
-            it yet.
+            {$$("card.buggedText")}
           </Typography>
         ) : (
           ''
@@ -177,14 +171,14 @@ export default function ChallengeCard({
       <CardActions style={{ alignItems: 'baseline', paddingTop: 0, marginTop: 'auto' }}>
         {!!openModal && challenge.status === 'INIT' ? (
           <Button size="small" onClick={openChallengeModal}>
-            Show prerequisites
+            {$$("card.showPrerequisitesText")}
           </Button>
         ) : (
           ''
         )}
         {challengeRewards ? (
           <Typography variant="overline" display="block" style={{ marginLeft: 'auto' }}>
-            Reward: {challengeRewards} Infamy points
+            {$$("card.rewardText")}: {challengeRewards} {$$("card.rewardInfamyPoints")}
           </Typography>
         ) : (
           ''

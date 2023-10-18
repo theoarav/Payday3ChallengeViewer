@@ -1,4 +1,4 @@
-import { DEFAULT_LANGUAGE, LANGUAGE } from "../auth.service"
+import { DEFAULT_LANGUAGE, LANGUAGE } from "../globals"
 
 export const getChosenLanguage = (): string => {
     return localStorage.getItem(LANGUAGE) || DEFAULT_LANGUAGE

@@ -5,6 +5,8 @@ import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
+import { $$ } from '../../Language/StringReplacer'
+
 
 export default function SearchBar({
   onChange,
@@ -36,7 +38,7 @@ export default function SearchBar({
       <TextField
         id="search"
         type="search"
-        label="Search"
+        label={$$("header.searchBarTitle")}
         value={searchTerm}
         onChange={handleChange}
         sx={{ width: '100%' }}
@@ -49,7 +51,7 @@ export default function SearchBar({
           endAdornment: ([
             <InputAdornment position="end">
               <FormControl variant="standard" fullWidth>
-                <InputLabel id={'sortfilter-label'}>{"Sort by: "}</InputLabel>
+                <InputLabel id={'sortfilter-label'}>{$$("header.searchBarSortByTitle")+":"}</InputLabel>
                   <Select
                     labelId={'sortfilter-label'}
                     value={sortMethod}
@@ -63,10 +65,10 @@ export default function SearchBar({
                       Z-A
                     </MenuItem>
                     <MenuItem value={"PercHigh"} key={"sortfilter-"+3}>
-                      High %
+                      {$$("sortBy.HighPerc")}
                     </MenuItem>
                     <MenuItem value={"PercLow"} key={"sortfilter-"+4}>
-                      Low %
+                      {$$("sortBy.LowPerc")}
                     </MenuItem>
                   </Select>
               </FormControl>
@@ -80,7 +82,7 @@ export default function SearchBar({
               }}
               endIcon={<FilterList/>}
             >
-              Filters
+              {$$("filters.menuTitle")}
             </Button>
           </InputAdornment>,]
           )

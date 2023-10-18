@@ -6,19 +6,3 @@
     height: 50px;
     background-color: rgb(33, 33, 33);
 }
-
-.rootInfo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: calc(100vh - 50px);
-
-    img{
-        max-width: 300px;
-    }
-
-    .appName{
-       font-family: 'Montserrat', sans-serif;
-    }
-}

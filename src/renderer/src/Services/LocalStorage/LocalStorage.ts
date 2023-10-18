@@ -1,5 +1,5 @@
 import { AuthModel } from "@renderer/Model/auth.model"
-import { AUTH_INFOS } from "../auth.service"
+import { AUTH_INFOS } from "../globals"
 
 interface AuthData {
     access_token: string

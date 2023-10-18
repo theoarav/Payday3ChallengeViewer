@@ -5,7 +5,7 @@ import {
   CLIENT_ID,
   NEBULA_ADDR,
   FETCH_HEADERS,
-} from '../auth.service'
+} from '../globals'
 import { setLocalStorageData } from '../LocalStorage/LocalStorage'
 
 export const logout = (): void => {

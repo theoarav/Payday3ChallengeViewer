@@ -1,14 +1,16 @@
-import { useState, useEffect, useMemo, ReactElement } from 'react'
+import { useMemo } from 'react'
 import './App.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
-import Challenges from './Components/Challenges/Challenges'
 import { useMediaQuery } from '@mui/material'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Root, { RootProps } from './Routes/Root/Root'
+import Home from './Routes/Home/Home'
+import Challenges from './Components/Challenges/Challenges'
 import About from './Routes/About/About'
-import { /* BarChart, */ TrackChanges, Info} from '@mui/icons-material'
+import { /* BarChart, */ TrackChanges, Info, Home as HomeIcon} from '@mui/icons-material'
 import Error from './Routes/Error/Error'
+import { $$ } from './Components/Language/StringReplacer'
 
 export default function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
@@ -25,6 +27,11 @@ export default function App() {
 
   const routes: RootProps = {
     navigationRoutes: [
+      {
+        label: 'Home',
+        icon: <HomeIcon />,
+        route: '/'
+      },
       {
         label: 'Challenges',
         icon: <TrackChanges />,
@@ -49,6 +56,10 @@ export default function App() {
       element: <Root navigationRoutes={routes.navigationRoutes} />,
       errorElement: <Error />,
       children: [
+        {
+          path: '/',
+          element: <Home />
+        },
         {
           path: '/challenges',
           element: <Challenges />

@@ -1,5 +1,5 @@
 import { AuthModel } from '@renderer/Model/auth.model'
-import { AUTH_INFOS, NEBULA_ADDR } from '../auth.service'
+import { AUTH_INFOS, NEBULA_ADDR } from '../globals'
 import { getUserInfos } from '../User/User'
 
 

@@ -5,6 +5,9 @@ import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import ListSubheader from '@mui/material/ListSubheader';
 import Tooltip from '@mui/material/Tooltip';
+import { $$ } from '../Language/StringReplacer'
+import { StringResourceKey } from '../Language/StringResources'
+
 
 interface FilterOption {
   name: string
@@ -50,22 +53,23 @@ export default class FilterSelect extends React.Component<FilterSelectProps, Fil
   }
 
   render() {
+    console.log("options:",this.props.filterOptions)
   return (
     <FormControl variant="standard" fullWidth>
-      <InputLabel id={this.props.optionName + '-label'}>{this.props.optionName}</InputLabel>
+      <InputLabel id={this.props.optionName + '-label'}>{$$(("filters."+this.props.optionName) as StringResourceKey)}</InputLabel>
       <Select
         labelId={this.props.optionName + '-label'}
         value={this.state.selectedOption && this.state.selectedOption !== 'All' ? this.state.selectedOption.name : 'All'}
-        label={this.props.optionName}
+        label={$$(("filters."+this.props.optionName) as StringResourceKey)}
         onChange={this.handleChange}
         autoWidth={true}
       >
-        <MenuItem value="All">Show all</MenuItem>
+        <MenuItem value="All">{$$("filters.showAll")}</MenuItem>
         {
           //Doing a separate filter for weapons is not a good practice because it wont be dynamic, but theres no real way of implementing subgroups for the weapons otherwise :(
         }
         {this.props.optionName === "Weapon" ? [
-          <ListSubheader>Assault Rifle</ListSubheader>,
+          <ListSubheader>{$$("filters.AR")}</ListSubheader>,
             <MenuItem value="CAR-4" key={"weapons-"+0}>
               <Tooltip placement="left" title="Max level: 29">
                 <label>CAR-4</label>
@@ -86,7 +90,7 @@ export default class FilterSelect extends React.Component<FilterSelectProps, Fil
                 <label>VF-7S</label>
               </Tooltip>
             </MenuItem>,
-          <ListSubheader>Marksman Rifle</ListSubheader>,
+          <ListSubheader>{$$("filters.DMR")}</ListSubheader>,
             <MenuItem value="Reinfeld 900S" key={"weapons-"+4}>
               <Tooltip placement="left" title="Max level: 14">
                 <label>Reinfeld 900S</label>
@@ -97,7 +101,7 @@ export default class FilterSelect extends React.Component<FilterSelectProps, Fil
                 <label>SA A144</label>
               </Tooltip>
             </MenuItem>,
-          <ListSubheader>Pistol</ListSubheader>,
+          <ListSubheader>{$$("filters.Pistol")}</ListSubheader>,
             <MenuItem value="SP Model 11" key={"weapons-"+6}>
               <Tooltip placement="left" title="Max level: 13">
                 <label>SP Model 11</label>
@@ -118,7 +122,7 @@ export default class FilterSelect extends React.Component<FilterSelectProps, Fil
                 <label>Stryk 7</label>
               </Tooltip>
             </MenuItem>,
-          <ListSubheader>Revolver</ListSubheader>,
+          <ListSubheader>{$$("filters.Revolver")}</ListSubheader>,
             <MenuItem value="J&M Castigo 44" key={"weapons-"+10}>
               <Tooltip placement="left" title="Max level: 12">
                 <label>J&M Castigo 44</label>
@@ -129,7 +133,7 @@ export default class FilterSelect extends React.Component<FilterSelectProps, Fil
                 <label>Sforza Bison</label>
               </Tooltip>
             </MenuItem>,
-          <ListSubheader>SMG</ListSubheader>,
+          <ListSubheader>{$$("filters.SMG")}</ListSubheader>,
             <MenuItem value="FIK PC9" key={"weapons-"+12}>
               <Tooltip placement="left" title="Max level: 24">
                 <label>FIK PC9</label>
@@ -145,7 +149,7 @@ export default class FilterSelect extends React.Component<FilterSelectProps, Fil
                 <label>Ziv Commando</label>
               </Tooltip>
             </MenuItem>,
-          <ListSubheader>Shotgun</ListSubheader>,
+          <ListSubheader>{$$("filters.Shotgun")}</ListSubheader>,
             <MenuItem value="Mosconi 12 Classic" key={"weapons-"+15}>
               <Tooltip placement="left" title="Max level: 12">
                 <label>Mosconi 12 Classic</label>
@@ -156,7 +160,7 @@ export default class FilterSelect extends React.Component<FilterSelectProps, Fil
                 <label>Reinfeld 880</label>
               </Tooltip>
             </MenuItem>,
-          <ListSubheader>Overkill Weapon</ListSubheader>,
+          <ListSubheader>{$$("filters.OverkillWeapon")}</ListSubheader>,
             <MenuItem value="Het-5 Red Fox" key={"weapons-"+17}>
               <label>Het-5 Red Fox</label>
             </MenuItem>,
@@ -165,12 +169,12 @@ export default class FilterSelect extends React.Component<FilterSelectProps, Fil
             </MenuItem> ]
         : 
         this.props.filterOptions.map((option, index) => (
+          //"filters.categoryOptionCombat"
           <MenuItem value={option.name} key={index}>
-            {option.name}
+            {$$(("filters."+option.name.replaceAll(" ", "")) as StringResourceKey, option.name)}
           </MenuItem>
         ))
         }
-        
       </Select>
     </FormControl>
   )

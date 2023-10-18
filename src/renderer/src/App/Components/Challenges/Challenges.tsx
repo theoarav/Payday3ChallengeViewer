@@ -6,7 +6,7 @@ import { ChallengesFilters } from './Filters'
 import ChallengesGrid from './Grid'
 import ChallengesHeader from './Header/Header'
 import { ModalWrapper } from '../Modals/Wrapper'
-import { $$Challenge, sanitizedChallengeData } from '../Language/StringReplacer'
+import { $$, $$Challenge, sanitizedChallengeData } from '../Language/StringReplacer'
 import { getChosenLanguage, saveChosenLanguage } from '../../../Services/Language/Language'
 
 export default function Challenges() {
@@ -72,7 +72,7 @@ export default function Challenges() {
           if (ch.status === "COMPLETED" || ch.progress.objective.stats[0].currentValue >= ch.progress.objective.stats[0].targetValue) ipAcquired += ch.challenge.reward.stats[0].value;
         }
 
-        const sanitizedChallengeData: sanitizedChallengeData = $$Challenge(ch.challenge.challengeId, language)
+        const sanitizedChallengeData: sanitizedChallengeData = $$Challenge(ch.challenge.challengeId)
         const name = sanitizedChallengeData.internalName !== '' && sanitizedChallengeData.title !== 'undefined'
             ? sanitizedChallengeData.title
             : ch.challenge.name
@@ -236,7 +236,7 @@ export default function Challenges() {
           padding: '10px'
         }}
       >
-        <Typography variant="h4">Fetching data</Typography>
+        <Typography variant="h4">{$$("header.refreshButtonTitle")}</Typography>
         <CircularProgress color="success" style={{}} />
       </Backdrop>
       <ChallengesHeader

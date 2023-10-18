@@ -55229,7 +55229,7 @@ export const ChallengeResources = {
 	  "internalName": "S40SuppressedI",
 	  "en": {
 		"title": "Signature 40 Hush-Hush I",
-		"desc": "Defeat 10 enemies with the suppressor equipped on the Signature 403."
+		"desc": "Defeat 10 enemies with the suppressor equipped on the Signature 40."
 	  },
 	  "de_DE": {
 		"title": "Signature 40: Grabesstille I",
@@ -55288,7 +55288,7 @@ export const ChallengeResources = {
 	  "internalName": "S40SuppressedII",
 	  "en": {
 		"title": "Signature 40 Hush-Hush II",
-		"desc": "Defeat 50 enemies with the suppressor equipped on the Signature 403."
+		"desc": "Defeat 50 enemies with the suppressor equipped on the Signature 40."
 	  },
 	  "de_DE": {
 		"title": "Signature 40: Grabesstille II",
@@ -55347,7 +55347,7 @@ export const ChallengeResources = {
 	  "internalName": "S40SuppressedIII",
 	  "en": {
 		"title": "Signature 40 Hush-Hush III",
-		"desc": "Defeat 100 enemies with the suppressor equipped on the Signature 403."
+		"desc": "Defeat 100 enemies with the suppressor equipped on the Signature 40."
 	  },
 	  "de_DE": {
 		"title": "Signature 40: Grabesstille III",
@@ -55406,7 +55406,7 @@ export const ChallengeResources = {
 	  "internalName": "S40SuppressedIV",
 	  "en": {
 		"title": "Signature 40 Hush-Hush IV",
-		"desc": "Defeat 200 enemies with the suppressor equipped on the Signature 403."
+		"desc": "Defeat 200 enemies with the suppressor equipped on the Signature 40."
 	  },
 	  "de_DE": {
 		"title": "Signature 40: Grabesstille IV",
@@ -55465,7 +55465,7 @@ export const ChallengeResources = {
 	  "internalName": "S40SuppressedV",
 	  "en": {
 		"title": "Signature 40 Hush-Hush V",
-		"desc": "Defeat 400 enemies with the suppressor equipped on the Signature 403."
+		"desc": "Defeat 400 enemies with the suppressor equipped on the Signature 40."
 	  },
 	  "de_DE": {
 		"title": "Signature 40: Grabesstille V",

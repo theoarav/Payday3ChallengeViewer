@@ -1,11 +1,11 @@
-import { AuthModel } from '@renderer/Model/auth.model'
+import AuthData from '@renderer/Models/AuthData.model'
 import { AUTH_INFOS, NEBULA_ADDR } from '../globals'
 import { getUserInfos } from '../User/User'
 
 export const getStatItems = async (): Promise<false | { data: any }> => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
-  const authInfos = JSON.parse(authInfosStr) as AuthModel
+  const authInfos = JSON.parse(authInfosStr) as AuthData
 
   const userInfos = await getUserInfos()
   if (!userInfos) return false

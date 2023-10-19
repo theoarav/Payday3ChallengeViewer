@@ -1,11 +1,5 @@
-import { AuthModel } from '@renderer/Model/auth.model'
-import {
-  PINNED_CHALLENGES,
-  AUTH_INFOS,
-  CLIENT_ID,
-  NEBULA_ADDR,
-  FETCH_HEADERS,
-} from '../globals'
+import AuthData from '@renderer/Models/AuthData.model'
+import { PINNED_CHALLENGES, AUTH_INFOS, CLIENT_ID, NEBULA_ADDR, FETCH_HEADERS } from '../globals'
 import { setLocalStorageData } from '../LocalStorage/LocalStorage'
 
 export const logout = (): void => {
@@ -64,7 +58,7 @@ const refreshToken = async (refreshToken: string): Promise<boolean> => {
 export const isLoggedIn = async (): Promise<boolean> => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
-  const authInfos = JSON.parse(authInfosStr) as AuthModel
+  const authInfos = JSON.parse(authInfosStr) as AuthData
   if (authInfos.accessTokenExp > Date.now() / 1000) {
     return true
   } else if (authInfos.refreshTokenExp > Date.now() / 1000) {

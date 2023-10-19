@@ -1,25 +1,24 @@
-import { AuthModel } from '@renderer/Model/auth.model';
-import { AUTH_INFOS, NEBULA_ADDR, PINNED_CHALLENGES } from '../globals';
+import AuthData from '@renderer/Models/AuthData.model'
+import { AUTH_INFOS, NEBULA_ADDR, PINNED_CHALLENGES } from '../globals'
 
 export const savePinnedChallenges = (pinnedChallenges): void => {
-  localStorage.setItem(PINNED_CHALLENGES, JSON.stringify(pinnedChallenges));
-};
+  localStorage.setItem(PINNED_CHALLENGES, JSON.stringify(pinnedChallenges))
+}
 
 export const getPinnedChallenges = (): [] => {
-  const pinnedChallenges = localStorage.getItem(PINNED_CHALLENGES);
-  if (pinnedChallenges) return JSON.parse(pinnedChallenges);
-  return [];
-};
+  const pinnedChallenges = localStorage.getItem(PINNED_CHALLENGES)
+  if (pinnedChallenges) return JSON.parse(pinnedChallenges)
+  return []
+}
 
 export const deletePinnedChallenges = (): void => {
-  localStorage.removeItem(PINNED_CHALLENGES);
-};
+  localStorage.removeItem(PINNED_CHALLENGES)
+}
 
 export const getUserChallenges = async (): Promise<any> => {
-
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
-  const authInfos = JSON.parse(authInfosStr) as AuthModel
+  const authInfos = JSON.parse(authInfosStr) as AuthData
 
   const allChallengesData: Array<unknown> = []
   let next = true

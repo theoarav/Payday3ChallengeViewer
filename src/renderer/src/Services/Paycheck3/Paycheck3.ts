@@ -1,6 +1,6 @@
 import { getStatItems } from '../Stats/Stats'
 
-export const exportPayCheck3Data = async (): Promise<boolean> => {
+export const exportPayCheck3Data = async () => {
   const statItems = await getStatItems()
   if (!statItems) return false
 

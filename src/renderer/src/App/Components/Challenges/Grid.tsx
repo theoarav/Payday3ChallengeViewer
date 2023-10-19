@@ -17,7 +17,7 @@ const ItemContainer = styled.div`
   @media (max-width: 2700px) {
     width: 20%;
   }
-  
+
   @media (max-width: 2200px) {
     width: 25%;
   }
@@ -93,7 +93,7 @@ export default function ChallengesGrid({
             openModal={handleChallengeModal}
             togglePinnedChallenge={togglePinnedChallenge}
             isPinned={pinnedChallenges.includes(challenges[index]?.challenge?.challengeId || '')}
-            key={null}
+            key={index}
             type={''}
             props={undefined}
           />

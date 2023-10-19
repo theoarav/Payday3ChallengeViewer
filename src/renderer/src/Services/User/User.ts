@@ -1,7 +1,8 @@
 import AuthData from '@renderer/Models/AuthData.model'
 import { AUTH_INFOS, NEBULA_ADDR } from '../globals'
+import User from '@renderer/Models/User.model'
 
-export const getUserInfos = async (): Promise<any> => {
+export const getUserInfos = async () => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
   const authInfos = JSON.parse(authInfosStr) as AuthData
@@ -14,7 +15,7 @@ export const getUserInfos = async (): Promise<any> => {
   })
   if (apiCall.status !== 200) return false
 
-  const userInfos = await apiCall.json()
+  const userInfos = (await apiCall.json()) as User
 
   return userInfos
 }

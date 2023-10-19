@@ -1,9 +1,10 @@
 import AuthData from '@renderer/Models/AuthData.model'
 import { AUTH_INFOS, NEBULA_ADDR } from '../globals'
 import { getUserInfos } from '../User/User'
+import Wallet from '@renderer/Models/Wallet.model'
 
 //C-Stacks
-export const getWalletGold = async (): Promise<false | { data: any }> => {
+export const getWalletGold = async () => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
   const authInfos = JSON.parse(authInfosStr) as AuthData
@@ -22,13 +23,13 @@ export const getWalletGold = async (): Promise<false | { data: any }> => {
   )
   if (apiCall.status !== 200) return false
 
-  const walletGold = await apiCall.json()
+  const walletGold = (await apiCall.json()) as Wallet
 
   return walletGold
 }
 
 //in-game dollars
-export const getWalletCash = async (): Promise<false | { data: any }> => {
+export const getWalletCash = async () => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
   const authInfos = JSON.parse(authInfosStr) as AuthData
@@ -47,13 +48,13 @@ export const getWalletCash = async (): Promise<false | { data: any }> => {
   )
   if (apiCall.status !== 200) return false
 
-  const walletCash = await apiCall.json()
+  const walletCash = (await apiCall.json()) as Wallet
 
   return walletCash
 }
 
 //Premium Currency
-export const getWalletCred = async (): Promise<false | { data: any }> => {
+export const getWalletCred = async () => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
   const authInfos = JSON.parse(authInfosStr) as AuthData
@@ -72,7 +73,7 @@ export const getWalletCred = async (): Promise<false | { data: any }> => {
   )
   if (apiCall.status !== 200) return false
 
-  const walletCred = await apiCall.json()
+  const walletCred = (await apiCall.json()) as Wallet
 
   return walletCred
 }

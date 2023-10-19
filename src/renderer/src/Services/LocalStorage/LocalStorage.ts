@@ -1,14 +1,8 @@
 import AuthData from '@renderer/Models/AuthData.model'
 import { AUTH_INFOS } from '../globals'
+import LoginResponse from '@renderer/Models/LoginResponse.model'
 
-interface AuthData {
-  access_token: string
-  expires_in: number
-  refresh_token: string
-  refresh_expires_in: number
-}
-
-export const setLocalStorageData = (authData: AuthData): void => {
+export const setLocalStorageData = (authData: LoginResponse): void => {
   const currentDate = Date.now() / 1000
 
   const authInfos: AuthData = {

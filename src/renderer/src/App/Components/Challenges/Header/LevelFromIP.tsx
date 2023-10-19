@@ -35,7 +35,7 @@ function LinearProgressWithLabel({
   }, [initialCurrentValue, targetValue])
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, maxWidth: "220px"}}> 
+    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, maxWidth: '220px' }}>
       <Box sx={{ minWidth: '120px', mr: 1 }}>
         <LinearProgress
           variant="determinate"
@@ -78,7 +78,7 @@ export default class LevelFromIP extends React.Component<LevelFromIPProps, Level
 
       if (statItems) {
         const ipStat = statItems.data.find((stat) => stat.statCode === 'infamy-point')
-        this.setState({ ip: ipStat.value })
+        if (ipStat) this.setState({ ip: ipStat?.value })
       }
     } catch (error) {
       //Fallback to calculated ip values in case the API fails
@@ -123,25 +123,24 @@ export default class LevelFromIP extends React.Component<LevelFromIPProps, Level
         placement="top"
         title={
           <div>
-            <span style={{fontSize:"16px"}}>
-              {$$("account.tooltipTitle")}
-            </span>
+            <span style={{ fontSize: '16px' }}>{$$('account.tooltipTitle')}</span>
             <LinearProgressWithLabel
               initialCurrentValue={this.state.ip - this.state.previousIP}
               targetValue={this.state.nextIP - this.state.previousIP}
             />
-            <span style={{fontSize:"13px"}}>
-              {$$("account.currentIp")}: {numbersWithSeparator(this.state.ip, ",")} IP
+            <span style={{ fontSize: '13px' }}>
+              {$$('account.currentIp')}: {numbersWithSeparator(this.state.ip, ',')} IP
             </span>
             <br />
-            <span style={{fontSize:"13px"}}>
-              {$$("account.totalIp")}: {numbersWithSeparator(this.props.totalIP, ",")} IP
+            <span style={{ fontSize: '13px' }}>
+              {$$('account.totalIp')}: {numbersWithSeparator(this.props.totalIP, ',')} IP
             </span>
-
           </div>
         }
       >
-        <Typography noWrap>{$$("header.accountLevelText")}: {this.state.level}</Typography>
+        <Typography noWrap>
+          {$$('header.accountLevelText')}: {this.state.level}
+        </Typography>
       </Tooltip>
     )
   }

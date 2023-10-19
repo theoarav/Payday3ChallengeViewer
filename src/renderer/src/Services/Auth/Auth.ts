@@ -1,13 +1,14 @@
 import AuthData from '@renderer/Models/AuthData.model'
 import { PINNED_CHALLENGES, AUTH_INFOS, CLIENT_ID, NEBULA_ADDR, FETCH_HEADERS } from '../globals'
 import { setLocalStorageData } from '../LocalStorage/LocalStorage'
+import LoginResponse from '@renderer/Models/LoginResponse.model'
 
 export const logout = (): void => {
   localStorage.removeItem(PINNED_CHALLENGES)
   localStorage.removeItem(AUTH_INFOS)
 }
 
-export const login = async (loginData: FormData): Promise<boolean> => {
+export const login = async (loginData: FormData) => {
   loginData.append('grant_type', 'password')
   loginData.append('client_id', CLIENT_ID)
   loginData.append('extend_exp', 'true')
@@ -26,14 +27,14 @@ export const login = async (loginData: FormData): Promise<boolean> => {
   })
   if (apiCall.status !== 200) return false
 
-  const authData = await apiCall.json()
+  const authData = (await apiCall.json()) as LoginResponse
 
   setLocalStorageData(authData)
 
   return true
 }
 
-const refreshToken = async (refreshToken: string): Promise<boolean> => {
+const refreshToken = async (refreshToken: string) => {
   const urlEncondedData = new URLSearchParams()
   urlEncondedData.append('grant_type', 'refresh_token')
   urlEncondedData.append('client_id', CLIENT_ID)
@@ -49,13 +50,13 @@ const refreshToken = async (refreshToken: string): Promise<boolean> => {
   })
   if (apiCall.status !== 200) return false
 
-  const authData = await apiCall.json()
+  const authData = (await apiCall.json()) as LoginResponse
 
   setLocalStorageData(authData)
   return true
 }
 
-export const isLoggedIn = async (): Promise<boolean> => {
+export const isLoggedIn = async () => {
   const authInfosStr = localStorage.getItem(AUTH_INFOS)
   if (!authInfosStr) return false
   const authInfos = JSON.parse(authInfosStr) as AuthData

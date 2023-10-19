@@ -5,26 +5,39 @@ import Grid from '@mui/material/Grid'
 import { $$ } from '@renderer/App/Components/Language/StringReplacer'
 import { getChosenLanguage } from '@renderer/Services/Language/Language'
 import { generateLocalizatons } from '@renderer/Services/Language/GenerateLocalizations'
-import {
-  Button,
-} from '@mui/material'
+import { Button } from '@mui/material'
 
-const language = getChosenLanguage();
+const language = getChosenLanguage()
 
 export default function About(): JSX.Element {
   return (
     <>
-      <div className='homeInfo'>
+      <div className="homeInfo">
         <Grid container direction="column" alignItems="center" justifyContent="center">
           <Grid item xs={12}>
             <div>Version: v1.2.0</div>
           </Grid>
           <Grid item xs={12}>
-            <div>Application made by: <a href="https://github.com/theoarav">Elmoren</a>, <a href="https://github.com/InsulatorGMan">InsulatorGMan</a> and <a href="https://github.com/DudiVok">DudiVok</a></div> 
+            <div>
+              Application made by:{' '}
+              <a target="_blank" href="https://github.com/theoarav">
+                Elmoren
+              </a>
+              ,{' '}
+              <a target="_blank" href="https://github.com/InsulatorGMan">
+                InsulatorGMan
+              </a>{' '}
+              and{' '}
+              <a target="_blank" href="https://github.com/DudiVok">
+                DudiVok
+              </a>
+            </div>
           </Grid>
-          {language!=="en" && <Grid item xs={12}>
-            <Typography>{$$("about.localizationMadeBy")}</Typography>
-          </Grid>}
+          {language !== 'en' && (
+            <Grid item xs={12}>
+              <Typography>{$$('about.localizationMadeBy')}</Typography>
+            </Grid>
+          )}
           <Grid item xs={12}>
             <Button color="error" onClick={generateLocalizatons}>
               Generate Localizations

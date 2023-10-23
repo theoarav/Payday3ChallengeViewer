@@ -1,5 +1,5 @@
 # Payday 3 Challenge Viewer
-
+## ⚠ **WE ARE IN THE PROCESS OF REWRITING THE CODEBASE, PLEASE TAKE THIS INTO ACCOUNT WHEN OPENING PRs** ⚠
 This application allows you to check your challenge progression from outside the game and have an overall better experience tracking them, compared to the in-game one.
 
 # Features

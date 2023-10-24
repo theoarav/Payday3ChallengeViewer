@@ -1,4 +1,5 @@
 export type ChallengeResourceKey = keyof typeof ChallengeResources;
+export type BuggedResourceKey = keyof typeof BuggedChallenges;
 
 export const ChallengeResources = {
 	"63d2a30c7f0dd5f341fd1633": {
@@ -31396,7 +31397,7 @@ export const ChallengeResources = {
 		"desc": "Reach Infamy Level 7 to unlock the Flashbang."
 	  },
 	  "de_DE": {
-		"title": "Mir geht’s blendend",
+		"title": "Mir geht's blendend",
 		"desc": "Erreiche Berüchtigt-Stufe 7, um die Blendgranate freizuschalten."
 	  },
 	  "es_419": {
@@ -33887,7 +33888,7 @@ export const ChallengeResources = {
 	  },
 	  "fr_FR": {
 		"title": "Diamants sales : nerfs d'acier",
-		"desc": "Pendant le casse Diamants sales, prenez le contrôle de la salle d’exposition, récupérez tout le butin, et fuyez sans déclencher l’alarme en mode Overkill."
+		"desc": "Pendant le casse Diamants sales, prenez le contrôle de la salle d'exposition, récupérez tout le butin, et fuyez sans déclencher l'alarme en mode Overkill."
 	  },
 	  "it_IT": {
 		"title": "Diamanti sporchi: Freddo come il ghiaccio",
@@ -64550,7 +64551,7 @@ export const ChallengeResources = {
 	"63ceb3957f0dd5f341f308dd": {
 	  "internalName": "StunnerI",
 	  "en": {
-		"title": "It’s Stunning I",
+		"title": "It's Stunning I",
 		"desc": "Stun 5 different enemies with the Infrasonic Mine."
 	  },
 	  "de_DE": {
@@ -64609,7 +64610,7 @@ export const ChallengeResources = {
 	"63ceb3ca7f0dd5f341f308de": {
 	  "internalName": "StunnerII",
 	  "en": {
-		"title": "It’s Stunning II",
+		"title": "It's Stunning II",
 		"desc": "Stun 15 different enemies with the Infrasonic Mine."
 	  },
 	  "de_DE": {
@@ -64668,7 +64669,7 @@ export const ChallengeResources = {
 	"63ceb3fe7f0dd5f341f30926": {
 	  "internalName": "StunnerIII",
 	  "en": {
-		"title": "It’s Stunning III",
+		"title": "It's Stunning III",
 		"desc": "Stun 30 different enemies with the Infrasonic Mine."
 	  },
 	  "de_DE": {
@@ -64727,7 +64728,7 @@ export const ChallengeResources = {
 	"63ceb42e7f0dd5f341f30927": {
 	  "internalName": "StunnerIV",
 	  "en": {
-		"title": "It’s Stunning IV",
+		"title": "It's Stunning IV",
 		"desc": "Stun 50 different enemies with the Infrasonic Mine."
 	  },
 	  "de_DE": {
@@ -64786,7 +64787,7 @@ export const ChallengeResources = {
 	"63ceb4577f0dd5f341f30928": {
 	  "internalName": "StunnerV",
 	  "en": {
-		"title": "It’s Stunning V",
+		"title": "It's Stunning V",
 		"desc": "Stun 75 different enemies with the Infrasonic Mine."
 	  },
 	  "de_DE": {
@@ -67026,3 +67027,30 @@ export const ChallengeResources = {
 	  }
 	}
   }
+
+export const BuggedChallenges = {
+	//GOLD & SHARKE: FUNCTIONAL TRAINING - Unable to complete
+	"63ee2af08f18e8f29186a825": {
+		"status": "BUGGED"
+	  },
+	//ROAD RAGE: REPEAT OFFENDER ROWDY & HARSH VII - Shows wrong targetValue, description says 85, but the target is the ip reward (240)
+	"63d7816621282a2b1cef6660": {
+		"targetValue": "85"
+	},
+	//ROAD RAGE: REPEAT OFFENDER ROWDY & LETHAL VIII - Shows wrong targetValue, description says 40, but the target is the ip reward (280)
+	"63d78a7521282a2b1cefc5ae": {
+		"targetValue": "40"
+	},
+	//DIRTY ICE: REPEAT OFFENDER QUIET & LETHAL VIII - Have a misspelled tag, causing it not to show up when filtering for heists (Api shows Jewerly instead of Jewelry).
+	"63d8e1c321282a2b1cf96fdf": {
+		"tags": ['Map', 'Stealth', 'Heist', 'Overkill', 'Jewelry', 'Store']
+	},
+	//Electroshock Therapy III - Have a misspelled tag
+	"63cfe44d7f0dd5f341f3b869": {
+		"tags": ['Combat', 'Taser', 'Destroy', 'Battery']
+	},
+	//NORTHWEST B-9 CHEAPSKATE I - Have a misspelled tag
+	"63d27bd07f0dd5f341fc2ad6": {
+		"tags": ['Combat', 'NWB9', 'No', 'Reload', 'Kill']
+	}
+}

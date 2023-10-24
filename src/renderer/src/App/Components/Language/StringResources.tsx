@@ -1,6 +1,22 @@
 export type StringResourceKey = keyof typeof StringResources;
 
 export const StringResources = {
+	"": {
+		"en": "{var}",
+		"de_DE": "{var}",
+		"es_419": "{var}",
+		"es_ES": "{var}",
+		"fr_FR": "{var}",
+		"it_IT": "{var}",
+		"ja_JP": "{var}",
+		"ko_KR": "{var}",
+		"pl_PL": "{var}",
+		"pt_BR": "{var}",
+		"ru_RU": "{var}",
+		"tr_TR": "{var}",
+		"zh_Hans": "{var}",
+		"zh_Hant": "{var}"
+	},
 	"wallet.cash": {
 		"en": "Cash",
 		"de_DE": "Geld",

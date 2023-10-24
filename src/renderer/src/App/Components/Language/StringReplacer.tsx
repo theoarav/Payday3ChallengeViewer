@@ -55,20 +55,33 @@ export const $$Challenge = (resourceKey: ChallengeResourceKey): sanitizedChallen
 
 /**
  * Change a string to something else from the StringResources json array.
+ *  
+ * How to use: 
+ * 
+ * Regular string: $$("options.languageSelectorTitle") => This will output "Options" in english.
+ * 
+ * String with variable: $$("wallet.cash", {cash: variableToReplaceWith || 0}) => This will output "Cash: {variableToReplaceWith}$" in english.
+ * 
+ * If you want to add a new resource please use the blank replacer like this. {$$("", {var: "Text you want to write"})}.
+ * This is so i can integrate it into our i18n system and upload them to POE
  * 
  * @param resourceKey The resourceId to be changed.
+ * @param parameters Used for putting in variables to change inside the returnstring.
  */
-export const $$ = (resourceKey: StringResourceKey, fallBack?: string): string => {
+export const $$ = (resourceKey: StringResourceKey, parameters?: {}): string => {
   let resource: any = resourceKey;
 
   if (StringResources[resourceKey]) {
     resource = StringResources[resourceKey];
   }
-  else {
-    console.log("no resourckey found: "+resourceKey)
-    return fallBack ? fallBack : "Missing StringResource :(";
-  }
 
   let localizedString = resource[language] !== "undefined" ? resource[language] : resource["en"];
+
+  if (parameters) {
+    for (const key in parameters) {
+      localizedString = localizedString.replace(new RegExp("\\{" + key + "\\}", "gi"), parameters[key]);
+    }
+  }
+
   return localizedString;
 }

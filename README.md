@@ -1,5 +1,9 @@
+## ⚠ This project is now abandoned. Some of the features should still work past the updates (until Starbreeze decides to change how their API works), but new challenges won't have a properly translated name.  ⚠
+For developers: Feel free to fork this project, we've added a missing license to the repo, so you can do whatever you want with the code afterwards. There was also a translation project going on right before we made this decision, so if you want to have the localization file for the strings inside the code, please open an issue on the repo itself.
+
+For the people that helped translating the project: Thank you and we're sorry we couldn't really introduce your work inside the project. The basics were all there, we just lost interest with the game altogether. In the latter stages we were actually spending more time writing code for this app than actually playing the game, and the development of the app plummeted soon because of this. 
+
 # Payday 3 Challenge Viewer
-## ⚠ **WE ARE IN THE PROCESS OF REWRITING THE CODEBASE, PLEASE TAKE THIS INTO ACCOUNT WHEN OPENING PRs** ⚠
 This application allows you to check your challenge progression from outside the game and have an overall better experience tracking them, compared to the in-game one.
 
 # Features
